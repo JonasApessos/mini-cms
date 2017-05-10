@@ -1,6 +1,6 @@
 <?php
 
-echo "<div class = ".$res_class.">";
+echo "<div class = \"".$res_class."\">";
 echo "		<div>";
 echo "			<form>";
 echo "				<table>";

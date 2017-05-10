@@ -14,8 +14,8 @@ echo "			<tbody>";
 echo "		</table>";
 echo "	</div>";
 
-echo "     <div>";
-echo "		<p>google map</p>";
+echo "     <div id = \"id_map\">";
+
 echo "	</div>";
 
 echo "	<div>";

@@ -13,5 +13,4 @@ foreach($submenu_rows as $submenu_row)
 echo $menu_height;
 $submenu_height  = 50;
 
-mysqli_close($conn);
 ?>

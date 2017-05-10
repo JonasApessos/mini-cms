@@ -1,8 +1,8 @@
 <?php			
 			include "site_struct/document_data/db_conn.php";
-			include_once "site_struct/document_data/document_data.php";
-			
-			$_SESSION['access_level'];
+?>
+
+<?php
 			
 			switch($_SESSION['access_level'])
 			{
@@ -55,10 +55,5 @@
 				}
 			}
 			mysqli_close($conn);
-			
-			$sql = NULL;
-			$conn = NULL;
-			$page_component_rows = NULL;
-			
 			
 ?>

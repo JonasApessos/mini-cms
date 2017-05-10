@@ -19,13 +19,13 @@ if($_SESSION["access_level"] == 3)
 	echo "						<td><input type = \"submit\" value = \"submit\" onChange=\"user_login(this)\"></td>";
 	echo "					</tr>";
 	echo "					<tr>";
-	echo "						<td><p><a href=?menu_id=7>create account?</a></p></td>";
+	echo "						<td><p><a href=\" site_struct\data_struct\components\create_account.php \">create account?</a></p></td>";
 	echo "						<td><p><a href=?menu_id=9>forgot password?</a></p></td>";
 	echo "					</tr>";
 	echo "				</tbody>";
 	echo "			</table>";
 	echo "		</form>";
-	echo"	</div>";
+
 }
 else
 {
@@ -39,9 +39,9 @@ else
 	echo "	</div>";
 	
 	echo "	<div>";
-	echo "	<form action = \"site_struct\data_struct\components\additional_componets\php\deset_session.php\" method = \"POST\">";
-	echo "		<input type = \"submit\" value = \"Logout\">";
-	echo "	</form>";
+	echo "		<form action = \"site_struct\data_struct\components\additional_componets\php\deset_session.php\" method = \"POST\">";
+	echo "			<input type = \"submit\" value = \"Logout\">";
+	echo "		</form>";
 	echo "	</div>";
 }
 echo "</div>";

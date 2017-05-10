@@ -10,6 +10,7 @@ $drop_down_class = "dropdown";
 $table_form_class = "login_form";
 $header_logo_class = "logo";
 $header_title_class = "title";
+$home_class = "home_containt";
 $about_us_class = "about_us_page";
 $contact_class = "contact";
 $catalog_class = "catalog";

@@ -1,21 +1,61 @@
 
 	body
 	{
-		background-color:rgb(240,240,240);
+		background-color:rgba(240,240,240,1);
+		color:rgba(255,143,0,1);
+		border:none;
+	}
+	
+	h1
+	{
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	
+	h2
+	{
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	
+	h3
+	{
+		font-family:Arial, Helvetica, sans-serif;
 	}
 	
 	h4
 	{
-		font-family:Arial;
+		font-family:Arial, Helvetica, sans-serif;
 	}
+	
+	h5
+	{
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	
+	h6
+	{
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	
+	p
+	{
+		font-family:Arial, Helvetica, sans-serif;
+	}
+	
 
 	.absolute_container
 	{
 	    display:none;
+		border:none;
 	}
 	
 	.containment
 	{
 		width:90%;
-		margin:auto;		
+		margin:auto;
+		border:none;		
+	}
+	
+	.containment:hover
+	{
+		border:none;	
 	}
