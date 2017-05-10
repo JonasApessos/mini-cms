@@ -2,6 +2,7 @@
 {
 .home_containt
 {
+	text-align:center;
 	width:100%;
 	float:left;
 	clear:both;
@@ -11,85 +12,63 @@
 
 .home_containt div
 {
-	width:95%;
-	margin:auto;
-	clear:both;
-}
-
-.home_containt div div:nth-child(odd) /* first containt*/
-{
-	width:90%;
+	width:96%;
 	float:left;
-	margin:1% auto;
-	background-color:rgb(50,50,50);
-	box-shadow:0px 0px 10px 2px rgba(0,0,0,1);
+	margin:1%;
+	padding:1%;
 	clear:both;
-	padding:0.5%;
+	background-color:rgba(50,50,50,1);
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.25);
 	transition:box-shadow 1s;
 }
 
-.home_containt div div:nth-child(odd):hover
+.home_containt div:nth-child(odd) div:nth-child(odd)
 {
-	box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
-}
-
-.home_containt div div:nth-child(odd) div:nth-child(odd) /* image containt*/ 
-{
-	width:50%;
-	max-width:500px;
-	float:left;
+	width:20%;
+	min-width:150px;
 	clear:left;
-	margin:0% 4% 0% 0%;
-	background-color:rgb(50,50,50);
-}
-
-.home_containt div div:nth-child(odd) div:nth-child(even)/* text containt*/
-{
-	width:50%;
 	float:left;
+	margin:0% 5% 0% 0%;
+	padding:0%;
+	background-color:rgba(70,70,70,1);
+}
+
+.home_containt div:nth-child(odd) div:nth-child(even)
+{
+	width:65%;
 	clear:right;
-	text-align:center;
-	background-color:rgb(60,60,60);
+	float:left;
+	margin:0%;
+	padding:0%;
+	background-color:rgba(70,70,70,1);
 }
 
 
 
-.home_containt div div:nth-child(even)/*second containt */
+.home_containt div:nth-child(even) div:nth-child(odd)
 {
-	width:90%;
+	width:20%;
+	min-width:150px;
+	clear:right;
 	float:right;
-	margin:1% auto;
-	background-color:rgb(50,50,50);
-	box-shadow:0px 0px 10px 2px rgba(0,0,0,1);
-	clear:both;
-	padding:0.5%;
-	transition:box-shadow 1s;
+	padding:0%;
+	margin:0% 0% 0% 5%;
+	background-color:rgba(70,70,70,1);
 }
 
-.home_containt div div:nth-child(even):hover
+.home_containt div:nth-child(even) div:nth-child(even)
 {
-	box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
-}
-
-.home_containt div div:nth-child(even) div:nth-child(odd)/* image containt*/
-{
-	width:50%;
-	max-width:500px;
-	float:left;
+	width:65%;
 	clear:left;
-	margin:0% 4% 0% 0%;
-	background-color:rgb(50,50,50);
-	padding:none;
+	float:right;
+	padding:0%;
+	margin:0%;
+	background-color:rgba(70,70,70,1);
 }
 
-.home_containt div div:nth-child(even) div:nth-child(even)/*text containt*/
+.home_containt div:hover
 {
-	width:50%;
-	float:left;
-	clear:right;
-	text-align:center;
-	background-color:rgb(60,60,60);
-	margin:none;
-	padding:none;
+	box-shadow: 0px 0px 5px 2px rgba(255,143,0,1);
 }
+
 }

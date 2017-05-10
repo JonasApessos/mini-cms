@@ -236,7 +236,7 @@ $sql = "INSERT INTO ".$prefix."_component (component_title , include_file_id , s
  mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
 
  $sql = "INSERT INTO ".$prefix."_user(access_level_id , user_name , user_email  , user_password , user_gender) VALUES
- (1 , \"john\" , \"john@gmail.com\" , \"jogn123\" , \"male\"),
+ (1 , \"john\" , \"john@gmail.com\" , \"john123\" , \"male\"),
  (2 , \"marie\" , \"marie@gmail.com\" , \"marie123\" , \"female\"),
  (2 , \"vedel\" , \"vedel@gmail.com\" , \"vedel123\" , \"female\");";
  mysqli_query($conn, $sql) or die("ERROR 21" . mysqli_error($conn));

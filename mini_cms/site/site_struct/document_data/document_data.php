@@ -24,8 +24,8 @@ $header_title = "Restaurant";
 
 //css login form class style
 $header_login_form = "login_form_top";
-$faculty_div_normal = "faculty_normal";
-$faculty_div_inverted = "faculty_inverted";
+$faculty_div_normal = "faculty_normal";//deprecated
+$faculty_div_inverted = "faculty_inverted";//deprecated
 
 $menu_height  = 0;
 $sub_menu_height = 0;
