@@ -11,7 +11,7 @@ if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_p
 
 	echo "<div>";
 	echo "<h2>Name</h2>";
-	echo "<input type = \"text\" name = \"res_name\" onfocusout = \"nameFieldCheck(this.value)\" placeholder = \"ex. charles\">";
+	echo "<input type = \"text\" name = \"res_name\" maxlength = \"32\" onfocusout = \"nameFieldCheck(this.value)\" placeholder = \"ex. charles\">";
 	echo "</div>";
 
 	echo "<div>";
@@ -21,12 +21,12 @@ if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_p
 
 	echo "<div>";
 	echo "<h2>Number of people</h2>";
-	echo "<input type = \"number\" name = \"res_people\" onfocusout = \"peopleFieldCheck(this.value)\" placeholder = \"ex. 5\">";
+	echo "<input type = \"number\" name = \"res_people\" min = \"1\" max = \"100\" onfocusout = \"peopleFieldCheck(this.value)\" placeholder = \"ex. 5\">";
 	echo "</div>";
 
 	echo "<div>";
 	echo "<h2>Comment</h2>";
-	echo "<textarea spellcheck = \"true\" name = \"res_comment\" placeholder = \"ex. i want a table close to the window with a champange ready\"></textarea>";
+	echo "<textarea spellcheck = \"true\" maxlength = \"255\" name = \"res_comment\" placeholder = \"ex. i want a table close to the window with a champange ready\"></textarea>";
 	echo "</div>";
 
 	echo "<div id = \"res_cal\">";
