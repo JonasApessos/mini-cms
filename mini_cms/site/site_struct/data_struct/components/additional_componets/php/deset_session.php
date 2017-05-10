@@ -20,6 +20,7 @@ if(!mysqli_error($conn))
 	$_SESSION["access_level"] = 3;
 	$_SESSION["user_name"] = "none";
 	$_SESSION["user_email"] = "none";
+	session_destroy();
 }
 Header("Location: ../../../../../");
 ?>
