@@ -1,18 +1,16 @@
 "use strict";
 
+//init important data
 var date = new Date();
 
-//var milBeg = date.getTime();
-
-//var milEnd = (milBeg + ((86400000) * 7 * 4));
-
-//var days = (((((milEnd - milBeg)/24)/60)/60)/1000);
 var days = 31;
-//var week = Math.round(((days/7) - (days/31)));
-//var month = (week/4);
 
 var prevId = 0;
 var oldIdInput_01 = 0;
+
+var idDiv_03 = 0;
+
+var idInput_01 = 0;
 
 var months = ["January","February","Mars","April","May","June","Julie","August","September","October","November","December"];
 
@@ -22,39 +20,32 @@ var minutes = [0,15,30,45];
 function resCall(){}
 function dateCheck(){}
 function createCallChilds(){}
+function setMinutes(){}
+function setHours(){}
+function setDays(){}
 function setBoxSelection(){}
+function updateForm(){}
+//-------------------------------------------------------------
 
+//set calander
 function resCall()
 {
-	//console.log("months : " + month);
-	//console.log("weeks : " + week);
-	//console.log("days : " + days);
-	
 	var idDiv_01 = 0;
 
 	if((idDiv_01 = document.getElementById('res_cal')))
-		createCallChilds();
+		createCallChilds(idDiv_01);
 }
 
-function createCallChilds()
-{
-	var hoursArrayLen  = hours.length;
-	var minutesArrayLen = minutes.length;
-	
-	var idDiv_02 = document.getElementById('res_cal');
-	
+function createCallChilds(idDiv_01)
+{		
 	var createDiv_01 = document.createElement('div');
 	var createDiv_02 = document.createElement('div');
 	var createSel_01 = 0;
-	var createOpt_01 = 0;
 	var createH_01 = 0;
-	var createP_01 = 0;
 	var createI_01 = 0;
 	var createText_01 = 0;
 	
-	//idDiv_01.appendChild(createTd_01);
-	//createTd_01.appendChild(createDiv_01);
-	idDiv_02.appendChild(createDiv_01);
+	idDiv_01.appendChild(createDiv_01);
 	createDiv_01.appendChild(createDiv_02);
 	
 	createH_01 = document.createElement('h3');
@@ -67,32 +58,13 @@ function createCallChilds()
 	createSel_01.id = "minutes_id";
 
 	
-	for(var i = 0; i < minutesArrayLen; i++)
-	{
-		createOpt_01 = document.createElement('option');
-		createP_01 = document.createElement('p');
-		createText_01 = document.createTextNode(minutes[i]);
-		
-		createSel_01.appendChild(createOpt_01);
-		createOpt_01.appendChild(createP_01);
-		createP_01.appendChild(createText_01);
-	}
+	setMinutes(createSel_01);//set minutes
 	
 	createSel_01 = document.createElement('select');
 	createDiv_02.appendChild(createSel_01);
 	createSel_01.id = "hours_id";
 	
-	for(var i = 0; i < hoursArrayLen; i++)
-	{
-		createOpt_01 = document.createElement('option');
-		createP_01 = document.createElement('p');
-		createText_01 = document.createTextNode(hours[i]);
-		
-		createSel_01.appendChild(createOpt_01);
-		createOpt_01.setAttribute("value",hours[i]);
-		createOpt_01.appendChild(createP_01);
-		createP_01.appendChild(createText_01);
-	}
+	setHours(createSel_01);//set hours
 	
 	createDiv_02 = document.createElement('div');
 	createDiv_01.appendChild(createDiv_02);
@@ -100,25 +72,10 @@ function createCallChilds()
 	createDiv_02.id = "div_cal_con";
 	createDiv_02.className = "div_cal_con";
 	
-	dateCheck();
-	var createDiv_03 = 0;
-	for(var i = 1; i <= days; i++)
-	{
-		//createI_01 = document.createElement('input');
-		createP_01 = document.createElement('p');
-		createText_01 = document.createTextNode(i);
-		createDiv_03 = document.createElement('div');
-		
-		createDiv_02.appendChild(createDiv_03);
-		createDiv_03.appendChild(createP_01);
-		createP_01.appendChild(createText_01);
-		//createDiv_03.appendChild(createI_01);
-		
-		createDiv_03.id = "div_date_" + i;
-		createDiv_03.setAttribute("onclick","setBoxSelection(this.id)");
-		createDiv_03.setAttribute("value",i);
-		
-	}
+	dateCheck();//checking month days
+	
+	setDays(createDiv_02);//set days
+	
 	createDiv_02 = document.createElement('div');
 	
 	createDiv_01.appendChild(createDiv_02);
@@ -128,64 +85,121 @@ function createCallChilds()
 	createI_01.setAttribute("id","res_date_id");
 	createI_01.setAttribute("type","text");
 	createI_01.setAttribute("name","res_date");
+
+	createI_01.setAttribute("value",date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
 	createI_01.readOnly = true;
-	createI_01.setAttribute("value",(date.getUTCMonth()  + 1) + "-" + date.getUTCFullYear());
 }
 
-function setBoxSelection(newId)
+function setMinutes(selId)//setting minutes of the calandar
 {
+	var minutesArrayLen = minutes.length;
+	var createElOb_01 = 0;
+	var createElOb_02 = 0;
+	for(var i = 0; i < minutesArrayLen; i++)
+	{
+		createElOb_01 = document.createElement('option');
+		createElOb_02 = document.createElement('p');
+		
+		selId.appendChild(createElOb_01);
+		createElOb_01.appendChild(createElOb_02);
+		createElOb_01 = document.createTextNode(minutes[i]);
+		createElOb_02.appendChild(createElOb_01);
+	}
+}
+
+function setHours(selId)//setting hours of the calandar
+{
+	var hoursArrayLen  = hours.length;
+	var createElOb_01 = 0;
+	var createElOb_02 = 0;
+	for(var i = 0; i < hoursArrayLen; i++)
+	{
+		createElOb_01 = document.createElement('option');
+		createElOb_02 = document.createElement('p');
+				
+		selId.appendChild(createElOb_01);
+		createElOb_01.setAttribute("value",hours[i]);
+		createElOb_01.appendChild(createElOb_02);
+		createElOb_01 = document.createTextNode(hours[i]);
+		createElOb_02.appendChild(createElOb_01);
+	}
+}
+
+function setDays(divId)//setting days of the calander
+{
+	var createElOb_01 = 0;
+	var createElOb_02 = 0;
+	for(var i = date.getUTCDate() + 1; i <= days; i++)
+	{
+		createElOb_01 = document.createElement('div');
+		createElOb_02 = document.createElement('p');
+		
+		divId.appendChild(createElOb_01);
+		createElOb_01.appendChild(createElOb_02);
+		
+		createElOb_01.id = "div_date_" + i;
+		createElOb_01.setAttribute("onclick","setBoxSelection(this.id)");
+		createElOb_01.setAttribute("value",i);
+		
+		createElOb_01 = document.createTextNode(i);
+		createElOb_02.appendChild(createElOb_01);		
+	}
+}
+
+function setBoxSelection(newId)//on click to element , set and update form input
+{
+	
 	if(prevId == 0)
 		prevId = newId;
 	
-	var idDiv_03 = document.getElementById(newId);
-	var idDiv_04 = document.getElementById(prevId);
-	var idInput_01 = document.getElementById("res_date_id");
+	idDiv_03 = document.getElementById(newId);
+
+	idInput_01 = document.getElementById("res_date_id");
 		
 	document.getElementById(newId).style.backgroundColor = "rgba(40,40,40,1)";
 	document.getElementById(newId).style.boxShadow = "0px 0px 4px 2.5px rgba(255,143,0,1.0)";
-	idInput_01.setAttribute("value",idDiv_03.getAttribute("value") + "-" +(date.getUTCMonth()  + 1) + "-" + date.getUTCFullYear() + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex]);
 	
+	idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
 	
 	if(prevId != newId)
 	{
 		document.getElementById(prevId).style.backgroundColor = "rgba(20,20,20,1)";
 		document.getElementById(prevId).style.boxShadow = "0px 0px 4px 2.5px rgba(0,0,0,0.25)";
-		//oldIdInput_01.removeAttribute("name");
+
 	}	
 	
 	prevId = newId;
-	//oldIdInput_01 = idInput_01;
 }
 
+//check for days of month
 function dateCheck()
 {
 	switch(date.getUTCMonth())
 	{
-		case 1:
+		case 1://feb is a special month where every 4 years the final year is allways dividable with 4 and gets 29 days instead of 28
 			if(date.getUTCFullYear()%4 == 0)
 				days = days - 3;
 			else
 				days = days - 2;
-			console.log("1 : " + date.getUTCMonth());
 			break;
-		case 3:
+		case 3://april
 			days = days - 1;
-			console.log("3");
 			break;
-		case 5:
+		case 5://june
 			days = days - 1;
-			console.log("5");
 			break;
-		case 8:
+		case 8://sept
 			days = days - 1;
-			console.log("8");
 			break;
-		case 10:
+		case 10://nov
 			days = days - 1;
-			console.log("10");
 			break;
-		default:
-			console.log("none");
-		
 	}
+}
+
+
+function updateForm()//updates on form input changes
+{	
+	if(idDiv_03 != 0)
+		idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
 }

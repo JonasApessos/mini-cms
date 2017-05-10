@@ -30,10 +30,7 @@ WARNING the structure follows monolithic structure , that means there will have 
 4) Components can be set to be inserted into there parents.
 */
 
-
-
-
-
+//---------------------------------------------------------------------------------------------------------------
 $server_name = "localhost";//the servers name where the php will connect to execute the sql databases
 $server_user = "root";//username of the server administration
 $server_password = "";//password of the server administrator
@@ -85,55 +82,72 @@ mysqli_query($conn , $sql) or die("ERROR 05" . mysqli_error($conn));
 $sql = "
 CREATE TABLE ".$prefix."user
 (
- user_id INT AUTO_INCREMENT,
- user_name VARCHAR(24) NOT NULL UNIQUE,
- user_email VARCHAR(48) NOT NULL UNIQUE,
- user_password VARCHAR(48) NOT NULL UNIQUE,
- user_gender VARCHAR(7) NOT NULL,
- user_date_created DATETIME NOT NULL DEFAULT NOW(),
- accessLv_id INT DEFAULT 3 NOT NULL,
- PRIMARY KEY(user_id),
- FOREIGN KEY (accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
- )ENGINE = innoDB;";//this is the user table , using the access level we determine the components data the user has access to
+	user_id INT AUTO_INCREMENT,
+	user_name VARCHAR(24) NOT NULL UNIQUE,
+	user_email VARCHAR(48) NOT NULL UNIQUE,
+	user_password VARCHAR(48) NOT NULL UNIQUE,
+	user_gender VARCHAR(7) NOT NULL,
+	user_date_created DATETIME NOT NULL DEFAULT NOW(),
+	accessLv_id INT DEFAULT 3 NOT NULL,
+	PRIMARY KEY(user_id),
+	FOREIGN KEY (accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
+) ENGINE = innoDB;";//this is the user table , using the access level we determine the components data the user has access to
 mysqli_query($conn, $sql) or die("ERROR 06" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."userLogin
 (
-userLogin_id INT AUTO_INCREMENT,
-userLogin_date DATETIME NOT NULL DEFAULT \"1000-10-10\",
-userLogin_date_out DATETIME NOT NULL DEFAULT \"1000-10-10\",
-userLogin_state BOOLEAN NOT NULL DEFAULT FALSE,
-user_id INT,
-PRIMARY KEY(userLogin_id),
-FOREIGN KEY (user_id) REFERENCES ".$prefix."user(user_id)
-)ENGINE = innoDB;";
+	userLogin_id INT AUTO_INCREMENT,
+	userLogin_date DATETIME NOT NULL DEFAULT \"1000-10-10\",
+	userLogin_date_out DATETIME NOT NULL DEFAULT \"1000-10-10\",
+	userLogin_state BOOLEAN NOT NULL DEFAULT FALSE,
+	user_id INT,
+	PRIMARY KEY(userLogin_id),
+	FOREIGN KEY (user_id) REFERENCES ".$prefix."user(user_id)
+) ENGINE = innoDB;";
 mysqli_query($conn, $sql) or die("ERROR 07" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."resPos
 (
-resPos_id INT AUTO_INCREMENT NOT NULL,
-resPos_title VARCHAR(64),
-resPos_date_created DATETIME NOT NULL DEFAULT NOW(),
-resPos_desc VARCHAR(255),
-PRIMARY KEY(resPos_id)
-)ENGINE = innoDB;";//restaurant positions for the diner tables
+	resPos_id INT AUTO_INCREMENT NOT NULL,
+	resPos_title VARCHAR(64),
+	resPos_date_created DATETIME NOT NULL DEFAULT NOW(),
+	resPos_desc VARCHAR(255),
+	PRIMARY KEY(resPos_id)
+) ENGINE = innoDB;";//restaurant positions for the diner tables
 mysqli_query($conn,$sql) or die("ERROR 08".mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."Dtable
 (
-Dtable_id INT AUTO_INCREMENT NOT NULL,
-Dtable_available BOOLEAN NOT NULL DEFAULT TRUE,
-Dtable_date_created DATETIME NOT NULL DEFAULT NOW(),
-Dtable_capacity INT(2) NOT NULL DEFAULT 1,
-resPos_id INT DEFAULT 1 NOT NULL,
-user_id INT NOT NULL DEFAULT 1,
-PRIMARY KEY(Dtable_id),
-FOREIGN KEY (resPos_id) REFERENCES ".$prefix."resPos(resPos_id)
-)ENGINE = innoDB;";//by default a table belongs to the administrator(owner) of the restaurant
+	Dtable_id INT AUTO_INCREMENT NOT NULL,
+	Dtable_available BOOLEAN NOT NULL DEFAULT TRUE,
+	Dtable_date_created DATETIME NOT NULL DEFAULT NOW(),
+	Dtable_capacity INT(2) NOT NULL DEFAULT 1,
+	resPos_id INT DEFAULT 1 NOT NULL,
+	user_id INT NOT NULL DEFAULT 1,
+	PRIMARY KEY(Dtable_id),
+	FOREIGN KEY (resPos_id) REFERENCES ".$prefix."resPos(resPos_id)
+) ENGINE = innoDB;";//by default a table belongs to the administrator(owner) of the restaurant
 mysqli_query($conn, $sql) or die("ERROR 09".mysqli_error($conn));
+
+$sql = "
+CREATE TABLE ".$prefix."reservation
+(
+	reservation_id INT AUTO_INCREMENT,
+	reservation_name VARCHAR(32) NOT NULL,
+	reservation_smoker BOOLEAN NOT NULL DEFAULT FALSE,
+	reservation_people INT(2) NOT NULL DEFAULT 1,
+	reservation_date DATETIME NOT NULL DEFAULT \"1000-10-10\",
+	reservation_comm VARCHAR(255) NOT NULL DEFAULT \"none\",
+	user_id INT NOT NULL,
+	Dtable_id INT NOT NULL,
+	PRIMARY KEY(reservation_id),
+	FOREIGN KEY (user_id) REFERENCES ".$prefix."user(user_id),
+	FOREIGN KEY (Dtable_id) REFERENCES ".$prefix."Dtable(Dtable_id)
+) ENGINE = innoDB;";
+mysqli_query($conn, $sql) or die("ERROR 10" . mysqli_error($conn));
 
 $sql = " 
 CREATE TABLE ".$prefix."mStruct
@@ -144,8 +158,8 @@ CREATE TABLE ".$prefix."mStruct
 	accessLv_id INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (mStruct_id),
 	FOREIGN KEY (accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
-)ENGINE = innoDB;";//by default the index 1 has been used as a default for the body contain of the site , all the rest indexes are set as custom , thus creating a menu only needs to set the index 2 and above (page_component_id,menu_id)
-mysqli_query($conn, $sql) or die("ERROR 10" . mysqli_error($conn));
+) ENGINE = innoDB;";//by default the index 1 has been used as a default for the body contain of the site , all the rest indexes are set as custom , thus creating a menu only needs to set the index 2 and above (page_component_id,menu_id)
+mysqli_query($conn, $sql) or die("ERROR 11" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."subMStruct
@@ -158,8 +172,8 @@ CREATE TABLE ".$prefix."subMStruct
     PRIMARY KEY (subMStruct_id),
     FOREIGN KEY (mStruct_id) REFERENCES ".$prefix."mStruct(mStruct_id),
 	FOREIGN KEY (accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
-)ENGINE = innoDB;";//the sub menu is the buttons menu of the menu , the columns of the menu , again the same logic applies , the index 1 has been reserved for the platforms base data(menu_id)
-mysqli_query($conn, $sql) or die("ERROR 11" . mysqli_error($conn));
+) ENGINE = innoDB;";//the sub menu is the buttons menu of the menu , the columns of the menu , again the same logic applies , the index 1 has been reserved for the platforms base data(menu_id)
+mysqli_query($conn, $sql) or die("ERROR 12" . mysqli_error($conn));
 
 $sql="
 CREATE TABLE ".$prefix."compDataImg
@@ -171,8 +185,8 @@ CREATE TABLE ".$prefix."compDataImg
 	fileType_id INT,
 	PRIMARY KEY(compDataImg_id),
 	FOREIGN KEY(fileType_id) REFERENCES ".$prefix."fileType(fileType_id)
-)ENGINE = innoDB;";//this table contains the file path of the images , NOT the data itself , it only registers the path , using the file type table we can determine the file type of the folder(this is mostly compatible and useful to know the file type for convenience for when writing sql entry's )
-mysqli_query($conn, $sql) or die("ERROR 12" . mysqli_error($conn));
+) ENGINE = innoDB;";//this table contains the file path of the images , NOT the data itself , it only registers the path , using the file type table we can determine the file type of the folder(this is mostly compatible and useful to know the file type for convenience for when writing sql entry's )
+mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."compData
@@ -185,8 +199,8 @@ CREATE TABLE ".$prefix."compData
 	PRIMARY KEY(compData_id),
 	FOREIGN KEY(compDataImg_id) REFERENCES ".$prefix."compDataImg(compDataImg_id),
 	FOREIGN KEY(accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
-)ENGINE = innoDB;";//component data is a table where it connects all extra data to the page component , you can create your own table and connect it to this table , then when you write the sql you can get access to your table
-mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
+) ENGINE = innoDB;";//component data is a table where it connects all extra data to the page component , you can create your own table and connect it to this table , then when you write the sql you can get access to your table
+mysqli_query($conn, $sql) or die("ERROR 14" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."incFile
@@ -198,8 +212,8 @@ CREATE TABLE ".$prefix."incFile
 	fileType_id INT DEFAULT 1 NOT NULL,
 	PRIMARY KEY(incFile_id),
 	FOREIGN KEY (fileType_id) REFERENCES ".$prefix."fileType(fileType_id)
-)ENGINE = innoDB;";//this table contains all the header files to be include during the entry of the application
-mysqli_query($conn, $sql) or die("ERROR 14" . mysqli_error($conn));
+) ENGINE = innoDB;";//this table contains all the header files to be include during the entry of the application
+mysqli_query($conn, $sql) or die("ERROR 15" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."PCompStruct
@@ -217,7 +231,7 @@ CREATE TABLE ".$prefix."PCompStruct
 	FOREIGN KEY (compData_id) REFERENCES ".$prefix."compData(compData_id),
 	FOREIGN KEY (incFile_id) REFERENCES ".$prefix."incFile(incFile_id)
 ) ENGINE = innoDB;";//the page component structure is the table where it determines the position and hierarchical structure of your application contain , from the body to the main contain
-mysqli_query($conn, $sql) or die("ERROR 15" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 16" . mysqli_error($conn));
 
 
 /*
@@ -229,7 +243,7 @@ $sql = "INSERT INTO ".$prefix."accessLv (accessLv_title) VALUES
 (\"ADMIN\") , 
 (\"PUBLIC\") , 
 (\"GUEST\");";
-mysqli_query($conn, $sql) or die("ERROR 16" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 17" . mysqli_error($conn));
 
 $sql = "
 INSERT INTO ".$prefix."fileType(fileType_title , fileType_extension) VALUES 
@@ -239,7 +253,7 @@ INSERT INTO ".$prefix."fileType(fileType_title , fileType_extension) VALUES
 (\"cascading style sheet\" , \"css\"),
 (\"Joint Photographic Expert Group\" , \"jpeg\"),
 (\"Portable Network Graphics\" , \"png\");";
-mysqli_query($conn , $sql)or die("ERROR 17" . mysqli_error($conn));
+mysqli_query($conn , $sql)or die("ERROR 18" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."mStruct (mStruct_title ,accessLv_id) VALUES
 (\"menu0\",3),
@@ -247,22 +261,22 @@ $sql = "INSERT INTO ".$prefix."mStruct (mStruct_title ,accessLv_id) VALUES
 (\"menu2\",3),
 (\"menu3\",1),
 (\"menu4\",2);";
-mysqli_query($conn, $sql) or die("ERROR 18" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv_id) VALUES
- (\"Body\",1,3),
- (\"Home\",2 , 3) , 
- (\"About us\",2 , 3) , 
- (\"Contact\",2 , 3) , 
- (\"Catalogue\",3 , 3) , 
- (\"Reservation\",3 , 2) , 
- (\"Faculty\",3 , 3),
- (\"Test\",4 , 1),
- (\"Test2\",4 , 1),
- (\"Test3\",4 , 1),
- (\"Test4\",5,2),
- (\"Test5\",5,2);";
-mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
+(\"Body\",1,3),
+(\"Home\",2 , 3) , 
+(\"About us\",2 , 3) , 
+(\"Contact\",2 , 3) , 
+(\"Catalogue\",3 , 3) , 
+(\"Reservation\",3 , 2) , 
+(\"Faculty\",3 , 3),
+(\"Test\",4 , 1),
+(\"Test2\",4 , 1),
+(\"Test3\",4 , 1),
+(\"Test4\",5,2),
+(\"Test5\",5,2);";
+mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_path) VALUES 
 (\"desktop_style\",4, \"../css/site_style/desktop_style/desktop_style.css\"),
@@ -296,22 +310,22 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"drop_down_menu\",4, \"../css/site_style/desktop_style/component_style/drop_down_menu.php\"),
 (\"init\",3, \"../js/init.js\"),
 (\"absolute_menu\",3, \"../js/absolute_menu.js\"),
-(\"google_maps\",3, \"../js/google_map.js\"),
+(\"inputCheck\",3, \"../js/inputCheck.js\"),
 (\"res_cal\",3, \"../js/res_cal.js\"),
 (\"login_check\",3, \"../js/login_check.js\");";
-mysqli_query($conn , $sql)or die("ERROR 20" . mysqli_error($conn));
+mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES
 (\"add_btn\",\"../images/img_bt_add.png\",6),
 (\"del_btn\",\"../images/img_bt_sub.png\",6), 
 (\"edit_btn\",\"../images/img_bt_edit.png\",6);";
-mysqli_query($conn, $sql) or die("ERROR 21" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 22" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compData (compData_title ,compDataImg_id, accessLv_id) VALUES
 (\"add_btn\",1,1),
 (\"del_btn\",2,1), 
 (\"edit_btn\",3,1);";
-mysqli_query($conn, $sql) or die("ERROR 22" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 23" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."PCompStruct (PCompStruct_title , incFile_id , accessLv_id,subMStruct_id,compData_id) VALUES 
 (\"header\",15,3,1,NULL) , 
@@ -319,25 +333,24 @@ $sql = "INSERT INTO ".$prefix."PCompStruct (PCompStruct_title , incFile_id , acc
 (\"main\",17,3,1,NULL), 
 (\"footer\",18,3,1,NULL),
 (\"Home\",19,3,2,NULL), 
- (\"About us\",20,3,3,NULL),
- (\"Contact\",21,3,4,NULL),
- (\"Catalogue\",22,3,5,NULL),
- (\"Reservation\",23,2,6,NULL),
- (\"Faculty\",24,3,7,NULL)
-;";
-mysqli_query($conn , $sql) or die("ERROR 23" . mysqli_error($conn));
+(\"About us\",20,3,3,NULL),
+(\"Contact\",21,3,4,NULL),
+(\"Catalogue\",22,3,5,NULL),
+(\"Reservation\",23,2,6,NULL),
+(\"Faculty\",24,3,7,NULL);";
+mysqli_query($conn , $sql) or die("ERROR 24" . mysqli_error($conn));
 
- $sql = "INSERT INTO ".$prefix."user(accessLv_id , user_name , user_email  , user_password , user_gender) VALUES
- (1 , \"john\" , \"john@gmail.com\" , \"".crypt("john123","T51")."\" , \"male\"),
- (2 , \"marie\" , \"marie@gmail.com\" , \"".crypt("marie123","T51")."\" , \"female\"),
- (2 , \"vedel\" , \"vedel@gmail.com\" , \"".crypt("vedel123","T51")."\" , \"female\");";
- mysqli_query($conn, $sql) or die("ERROR 24" . mysqli_error($conn));
+$sql = "INSERT INTO ".$prefix."user(accessLv_id , user_name , user_email  , user_password , user_gender) VALUES
+(1 , \"john\" , \"john@gmail.com\" , \"".crypt("john123","T51")."\" , \"male\"),
+(2 , \"marie\" , \"marie@gmail.com\" , \"".crypt("marie123","T51")."\" , \"female\"),
+(2 , \"vedel\" , \"vedel@gmail.com\" , \"".crypt("vedel123","T51")."\" , \"female\");";
+mysqli_query($conn, $sql) or die("ERROR 25" . mysqli_error($conn));
  
- $sql = "INSERT INTO ".$prefix."resPos(resPos_title,resPos_desc) VALUES
- (\"second floor\",\"the second floor has a beautiful view of the city , you can enjoy the view while eating and relaxing.\"),
- (\"backyard\",\"enjoy the beautiful jungle theme backyard and enjoy our tropical juices from different tropical rainforest's fruit'\"),
- (\"main floor\",\"enjoy our in display cooking with our best chef cooking in front of you while you eat.\");";
-mysqli_query($conn,$sql) or die("ERROR 25". mysqli_error($conn));
+$sql = "INSERT INTO ".$prefix."resPos(resPos_title,resPos_desc) VALUES
+(\"second floor\",\"the second floor has a beautiful view of the city , you can enjoy the view while eating and relaxing.\"),
+(\"backyard\",\"enjoy the beautiful jungle theme backyard and enjoy our tropical juices from different tropical rainforest's fruit'\"),
+(\"main floor\",\"enjoy our in display cooking with our best chef cooking in front of you while you eat.\");";
+mysqli_query($conn,$sql) or die("ERROR 26". mysqli_error($conn));
 
 $sql ="INSERT INTO ".$prefix."Dtable(Dtable_capacity,resPos_id,user_id) VALUES
 (5,1,1),
@@ -349,9 +362,9 @@ $sql ="INSERT INTO ".$prefix."Dtable(Dtable_capacity,resPos_id,user_id) VALUES
 (5,3,1),
 (3,3,1),
 (4,3,1);";
-mysqli_query($conn , $sql) or die("ERROR 26". mysqli_error($conn));
+mysqli_query($conn , $sql) or die("ERROR 27". mysqli_error($conn));
  
-mysqli_close($conn) or die("ERROR 27" . mysqli_error($conn));
+mysqli_close($conn) or die("ERROR 28" . mysqli_error($conn));
 
 $sql = NULL;//clear data sql for garbage collection purposes as well security reasons (for remote installation mostly)
 $conn = NULL;//same with the above
