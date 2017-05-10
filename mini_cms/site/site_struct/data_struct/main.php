@@ -1,5 +1,7 @@
 <?php
 
+include "site_struct/document_data/db_conn.php";
+
 if(!isset($_GET['submenu_name']))
 	$page_title = "Home";
 else
@@ -7,6 +9,19 @@ else
 
 echo "<div class = '".$main_class."'>";
 echo "	<h1>".$page_title."</h1>";
+
+/*$sql = "SELECT re2213_component.include_file_id , include_file_path FROM re2213_component , re2213_include_file WHERE re2213_component.submenu_id = ".$_GET['menu_id']." AND re2213_include_file.include_file_id = re2213_component.include_file_id";
+
+$component_rows = mysqli_query($conn , $sql);
+
+mysqli_close($conn);
+
+foreach($component_rows as $component_row)
+{
+	include_once "".$component_row['include_file_path']."";
+}
+*/
+
 
 switch($_SESSION["menu_id"])
 	{

@@ -144,10 +144,10 @@ CREATE TABLE ".$prefix."_component
     component_id INT AUTO_INCREMENT NOT NULL UNIQUE ,
     component_title VARCHAR(25) UNIQUE,
     component_date_created DATETIME NOT NULL DEFAULT NOW(),
-    component_file_assosiation VARCHAR(255),
     submenu_id INT,
 	page_component_id INT,
 	component_data_id INT,
+	include_file_id INT,
 	access_level_id INT DEFAULT 1,
     PRIMARY KEY (component_id),
     FOREIGN KEY (submenu_id) REFERENCES ".$prefix."_submenu_structure(submenu_id),
@@ -199,8 +199,8 @@ $sql = "INSERT INTO ".$prefix."_include_file (include_file_title, file_type_id ,
 (\"footer\",2, \"site_struct/data_struct/footer.php\" , NULL),
 (\"home\",2,\"site_struct/data_struct/component/home.php\", 3),
 (\"about_us\",2, \"site_struct/data_struct/component/about_us.php\", 3),
-(\"contact\",2, \"site_struct/data_struct/component/catalog.php\", 3),
-(\"catalog\",2, \"site_struct/data_struct/component/about_us.php\", 3),
+(\"contact\",2, \"site_struct/data_struct/component/contact.php\", 3),
+(\"catalog\",2, \"site_struct/data_struct/component/catalog.php\", 3),
 (\"reservation\",2, \"site_struct/data_struct/component/reservation.php\", 3),
 (\"faculty\",2, \"site_struct/data_struct/component/faculty.php\", 3),
 (\"registration\",2, \"site_struct/data_struct/component/registration.php\", 3),
@@ -225,13 +225,13 @@ $sql = "INSERT INTO ".$prefix."_submenu_structure(submenu_title,menu_id , access
  (\"Test3\",3 , 3);";
 mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
-$sql = "INSERT INTO ".$prefix."_component (component_title , component_file_assosiation , submenu_id , page_component_id , component_data_id , access_level_id) VALUES
- (\"Home\", \"site_struct/data_struct/components/home.php\" , 1, 3, NULL,2), 
- (\"About us\", \"site_struct/data_struct/components/about_us.php\", 2, 3, NULL, 2),
- (\"Contact\", \"site_struct/data_struct/components/contact.php\", 3, 3, NULL, 2),
- (\"Catalog\", \"site_struct/data_struct/components/catalog.php\", 4, 3, NULL, 2),
- (\"Reservation\", \"site_struct/data_struct/components/reservation.php\", 5, 3, NULL, 2),
- (\"Faculty\", \"site_struct/data_struct/components/faculty.php\", 6, 3, NULL, 2);";
+$sql = "INSERT INTO ".$prefix."_component (component_title , include_file_id , submenu_id , page_component_id , component_data_id , access_level_id) VALUES
+ (\"Home\", 19 , 1, 3, NULL,2), 
+ (\"About us\", 20, 2, 3, NULL, 2),
+ (\"Contact\", 21, 3, 3, NULL, 2),
+ (\"Catalog\", 22, 4, 3, NULL, 2),
+ (\"Reservation\", 23, 5, 3, NULL, 2),
+ (\"Faculty\", 24, 6, 3, NULL, 2);";
  mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
 
  $sql = "INSERT INTO ".$prefix."_user(access_level_id , user_name , user_email  , user_password , user_gender) VALUES
