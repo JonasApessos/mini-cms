@@ -38,6 +38,15 @@ echo "  <div class = \"containment\" >";
 include_once "site_struct/data_struct.php";//include site data structure
 		
 echo "  </div>";
+if($_SESSION['access_level'] == 1)
+{
+	echo "<div style = \"float:left; clear:both;\">";
+	echo "<img  src = \"../images/img_bt_add.png\" style = \"float:left;\">";
+	echo "<img src = \"../images/img_bt_sub.png\" style = \"float:left;\">";
+	echo "<img src = \"../images/img_bt_edit.png\" style = \"float:left;\">";
+	echo "</div>";
+}
+
 echo "</body>";
 echo "</html>";
 

@@ -7,16 +7,21 @@
 			switch($_SESSION['access_level'])
 			{
 				case 3:
-					$sql = "SELECT page_component_title , re2213_include_file.page_component_id , include_file_path
+					$sql = "SELECT re2213_page_component_structure.page_component_title , re2213_page_component_structure.submenu_id , re2213_include_file.include_file_path
 					FROM re2213_page_component_structure , re2213_include_file
-					WHERE re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
-					AND re2213_page_component_structure.access_level_id = 3
+					WHERE (re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
+                          AND re2213_page_component_structure.submenu_id = 0)
+					AND 
+					(
+					re2213_page_component_structure.access_level_id = 3 
+					)
 					ORDER BY re2213_page_component_structure.page_component_id ASC;";
 					break;
 				case 2:
-					$sql = "SELECT page_component_title , re2213_include_file.page_component_id , include_file_path
+					$sql = "SELECT re2213_page_component_structure.page_component_title , re2213_page_component_structure.submenu_id , re2213_include_file.include_file_path
 					FROM re2213_page_component_structure , re2213_include_file
-					WHERE re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id
+					WHERE (re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
+                          AND re2213_page_component_structure.submenu_id = 0)
 					AND 
 					(
 					re2213_page_component_structure.access_level_id = 3 
@@ -25,9 +30,10 @@
 					ORDER BY re2213_page_component_structure.page_component_id ASC;";
 					break;
 				case 1:
-					$sql = "SELECT page_component_title , re2213_include_file.page_component_id , include_file_path
+					$sql = "SELECT re2213_page_component_structure.page_component_title , re2213_page_component_structure.submenu_id , re2213_include_file.include_file_path
 					FROM re2213_page_component_structure , re2213_include_file
-					WHERE re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id
+					WHERE (re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
+                          AND re2213_page_component_structure.submenu_id = 0)
 					AND 
 					(
 					re2213_page_component_structure.access_level_id = 3 

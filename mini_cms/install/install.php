@@ -33,18 +33,6 @@ CREATE TABLE ".$prefix."_access_level
 );";
 mysqli_query($conn, $sql) or die("ERROR 04" . mysqli_error($conn));
 
-$sql = "
-CREATE TABLE ".$prefix."_page_component_structure
-(
-	page_component_id INT AUTO_INCREMENT UNIQUE,
-	page_component_title VARCHAR(32),
-	page_component_date_created DATETIME NOT NULL DEFAULT NOW(),
-	access_level_id INT DEFAULT 1,
-	include_file_id INT,
-	PRIMARY KEY(page_component_id),
-	FOREIGN KEY (access_level_id) REFERENCES ".$prefix."_access_level(access_level_id)
-);";
-mysqli_query($conn, $sql) or die("ERROR 05" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."_file_type
@@ -52,25 +40,25 @@ CREATE TABLE ".$prefix."_file_type
 	file_type_id INT AUTO_INCREMENT UNIQUE,
 	file_type_title VARCHAR(30),
 	file_type_extension VARCHAR(5),
-	file_type_date_added DATETIME NOT NULL DEFAULT NOW(),
+	file_type_date_created DATETIME NOT NULL DEFAULT NOW(),
 	PRIMARY KEY(file_type_id)
 );";
-mysqli_query($conn , $sql) or die("ERROR 06" . mysqli_error($conn));
+mysqli_query($conn , $sql) or die("ERROR 05" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."_include_file
 (
 	include_file_id INT AUTO_INCREMENT UNIQUE,
 	include_file_title VARCHAR(128),
-	include_file_date_upload DATETIME NOT NULL DEFAULT NOW(),
+	include_file_date_created DATETIME NOT NULL DEFAULT NOW(),
 	include_file_path VARCHAR(255),
-	page_component_id INT,
-	file_type_id INT,
+	page_component_id INT DEFAULT 0 NOT NULL,
+	file_type_id INT DEFAULT 0 NOT NULL,
 	PRIMARY KEY(include_file_id),
 	FOREIGN KEY (page_component_id) REFERENCES ".$prefix."_page_component_structure(page_component_id),
 	FOREIGN KEY (file_type_id) REFERENCES ".$prefix."_file_type(file_type_id)
 );";
-mysqli_query($conn, $sql) or die("ERROR 07" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 06" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."_user
@@ -80,13 +68,13 @@ CREATE TABLE ".$prefix."_user
  user_password VARCHAR(24) NOT NULL UNIQUE,
  user_gender VARCHAR(7) NOT NULL,
  user_desc VARCHAR(255) , 
- user_reg_date DATETIME NOT NULL DEFAULT NOW(),
+ user_date_created DATETIME NOT NULL DEFAULT NOW(),
  user_id INT AUTO_INCREMENT UNIQUE,
- access_level_id INT DEFAULT 3,
+ access_level_id INT DEFAULT 3 NOT NULL,
  PRIMARY KEY(user_id),
  FOREIGN KEY (access_level_id) REFERENCES ".$prefix."_access_level(access_level_id)
  );";
-mysqli_query($conn, $sql) or die("ERROR 08" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 07" . mysqli_error($conn));
 
 $sql = " 
 CREATE TABLE ".$prefix."_menu_structure
@@ -94,13 +82,13 @@ CREATE TABLE ".$prefix."_menu_structure
     menu_id INT AUTO_INCREMENT NOT NULL UNIQUE,
     menu_date_created DATETIME NOT NULL DEFAULT NOW(),
     menu_title VARCHAR(15),
-	page_component_id INT,
-	access_level_id INT DEFAULT 1,
+	page_component_id INT DEFAULT 0 NOT NULL,
+	access_level_id INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (menu_id),
 	FOREIGN KEY(page_component_id) REFERENCES ".$prefix."_page_component_structure(page_component_id),
 	FOREIGN KEY (access_level_id) REFERENCES ".$prefix."_access_level(access_level_id)
 );";
-mysqli_query($conn, $sql) or die("ERROR 09" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 08" . mysqli_error($conn));
 
 
 $sql = "
@@ -109,59 +97,59 @@ CREATE TABLE ".$prefix."_submenu_structure
     submenu_id INT AUTO_INCREMENT NOT NULL UNIQUE,
     submenu_date_created DATETIME NOT NULL DEFAULT NOW(),
     submenu_title VARCHAR(15),
-    menu_id INT,
-	access_level_id INT DEFAULT 1,
+    menu_id INT DEFAULT 0 NOT NULL,
+	access_level_id INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (submenu_id),
     FOREIGN KEY (menu_id) REFERENCES ".$prefix."_menu_structure(menu_id),
 	FOREIGN KEY (access_level_id) REFERENCES ".$prefix."_access_level(access_level_id)
 );";
-mysqli_query($conn, $sql) or die("ERROR 10" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 09" . mysqli_error($conn));
 
 $sql="
 CREATE TABLE ".$prefix."_component_data_image
 (
 	component_data_image_id INT AUTO_INCREMENT UNIQUE,
-	component_data_image_path VARCHAR(100) ,
-	component_data_image_upload_date DATETIME NOT NULL DEFAULT NOW(),
+	component_data_image_path VARCHAR(50) ,
+	component_data_image_date_created DATETIME NOT NULL DEFAULT NOW(),
 	PRIMARY KEY(component_data_image_id)
 );";
-mysqli_query($conn, $sql) or die("ERROR 11" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 10" . mysqli_error($conn));
 
 $sql = "
 CREATE TABLE ".$prefix."_component_data
 (
 	component_data_id INT AUTO_INCREMENT UNIQUE,
-	component_data_date_creation DATETIME NOT NULL DEFAULT NOW(),
-	component_data_image_id INT,
+	component_data_date_created DATETIME NOT NULL DEFAULT NOW(),
+	component_data_image_id INT DEFAULT 0 NOT NULL,
 	PRIMARY KEY(component_data_id),
 	FOREIGN KEY(component_data_image_id) REFERENCES ".$prefix."_component_data_image(component_data_image_id)
 )";
-mysqli_query($conn, $sql) or die("ERROR 12" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 11" . mysqli_error($conn));
 
 $sql = "
-CREATE TABLE ".$prefix."_component
+CREATE TABLE ".$prefix."_page_component_structure
 (
-    component_id INT AUTO_INCREMENT NOT NULL UNIQUE ,
-    component_title VARCHAR(25) UNIQUE,
-    component_date_created DATETIME NOT NULL DEFAULT NOW(),
-    submenu_id INT,
-	page_component_id INT,
-	component_data_id INT,
-	include_file_id INT,
-	access_level_id INT DEFAULT 1,
-    PRIMARY KEY (component_id),
-    FOREIGN KEY (submenu_id) REFERENCES ".$prefix."_submenu_structure(submenu_id),
+	page_component_id INT AUTO_INCREMENT UNIQUE,
+	page_component_title VARCHAR(32),
+	page_component_date_created DATETIME NOT NULL DEFAULT NOW(),
+	access_level_id INT DEFAULT 1 NOT NULL,
+	include_file_id INT DEFAULT 0 NOT NULL,
+	submenu_id INT DEFAULT 0 NOT NULL,
+	component_data_id INT DEFAULT 0 NOT NULL,
+	PRIMARY KEY(page_component_id),
+	FOREIGN KEY (access_level_id) REFERENCES ".$prefix."_access_level(access_level_id),
+	FOREIGN KEY (submenu_id) REFERENCES ".$prefix."_submenu_structure(submenu_id),
 	FOREIGN KEY (page_component_id) REFERENCES ".$prefix."_page_component_structure(page_component_id),
 	FOREIGN KEY (component_data_id) REFERENCES ".$prefix."_component_data(component_data_id),
-	FOREIGN KEY (access_level_id) REFERENCES ".$prefix."_access_level(access_level_id)
+	FOREIGN KEY (include_file_id) REFERENCES ".$prefix."_include_file(include_file_id)
 );";
-mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 12" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_access_level (access_level_title) VALUES 
 (\"ADMIN\") , 
 (\"PUBLIC\") , 
 (\"GUEST\");";
-mysqli_query($conn, $sql) or die("ERROR 14" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
 
 $sql = "
 INSERT INTO ".$prefix."_file_type(file_type_title , file_type_extension) VALUES 
@@ -169,14 +157,21 @@ INSERT INTO ".$prefix."_file_type(file_type_title , file_type_extension) VALUES
 (\"hypertext preprocessor\" , \"php\"),
 (\"javascript\" , \"js\"),
 (\"casceding style sheet\" , \"css\");";
-mysqli_query($conn , $sql)or die("ERROR 15" . mysqli_error($conn));
+mysqli_query($conn , $sql)or die("ERROR 14" . mysqli_error($conn));
 
-$sql = "INSERT INTO ".$prefix."_page_component_structure (page_component_title , include_file_id , access_level_id) VALUES 
-(\"header\",15, 3) , 
-(\"menu\",16, 3) , 
-(\"main\",17, 3) , 
-(\"footer\",18, 3);";
-mysqli_query($conn , $sql) or die("ERROR 16" . mysqli_error($conn));
+$sql = "INSERT INTO ".$prefix."_page_component_structure (page_component_title , include_file_id , access_level_id,submenu_id,component_data_id) VALUES 
+(\"header\",15, 3,0,0) , 
+(\"menu\",16, 3,0,0) , 
+(\"main\",17, 3,0,0) , 
+(\"footer\",18, 3,0,0),
+(\"Home\", 19 , 3, 1,0), 
+ (\"About us\", 20, 3,2, 0),
+ (\"Contact\", 21, 3, 3, 0),
+ (\"Catalog\", 22, 3, 4, 0),
+ (\"Reservation\", 23, 2,5, 0),
+ (\"Faculty\", 24, 3, 6, 0)
+;";
+mysqli_query($conn , $sql) or die("ERROR 15" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_include_file (include_file_title, file_type_id , include_file_path, page_component_id) VALUES 
 (\"desktop_style\",4, \"../css/site_style/desktop_style/desktop_style.css\", 1),
@@ -207,13 +202,13 @@ $sql = "INSERT INTO ".$prefix."_include_file (include_file_title, file_type_id ,
 (\"forgot_password\",2, \"site_struct/data_struct/components/forgot_password.php\", 3),
 (\"reservation\",4, \"../css/site_style/desktop_style/component_style/reservation.css\", 1),
 (\"res_cal\",4, \"../css/site_style/desktop_style/component_style/res_cal.css\", 1);";
-mysqli_query($conn , $sql)or die("ERROR 17" . mysqli_error($conn));
+mysqli_query($conn , $sql)or die("ERROR 16" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_menu_structure (menu_title , page_component_id , access_level_id) VALUES
  (\"menu1\" , 2 , 3) , 
  (\"menu2\" , 2 , 3),
  (\"menu3\" , 2 , 1);";
-mysqli_query($conn, $sql) or die("ERROR 18" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 17" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_submenu_structure(submenu_title,menu_id , access_level_id) VALUES
  (\"Home\",1 , 3) , 
@@ -225,24 +220,15 @@ $sql = "INSERT INTO ".$prefix."_submenu_structure(submenu_title,menu_id , access
  (\"Test\",3 , 1),
  (\"Test2\",3 , 1),
  (\"Test3\",3 , 1);";
-mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
-
-$sql = "INSERT INTO ".$prefix."_component (component_title , include_file_id , submenu_id , page_component_id , component_data_id , access_level_id) VALUES
- (\"Home\", 19 , 1, 3, NULL,3), 
- (\"About us\", 20, 2, 3, NULL, 3),
- (\"Contact\", 21, 3, 3, NULL, 3),
- (\"Catalog\", 22, 4, 3, NULL, 3),
- (\"Reservation\", 23, 5, 3, NULL, 3),
- (\"Faculty\", 24, 6, 3, NULL, 3);";
- mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 18" . mysqli_error($conn));
 
  $sql = "INSERT INTO ".$prefix."_user(access_level_id , user_name , user_email  , user_password , user_gender) VALUES
  (1 , \"john\" , \"john@gmail.com\" , \"john123\" , \"male\"),
  (2 , \"marie\" , \"marie@gmail.com\" , \"marie123\" , \"female\"),
  (2 , \"vedel\" , \"vedel@gmail.com\" , \"vedel123\" , \"female\");";
- mysqli_query($conn, $sql) or die("ERROR 21" . mysqli_error($conn));
+ mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
  
-mysqli_close($conn) or die("ERROR 22" . mysqli_error($conn));
+mysqli_close($conn) or die("ERROR 20" . mysqli_error($conn));
 
 $sql = NULL;
 $conn = NULL;
