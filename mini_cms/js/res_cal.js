@@ -12,8 +12,6 @@ var idDiv_03 = 0;
 
 var idInput_01 = 0;
 
-var dateMonthAdded = 0;
-
 var months = ["January","February","Mars","April","May","June","Julie","August","September","October","November","December"];
 
 var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,15,16,17,18,19,20,21,22,23];
@@ -51,8 +49,8 @@ function createCallChilds(idDiv_01)
 	createDiv_01.appendChild(createDiv_02);
 	
 	createH_01 = document.createElement('h3');
-	createDiv_02.appendChild(createH_01); 
-	createText_01 = document.createTextNode(months[date.getUTCMonth() + dateMonthAdded] + " " + date.getUTCFullYear());
+	createDiv_02.appendChild(createH_01);
+	createText_01 = document.createTextNode(months[date.getUTCMonth()] + " " + date.getUTCFullYear());
 	createH_01.appendChild(createText_01);
 	
 	createSel_01 = document.createElement('select');
@@ -88,7 +86,7 @@ function createCallChilds(idDiv_01)
 	createI_01.setAttribute("type","text");
 	createI_01.setAttribute("name","res_date");
 
-	createI_01.setAttribute("value",date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1 + dateMonthAdded) + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
+	createI_01.setAttribute("value",date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
 	createI_01.readOnly = true;
 }
 
@@ -161,7 +159,7 @@ function setBoxSelection(newId)//on click to element , set and update form input
 	document.getElementById(newId).style.backgroundColor = "rgba(40,40,40,1)";
 	document.getElementById(newId).style.boxShadow = "0px 0px 4px 2.5px rgba(255,143,0,1.0)";
 	
-	idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1 + dateMonthAdded) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
+	idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
 	
 	if(prevId != newId)
 	{
@@ -176,10 +174,6 @@ function setBoxSelection(newId)//on click to element , set and update form input
 //check for days of month
 function dateCheck()
 {
-	if(date.getUTCMonth() + dateMonthAdded > date.getUTCMonth())
-	{
-		date.setUTCDate(1);
-	}
 	switch(date.getUTCMonth())
 	{
 		case 1://feb is a special month where every 4 years the final year is allways dividable with 4 and gets 29 days instead of 28
@@ -207,5 +201,5 @@ function dateCheck()
 function updateForm()//updates on form input changes
 {	
 	if(idDiv_03 != 0)
-		idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1 + dateMonthAdded) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
+		idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
 }
