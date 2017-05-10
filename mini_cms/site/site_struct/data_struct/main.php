@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_GET['submenuname']))
+if(!isset($_GET['submenuname']) || empty($_GET['submenuname']))
 	$page_title = "Home";
 else
 	$page_title = $_GET['submenuname'];//submenu title is set in main title
@@ -54,9 +54,9 @@ foreach($component_rows as $component_row => $component_data)
 	include_once $component_data['incFile_path'];
 }
 
-$component_data = NULL;
-$component_row = NULL;
-$component_rows = NULL;
+$component_data = 0;
+$component_row = 0;
+$component_rows = 0;
 echo "</div>";
 
 ?>

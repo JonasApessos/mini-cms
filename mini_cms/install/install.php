@@ -45,7 +45,7 @@ $sql = NULL;//sql query
 
 $conn = mysqli_connect($server_name , $server_user , $server_password ) or die("ERROR 00 " . mysqli_connect_error($conn));//simple connection to the server
 
-$sql = "CREATE DATABASE " . $db_name . " CHARACTER SET utf8; COLLATE utf8_bin";
+$sql = "CREATE DATABASE " . $db_name . " CHARACTER SET utf8 COLLATE utf8_bin;";
 
 mysqli_query($conn , $sql);
 
@@ -54,7 +54,7 @@ if(mysqli_error($conn))
 {
 	$sql = "DROP DATABASE " . $db_name;
     mysqli_query($conn, $sql) or die("ERROR 01" . mysqli_error($conn));
-	$sql = "CREATE DATABASE " . $db_name . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
+	$sql = "CREATE DATABASE " . $db_name . " CHARACTER SET utf8 COLLATE utf8_bin;";
     mysqli_query($conn, $sql) or die("ERROR 02" . mysqli_error($conn));
 }
 
@@ -70,7 +70,6 @@ CREATE TABLE ".$prefix."accessLv
 	PRIMARY KEY(accessLv_id)
 );";//the access level is used to determine the level of clearance the user has over the components and data , the index of 1 by default is set to the higher security clearance  
 mysqli_query($conn, $sql) or die("ERROR 04" . mysqli_error($conn));
-
 
 $sql = "
 CREATE TABLE ".$prefix."fileType
@@ -200,10 +199,10 @@ mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
 
 $sql = "
 INSERT INTO ".$prefix."fileType(fileType_title , fileType_extension) VALUES 
-(\"hyper text markup language\" , \"html\"),
+(\"hyper text mark up language\" , \"html\"),
 (\"hypertext preprocessor\" , \"php\"),
-(\"javascript\" , \"js\"),
-(\"casceding style sheet\" , \"css\"),
+(\"JavaScript\" , \"js\"),
+(\"cascading style sheet\" , \"css\"),
 (\"Joint Photographic Expert Group\" , \"jpeg\"),
 (\"Portable Network Graphics\" , \"png\");";
 mysqli_query($conn , $sql)or die("ERROR 14" . mysqli_error($conn));
@@ -212,7 +211,8 @@ $sql = "INSERT INTO ".$prefix."mStruct (mStruct_title ,accessLv_id) VALUES
 (\"menu0\",3),
 (\"menu1\",3), 
 (\"menu2\",3),
-(\"menu3\",1);";
+(\"menu3\",1),
+(\"menu4\",2);";
 mysqli_query($conn, $sql) or die("ERROR 15" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv_id) VALUES
@@ -220,12 +220,13 @@ $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv
  (\"Home\",2 , 3) , 
  (\"About us\",2 , 3) , 
  (\"Contact\",2 , 3) , 
- (\"Catalog\",3 , 3) , 
+ (\"Catalogue\",3 , 3) , 
  (\"Reservation\",3 , 2) , 
  (\"Faculty\",3 , 3),
  (\"Test\",4 , 1),
  (\"Test2\",4 , 1),
- (\"Test3\",4 , 1);";
+ (\"Test3\",4 , 1),
+ (\"Test4\",5,2);";
 mysqli_query($conn, $sql) or die("ERROR 16" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_path) VALUES 
@@ -250,7 +251,7 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"home\",2,\"site_struct/data_struct/components/home.php\"),
 (\"about_us\",2, \"site_struct/data_struct/components/about_us.php\"),
 (\"contact\",2, \"site_struct/data_struct/components/contact.php\"),
-(\"catalog\",2, \"site_struct/data_struct/components/catalog.php\"),
+(\"catalogue\",2, \"site_struct/data_struct/components/catalog.php\"),
 (\"reservation\",2, \"site_struct/data_struct/components/reservation.php\"),
 (\"faculty\",2, \"site_struct/data_struct/components/faculty.php\"),
 (\"registration\",2, \"site_struct/data_struct/components/registration.php\"),
@@ -262,8 +263,7 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"absolute_menu\",3, \"../js/absolute_menu.js\"),
 (\"google_maps\",3, \"../js/google_map.js\"),
 (\"res_cal\",3, \"../js/res_cal.js\"),
-(\"login_check\",3, \"../js/login_check.js\")
-;";
+(\"login_check\",3, \"../js/login_check.js\");";
 mysqli_query($conn , $sql)or die("ERROR 17" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES
@@ -286,7 +286,7 @@ $sql = "INSERT INTO ".$prefix."PCompStruct (PCompStruct_title , incFile_id , acc
 (\"Home\",19,3,2,NULL), 
  (\"About us\",20,3,3,NULL),
  (\"Contact\",21,3,4,NULL),
- (\"Catalog\",22,3,5,NULL),
+ (\"Catalogue\",22,3,5,NULL),
  (\"Reservation\",23,2,6,NULL),
  (\"Faculty\",24,3,7,NULL)
 ;";
@@ -303,14 +303,14 @@ mysqli_close($conn) or die("ERROR 20" . mysqli_error($conn));
 $sql = NULL;//clear data sql for garbage collection purposes as well security reasons (for remote installation mostly)
 $conn = NULL;//same with the above
 
-//message for if the installation was successfully if not the installation will be stop by a sql error and it will show you the error that accured
+//message for if the installation was successfully, if not the installation will be stopped by a sql error and it will show you the error that accured
 //IF an error has accured please send it to the appropriate author of this platform for bug fix
 echo "<!DOCTYPE html>";
 echo "<html>";
 echo "<head>";
 echo "</head>";
 echo "<body>";
-echo "<h1 style = 'text-align:center; color:green;';>Installation succesfull</h1>";
+echo "<h1 style = 'text-align:center; color:green;';>Installation successful</h1>";
 echo "</body>";
 echo "</html>";
 ?>

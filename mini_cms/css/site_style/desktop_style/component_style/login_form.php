@@ -2,7 +2,9 @@
 	Header("Content-type:text/css; charset: UTF-8");
 	include_once "../php_style/style_variable.php";
 ?>
-.login_form_top
+@media screen and (min-width:480px)
+{
+	.login_form_top
 	{
 		width:25%;
 		height:auto;
@@ -14,6 +16,7 @@
 		clear:right;
 		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
 		transition:box-shadow 1s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 	
 	.login_form_top:hover
@@ -37,6 +40,7 @@
 		color:rgb(255,143,0);
 		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
 		transition: border-color 1s , background-color 1s , box-shadow 1s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 	
 	.login_form_top table tr td input:hover
@@ -86,7 +90,10 @@
 		min-width:50px;
 		float:left;
 		clear:left;
-		background-color:rgba(0,0,100,1);
+		box-shadow:0px 0px 4px 5px rgba(0,0,0,0.25);
+		background-color:rgba(50,50,50,1);
+		transition:box-shadow 1.0s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 	
 	.login_form_top div:nth-child(2)
@@ -96,14 +103,45 @@
 		margin:0% 0% 0% 5%;
 		float:left;
 		clear:right;
-		background-color:rgba(100,0,0,1);
+		box-shadow:0px 0px 4px 5px rgba(0,0,0,0.25);
+		background-color:rgba(50,50,50,1);
+		transition:box-shadow 1.0s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 	
-	.login_form_rop div:nth-child(3)
+	.login_form_top div:nth-child(3)
 	{
 		width:100%;
 		clear:both;
 		float:left;
-		background-color:rgba(0,100,0,1);
+		box-shadow:0px 0px 4px 5px rgba(0,0,0,0);
+	}
+	
+	.login_form_top div:nth-child(3) input[type = "submit"]
+	{
+		width:25%;
+		margin:auto;
+		color:rgba(255,143,0,1);
+		border:2px solid rgba(230,143,0,1);
+		box-shadow:0px 0px 4px 5px rgba(0,0,0,0.25);
+		background-color:rgba(50,50,50,1);
+		transition:box-shadow 1.0s, background-color 1.0s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
+	}
+	
+	.login_form_top div:nth-child(3) input[type = "submit"]:hover
+	{
+		box-shadow:0px 0px 4px 2.5px rgba(255,143,0,1);
+		background-color:rgba(100,100,100,1);
+	}
+	
+	.login_form_top div:hover
+	{
+		box-shadow:0px 0px 4px 2.5px rgba(255,143,0,1);
+	}
+	
+	.login_form_top div:nth-child(3):hover
+	{
+		box-shadow:none;
 	}
 }

@@ -8,6 +8,7 @@
 }
 	
 @media screen and (max-width:480px)
+{
 	body
 	{
 		background-color:rgba(240,240,240,1);
@@ -61,3 +62,4 @@
 	{
 		border:none;	
 	}
+}

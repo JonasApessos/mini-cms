@@ -21,6 +21,7 @@
 	color:rgb(255,143,0);
 	text-align:center;
 	transition:box-shadow 1s;
+	transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 }
 
 .about_us_page div:hover

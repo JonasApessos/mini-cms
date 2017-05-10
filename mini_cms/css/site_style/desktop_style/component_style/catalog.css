@@ -20,6 +20,7 @@
 	padding:1%;
 	float:left;
 	transition:box-shadow 1s;
+	transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 }
 
 .catalog div div:nth-child(1)

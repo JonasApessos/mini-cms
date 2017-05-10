@@ -39,7 +39,7 @@ switch($_SESSION['access_level'])
 $menu_rows = mysqli_query($conn , $sql) or die("error 18 " . mysqli_error($conn));
 
 
-foreach ($menu_rows as $menu_row)
+foreach ($menu_rows as $menu_row => $menu_data)
 {
 	switch($_SESSION['access_level'])
 	{
@@ -47,7 +47,7 @@ foreach ($menu_rows as $menu_row)
 			$sql = "
 			SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
 			FROM ".$prefix."subMStruct , ".$prefix."mStruct
-			WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_row['mStruct_id']. "
+			WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_data['mStruct_id']. "
 			AND ".$prefix."mStruct.mStruct_id = ".$prefix."subMStruct.mStruct_id
 			AND ".$prefix."subMStruct.accessLv_id = 3
 			ORDER BY ".$prefix."subMStruct.subMStruct_id ASC;";
@@ -56,7 +56,7 @@ foreach ($menu_rows as $menu_row)
 			$sql = "
 			SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
 			FROM ".$prefix."subMStruct , ".$prefix."mStruct
-			WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_row['mStruct_id']. "
+			WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_data['mStruct_id']. "
 			AND ".$prefix."mStruct.mStruct_id = ".$prefix."subMStruct.mStruct_id
 			AND( 
 			".$prefix."subMStruct.accessLv_id = 3
@@ -68,7 +68,7 @@ foreach ($menu_rows as $menu_row)
 			$sql = "
 			SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
 			FROM ".$prefix."subMStruct , ".$prefix."mStruct
-			WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_row['mStruct_id']. "
+			WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_data['mStruct_id']. "
 			AND ".$prefix."mStruct.mStruct_id = ".$prefix."subMStruct.mStruct_id
 			AND (
 			".$prefix."subMStruct.accessLv_id = 3
@@ -86,16 +86,20 @@ foreach ($menu_rows as $menu_row)
 	
 	//drop down submenu structure
 	echo "<div class = '".$drop_down_class."'>";
-	foreach($submenu_rows as $submenu_row)
+	foreach($submenu_rows as $submenu_row => $submenu_data)
 	{
-		echo "<a href='?menu_id=".$submenu_row['subMStruct_id']."&submenuname=".$submenu_row['subMStruct_title']."'><div>";
-		echo "<h4>".$submenu_row['subMStruct_title']."</h4>";
+		echo "<a href='?menu_id=".$submenu_data['subMStruct_id']."&submenuname=".$submenu_data['subMStruct_title']."'><div>";
+		echo "<h4>".$submenu_data['subMStruct_title']."</h4>";
 		echo "</div></a>";
-		$submenu_row = NULL;
 	}
 	echo "</div>";
-	$menu_row = NULL;
 }
+$submenu_data = 0;
+$submenu_row = 0;
+$submenu_rows = 0;
+$menu_row = 0;
+$menu_rows = 0;
+$menu_data = 0;
 			
 echo "</div>";
 ?>

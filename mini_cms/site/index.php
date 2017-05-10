@@ -1,13 +1,15 @@
 <?php
-header("Pragma: no-cache");//disable web automatic content cashing
+Header("Pragma: no-cache");//disable web automatic content cashing
 session_start();//starting session
+?>
+<?php
+include_once "site_struct/document_data/db_conn.php";
+include_once "site_struct/document_data/document_data.php";
 ?>
 <?php
 echo "<!DOCTYPE html>";
 echo "<html>";
 echo "<head>";
-
-include_once "site_struct/document_data/document_data.php";
 
 if(!isset($_SESSION['access_level']))
 {
@@ -26,7 +28,7 @@ include_once "site_struct/lib_incl.php";
 echo "</head>";
 ?>
 <?php
-echo "<body onload = \"init_func()\">";
+echo "<body onload = \"initFunc()\">";
 include_once "site_struct/mobile_screen/absolute_menu.php";//include absolute menu structure (phone menu)
 		
 echo "<div class = \"containment\">";
@@ -63,7 +65,13 @@ foreach($img_rows as $img_row => $img_data)
 	}
 }
 
+$img_rows = 0;
+$img_row = 0;
+$img_data = 0;
+
 echo "</body>";
 echo "</html>";
 mysqli_close($conn);
+$conn = 0;
+$sql = 0;
 ?>

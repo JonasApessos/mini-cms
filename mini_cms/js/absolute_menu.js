@@ -1,3 +1,4 @@
+"use strict";
 var rotated = true;
 function image_rotate()
 {

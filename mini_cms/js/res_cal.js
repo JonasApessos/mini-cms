@@ -9,59 +9,64 @@ var days = (((((secEnd - secBeg)/24)/60)/60)/1000);
 var week = Math.round(((days/7) - (days/31)));
 var month = (week/4);
 
+var prevId = 0;
 
-function res_cal()
+function resCall(){}
+function createCallChilds(){}
+function setBoxSelection(){}
+
+function resCall()
 {
-	console.log("months : " + month);
-	console.log("weeks : " + week);
-	console.log("days : " + days);
-	//var class_child_elem = document.createElement("div");
+	//console.log("months : " + month);
+	//console.log("weeks : " + week);
+	//console.log("days : " + days);
+	
+	var idDiv_01 = 0;
 
-	var div_create_01 = document.createElement('div');
-	var div_id_01 = document.getElementById('res_cal');
-	div_id_01.appendChild(div_create_01);
+	if((idDiv_01 = document.getElementById('res_cal')))
+		createCallChilds();
+}
+
+function createCallChilds()
+{
+	var idDiv_01 = document.getElementById('res_cal')
+	var createDiv_01 = document.createElement('div');
 	
-	div_create_01.id = "div_cal_con";
-	div_create_01.className = "div_cal_con";
+	idDiv_01.appendChild(createDiv_01);
 	
-	var div_id_02 = document.getElementById(div_create_01.id);
+	createDiv_01.id = "div_cal_con";
+	createDiv_01.className = "div_cal_con";
 	
-	console.log(div_id_02);
+	var idDiv_02 = document.getElementById(createDiv_01.id);
 	
 	for(var i = 1; i <= days; i++)
 	{
-		var p_create_01 = document.createElement('p');
-		var p_text_01 = document.createTextNode(i);
-		var div_create_02 = document.createElement('div');
+		var createP_01 = document.createElement('p');
+		var textP_01 = document.createTextNode(i);
+		var createDiv_02 = document.createElement('div');
 		
-		p_create_01.appendChild(p_text_01);
-		div_create_02.appendChild(p_create_01);
-		div_id_02.appendChild(div_create_02);
+		createP_01.appendChild(textP_01);
+		createDiv_02.appendChild(createP_01);
+		idDiv_02.appendChild(createDiv_02);
 		
-		div_create_02.id = "div_date_" + i;
-		div_create_02.setAttribute("onclick","box_selected(this.id)");
+		createDiv_02.id = "div_date_" + i;
+		createDiv_02.setAttribute("onclick","setBoxSelection(this.id)");
 	}
-	
 	
 }
 
-
-var prev_id = null;
-
-
-function box_selected(id)
+function setBoxSelection(newId)
 {
-	if(prev_id == null)
-		prev_id = id;
+	if(prevId == 0)
+		prevId = newId;
 		
-	document.getElementById(id).style.backgroundColor = "rgba(40,40,40,1)";
-	document.getElementById(id).style.boxShadow = "0px 0px 2px 1px rgba(255,143,0,1)";
+	document.getElementById(newId).style.backgroundColor = "rgba(40,40,40,1)";
+	document.getElementById(newId).style.boxShadow = "0px 0px 4px 2.5px rgba(255,143,0,1)";
 
-	if(prev_id != id)
+	if(prevId != newId)
 	{
-		document.getElementById(prev_id).style.backgroundColor = "rgba(20,20,20,1)";
-		document.getElementById(prev_id).style.boxShadow = "0px 0px 2px 1px rgba(255,143,0,0)";
+		document.getElementById(prevId).style.backgroundColor = "rgba(20,20,20,1)";
+		document.getElementById(prevId).style.boxShadow = "0px 0px 4px 2.5px rgba(0,0,0,0.25)";
 	}
-
-	prev_id = id;
+	prevId = newId;
 }

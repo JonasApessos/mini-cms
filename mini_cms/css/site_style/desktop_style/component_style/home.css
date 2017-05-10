@@ -20,6 +20,7 @@
 	background-color:rgba(50,50,50,1);
 	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.25);
 	transition:box-shadow 1s;
+	transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 }
 
 .home_containt div:nth-child(odd) div:nth-child(odd)

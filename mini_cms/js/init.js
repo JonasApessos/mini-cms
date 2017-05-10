@@ -1,6 +1,6 @@
 "use_strict";
-function init_func()
+function initFunc()
 {
-	//google_map();
-	res_cal();
+	//googleMap();
+	resCall();
 }

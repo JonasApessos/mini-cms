@@ -1,6 +1,3 @@
-<?php			
-include "site_struct/document_data/db_conn.php";
-?>
 <?php
 switch($_SESSION['access_level'])
 {
@@ -54,10 +51,12 @@ if(!isset($page_component_rows))
 	echo "No data";
 else
 {
-	foreach($page_component_rows as $page_component_row)
+	foreach($page_component_rows as $page_component_row => $page_component_data)
 	{
-		include_once $page_component_row["incFile_path"];
-		$page_component_row = NULL;
+		include_once $page_component_data["incFile_path"];
 	}
-}		
+}
+$page_component_data = 0;
+$page_component_row = 0;
+$page_component_rows = 0;		
 ?>
