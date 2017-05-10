@@ -86,7 +86,7 @@ CREATE TABLE ".$prefix."user
 	user_name VARCHAR(24) NOT NULL UNIQUE,
 	user_email VARCHAR(48) NOT NULL UNIQUE,
 	user_password VARCHAR(48) NOT NULL UNIQUE,
-	user_gender VARCHAR(1) NOT NULL,
+	user_gender VARCHAR(7) NOT NULL,
 	user_date_created DATETIME NOT NULL DEFAULT NOW(),
 	accessLv_id INT DEFAULT 3 NOT NULL,
 	PRIMARY KEY(user_id),
@@ -280,9 +280,9 @@ $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv
 (\"Catalogue\",3,3) , 
 (\"Reservation\",3,2) , 
 (\"Faculty\",3,3),
-(\"Users List\",4,1),
-(\"Tables List\",4,1),
-(\"Reservations\",4,1),
+(\"Test\",4,1),
+(\"Test2\",4,1),
+(\"Test3\",4,1),
 (\"Test4\",5,2),
 (\"Test5\",5,2);";
 mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
@@ -321,13 +321,7 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"absolute_menu\",3, \"../js/absolute_menu.js\"),
 (\"inputCheck\",3, \"../js/inputCheck.js\"),
 (\"res_cal\",3, \"../js/res_cal.js\"),
-(\"login_check\",3, \"../js/login_check.js\"),
-(\"users_list\",2,\"site_struct/data_struct/components/user_list.php\"),
-(\"users_list_css\",4, \"../css/site_style/desktop_style/component_style/users_list.css\"),
-(\"tables_list\",2,\"site_struct/data_struct/components/tables_list.php\"),
-(\"tables_list_css\",4, \"../css/site_style/desktop_style/component_style/tables_list.css\"),
-(\"reservations\",2,\"site_struct/data_struct/components/reservations.php\"),
-(\"reservations_css\",4, \"../css/site_style/desktop_style/component_style/reservations.css\");";
+(\"login_check\",3, \"../js/login_check.js\");";
 mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES
@@ -342,8 +336,7 @@ $sql = "INSERT INTO ".$prefix."compData (compData_title ,compDataImg_id, accessL
 (\"edit_btn\",3,1);";
 mysqli_query($conn, $sql) or die("ERROR 23" . mysqli_error($conn));
 
-$sql = "INSERT INTO ".$prefix."PCompStruct (PCompStruct_title , incFile_id , accessLv_id,subMStruct_id,compData_id) 
-VALUES 
+$sql = "INSERT INTO ".$prefix."PCompStruct (PCompStruct_title , incFile_id , accessLv_id,subMStruct_id,compData_id) VALUES 
 (\"header\",15,3,1,NULL) , 
 (\"menu\",16,3,1,NULL) , 
 (\"main\",17,3,1,NULL), 
@@ -353,16 +346,13 @@ VALUES
 (\"Contact\",21,3,4,NULL),
 (\"Catalogue\",22,3,5,NULL),
 (\"Reservation\",23,2,6,NULL),
-(\"Faculty\",24,3,7,NULL),
-(\"Users List\",35,1,8,NULL),
-(\"Tables List\",37,1,9,NULL),
-(\"Reservations\",39,1,10,NULL);";
+(\"Faculty\",24,3,7,NULL);";
 mysqli_query($conn , $sql) or die("ERROR 24" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."user(accessLv_id , user_name , user_email  , user_password , user_gender) VALUES
-(1 , \"john\" , \"john@gmail.com\" , \"".crypt("john123","T51")."\" , \"M\"),
-(2 , \"marie\" , \"marie@gmail.com\" , \"".crypt("marie123","T51")."\" , \"F\"),
-(2 , \"vedel\" , \"vedel@gmail.com\" , \"".crypt("vedel123","T51")."\" , \"F\");";
+(1 , \"john\" , \"john@gmail.com\" , \"".crypt("john123","T51")."\" , \"male\"),
+(2 , \"marie\" , \"marie@gmail.com\" , \"".crypt("marie123","T51")."\" , \"female\"),
+(2 , \"vedel\" , \"vedel@gmail.com\" , \"".crypt("vedel123","T51")."\" , \"female\");";
 mysqli_query($conn, $sql) or die("ERROR 25" . mysqli_error($conn));
  
 $sql = "INSERT INTO ".$prefix."resPos(resPos_title,resPos_desc) VALUES
