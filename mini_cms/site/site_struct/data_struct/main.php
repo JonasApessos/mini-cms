@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_GET['submenuname']) || empty($_GET['submenuname']))
-	$page_title = "Home";
+	$page_title = "No page";
 else
 	$page_title = $_GET['submenuname'];//submenu title is set in main title
 
@@ -10,7 +10,7 @@ echo "<h1>".$page_title."</h1>";
 
 switch($_SESSION['access_level'])
 {
-	case 3:
+	case 3://get main content only from access level 3
 		$sql = "
 		SELECT ".$prefix."incFile.incFile_id , ".$prefix."incFile.incFile_path 
 		FROM ".$prefix."PCompStruct, ".$prefix."incFile
@@ -20,7 +20,7 @@ switch($_SESSION['access_level'])
 		AND (".$prefix."PCompStruct.accessLv_id = 3)
 		ORDER BY ".$prefix."incFile.incFile_id ASC;";
 	    break;
-	case 2:
+	case 2://get main content only from access level 2 and 3
 		$sql = "
 		SELECT ".$prefix."incFile.incFile_id , ".$prefix."incFile.incFile_path
 		FROM ".$prefix."PCompStruct, ".$prefix."incFile
@@ -31,7 +31,7 @@ switch($_SESSION['access_level'])
 	    OR ".$prefix."PCompStruct.accessLv_id = 2)
 		ORDER BY ".$prefix."incFile.incFile_id ASC;";
 		break;
-	case 1:
+	case 1://get main content from all access level
 		$sql = "SELECT ".$prefix."incFile.incFile_id , ".$prefix."incFile.incFile_path 
 		FROM ".$prefix."PCompStruct, ".$prefix."incFile
 		WHERE (".$prefix."PCompStruct.subMStruct_id = ".$_SESSION['menu_id'].")
@@ -43,11 +43,11 @@ switch($_SESSION['access_level'])
 		ORDER BY ".$prefix."incFile.incFile_id ASC;";
 		break;
 	default:
-		echo "ERROR 22 , could not identify access level;";
+		echo "ERROR 06 , could not identify access level;";
 		break;
 }
 
-$component_rows = mysqli_query($conn , $sql) or die("error 24 :" . mysqli_error($conn));
+$component_rows = mysqli_query($conn , $sql) or die("error 07 :" . mysqli_error($conn));
 
 foreach($component_rows as $component_row => $component_data)
 {

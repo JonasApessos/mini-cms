@@ -1,6 +1,7 @@
 <?php
 switch($_SESSION['access_level'])
 {
+	//if access level is 3 then load only level 3 content
 	case 3:
 		$sql = "
 		SELECT ".$prefix."PCompStruct.PCompStruct_title,".$prefix."PCompStruct.subMStruct_id,".$prefix."incFile.incFile_path
@@ -13,7 +14,7 @@ switch($_SESSION['access_level'])
 		)
 		ORDER BY ".$prefix."PCompStruct.PCompStruct_id ASC;";
 		break;
-	case 2:
+	case 2://if access level is 2 then load only level 3 and 2 content
 		$sql = "
 		SELECT ".$prefix."PCompStruct.PCompStruct_title,".$prefix."PCompStruct.subMStruct_id,".$prefix."incFile.incFile_path
 		FROM ".$prefix."PCompStruct,".$prefix."incFile
@@ -26,7 +27,7 @@ switch($_SESSION['access_level'])
 		)
 		ORDER BY ".$prefix."PCompStruct.PCompStruct_id ASC;";
 		break;
-	case 1:
+	case 1://if access level is 1 then load all content
 		$sql = "
 		SELECT ".$prefix."PCompStruct.PCompStruct_title,".$prefix."PCompStruct.subMStruct_id,".$prefix."incFile.incFile_path
 		FROM ".$prefix."PCompStruct,".$prefix."incFile
@@ -41,15 +42,15 @@ switch($_SESSION['access_level'])
 		ORDER BY ".$prefix."PCompStruct.PCompStruct_id ASC;";
 		break;
 	default:
-		echo "ERROR 22 , could not identify access level;";
+		echo "ERROR 01 , could not identify access level;";
 		break;
 }
 
-$page_component_rows = mysqli_query($conn , $sql) or die("ERROR 23" . mysqli_error($conn));
+$page_component_rows = mysqli_query($conn , $sql) or die("ERROR 02" . mysqli_error($conn));
 					
-if(!isset($page_component_rows))
+if(!isset($page_component_rows))//if no data from database then echo message
 	echo "No data";
-else
+else//else include all data path from database
 {
 	foreach($page_component_rows as $page_component_row => $page_component_data)
 	{

@@ -4,7 +4,7 @@ echo "<div class = '".$menu_class."'>";
 
 switch($_SESSION['access_level'])
 {
-	case 3:
+	case 3://get menu from access level 3
 		$sql = "
 		SELECT mStruct_id
 		FROM ".$prefix."mStruct
@@ -12,7 +12,7 @@ switch($_SESSION['access_level'])
         AND NOT ".$prefix."mStruct.mStruct_id = 1
 		ORDER BY mStruct_id ASC;";
 		break;
-	case 2:
+	case 2://get menu from access level 3 and 2
 		$sql = "
 		SELECT mStruct_id
 		FROM ".$prefix."mStruct
@@ -21,7 +21,7 @@ switch($_SESSION['access_level'])
 		OR ".$prefix."mStruct.accessLv_id = 2
 		ORDER BY ".$prefix."mStruct.mStruct_id ASC;";
 		break;
-	case 1:
+	case 1://get menu from all access level
 		$sql = "
 		SELECT mStruct_id
 		FROM ".$prefix."mStruct
@@ -43,7 +43,7 @@ foreach ($menu_rows as $menu_row => $menu_data)
 {
 	switch($_SESSION['access_level'])
 	{
-		case 3:
+		case 3://get submenu from access level 3
 			$sql = "
 			SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
 			FROM ".$prefix."subMStruct , ".$prefix."mStruct
@@ -52,7 +52,7 @@ foreach ($menu_rows as $menu_row => $menu_data)
 			AND ".$prefix."subMStruct.accessLv_id = 3
 			ORDER BY ".$prefix."subMStruct.subMStruct_id ASC;";
 			break;
-		case 2:
+		case 2://get submenu from access level 3 and 2
 			$sql = "
 			SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
 			FROM ".$prefix."subMStruct , ".$prefix."mStruct
@@ -64,7 +64,7 @@ foreach ($menu_rows as $menu_row => $menu_data)
 			)
 			ORDER BY ".$prefix."subMStruct.subMStruct_id ASC;";
 			break;
-		case 1:
+		case 1://get submenu from all access level
 			$sql = "
 			SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
 			FROM ".$prefix."subMStruct , ".$prefix."mStruct

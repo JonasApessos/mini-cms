@@ -1,6 +1,6 @@
 <?php
 include_once "site_struct/document_data/document_data.php";
-include "site_struct/document_data/db_conn.php";
+//include "site_struct/document_data/db_conn.php";
 
 $sql = "SELECT submenu_id FROM re2213_submenu_structure";
 

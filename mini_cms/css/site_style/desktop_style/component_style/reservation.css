@@ -27,7 +27,7 @@
 	.res_form tbody tr td input
 	{
 		width:75%;
-		float:right;
+		float:left;
 		color:rgba(255,143,0,1);
 		background-color:rgba(30,30,30,1);
 		border:2px solid rgba(200,133,0,1);
@@ -40,7 +40,7 @@
 	.res_form tbody tr td textarea
 	{
 		max-width:75%;
-		float:right;
+		float:left;
 		resize:vertical;
 		color:rgba(255,143,0,1);
 		background-color:rgba(30,30,30,1);
