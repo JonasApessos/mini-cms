@@ -1,18 +1,18 @@
 <?php			
 			include "site_struct/document_data/db_conn.php";
 			
-			$level_request = $_SESSION['access_level'];
+			$_SESSION['access_level'];
 			
-			switch($level_request)
+			switch($_SESSION['access_level'])
 			{
-				case "GUEST":
+				case 3:
 					$sql = "SELECT page_component_title , re2213_include_file.page_component_id , include_file_path
 					FROM re2213_page_component_structure , re2213_include_file
 					WHERE re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
 					AND re2213_page_component_structure.access_level_id = 3
 					ORDER BY re2213_page_component_structure.page_component_id ASC;";
 					break;
-				case "PUBLIC":
+				case 2:
 					$sql = "SELECT page_component_title , re2213_include_file.page_component_id , include_file_path
 					FROM re2213_page_component_structure , re2213_include_file
 					WHERE re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id
@@ -23,7 +23,7 @@
 					)
 					ORDER BY re2213_page_component_structure.page_component_id ASC;";
 					break;
-				case "ADMIN":
+				case 1:
 					$sql = "SELECT page_component_title , re2213_include_file.page_component_id , include_file_path
 					FROM re2213_page_component_structure , re2213_include_file
 					WHERE re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id
@@ -44,14 +44,19 @@
 			
 			mysqli_close($conn);
 			if(!isset($page_component_rows))
-				echo "No data in the database";
+				echo "No data";
 			else
 			{
-				foreach($page_component_rows as $page_componet_row)
+				foreach($page_component_rows as $page_component_row)
 				{
-					include_once $page_componet_row["include_file_path"];
+					include_once $page_component_row["include_file_path"];
+					$page_component_row = NULL;
 				}
 			}
+			
+			$sql = NULL;
+			$conn = NULL;
+			$page_component_rows = NULL;
 			
 			
 ?>

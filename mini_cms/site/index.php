@@ -1,9 +1,25 @@
 <?php
 	session_start();//starting session
 	
-	$_SESSION['access_level'] = "GUEST";
-	$_SESSION['user_name'] = "none";
-	$_SESSION['user_email'] = "none";
+	$_SESSION['access_level'] = NULL;
+	
+	if(!isset($_GET['user_name']))
+	{
+		$_SESSION['access_level'] = 2;
+		$_SESSION['user_name'] = "none";
+		$_SESSION['user_email'] = "none";
+	}
+	else
+	{		
+		$_SESSION['access_level'] = $_GET['access_level'];
+		$_SESSION['user_name'] = $_GET['user_name'];
+		$_SESSION['user_email'] = $_GET['user_email'];
+	}
+	
+	
+	echo $_SESSION['user_name'];
+echo $_SESSION['user_email'];
+echo $_SESSION['access_level'];
 	
 	$prefix = "re2213";
 	if(!isset($_GET["menu_id"]))
@@ -31,7 +47,9 @@
 	foreach($css_data_rows as $css_data_row)
 	{
 		echo $test = "<link rel =\"stylesheet\" type = \"text/css\" href = \"".$css_data_row['include_file_path']."\" media = \"screen\">";
+		$css_data_row = NULL;
 	}
+	$css_data_rows = NULL;
 ?>
 
 <link rel="stylesheet" href="../css/site_style/desktop_style/component_style/drop_down_menu.php" media="screen">

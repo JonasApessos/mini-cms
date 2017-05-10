@@ -184,33 +184,33 @@ $sql = "INSERT INTO ".$prefix."_include_file (include_file_title, file_type_id ,
 (\"menu\",4, \"../css/site_style/desktop_style/menu.css\", 1),
 (\"main\",4, \"../css/site_style/desktop_style/main.css\", 1),
 (\"footer\",4, \"../css/site_style/desktop_style/footer.css\", 1),
-(\"home.css\",4, \"../css/site_style/desktop_style/component_style/home.css\", 1),
-(\"about_us\",4, \"../css/site_style/desktop_style/component_style/about_us.css\", 1),
-(\"contact\",4, \"../css/site_style/desktop_style/component_style/contact.css\", 1),
-(\"catalog\",4, \"../css/site_style/desktop_style/component_style/catalog.css\", 1),
-(\"faculty\",4, \"../css/site_style/desktop_style/component_style/faculty.css\", 1),
-(\"login_form\",4, \"../css/site_style/desktop_style/component_style/login_form.css\", 1),
-(\"register_form\",4, \"../css/site_style/desktop_style/component_style/register_form.css\", 1),
+(\"home_css\",4, \"../css/site_style/desktop_style/component_style/home.css\", 1),
+(\"about_us_css\",4, \"../css/site_style/desktop_style/component_style/about_us.css\", 1),
+(\"contact_css\",4, \"../css/site_style/desktop_style/component_style/contact.css\", 1),
+(\"catalog_css\",4, \"../css/site_style/desktop_style/component_style/catalog.css\", 1),
+(\"faculty_css\",4, \"../css/site_style/desktop_style/component_style/faculty.css\", 1),
+(\"login_form_css\",4, \"../css/site_style/desktop_style/component_style/login_form.css\", 1),
+(\"register_form_css\",4, \"../css/site_style/desktop_style/component_style/register_form.css\", 1),
 (\"db_conn\",2, \"site_struct/document_data/db_conn.php\", 1),
 (\"document_data\",2, \"site_struct/data_struct/document_data/document_data.php\" , 1),
 (\"header\",2, \"site_struct/data_struct/header.php\" , NULL),
 (\"menu\",2, \"site_struct/data_struct/menu.php\" , NULL),
 (\"main\",2, \"site_struct/data_struct/main.php\" , NULL),
 (\"footer\",2, \"site_struct/data_struct/footer.php\" , NULL),
-(\"home\",2,\"site_struct/data_struct/component/home.php\", 3),
-(\"about_us\",2, \"site_struct/data_struct/component/about_us.php\", 3),
-(\"contact\",2, \"site_struct/data_struct/component/contact.php\", 3),
-(\"catalog\",2, \"site_struct/data_struct/component/catalog.php\", 3),
-(\"reservation\",2, \"site_struct/data_struct/component/reservation.php\", 3),
-(\"faculty\",2, \"site_struct/data_struct/component/faculty.php\", 3),
-(\"registration\",2, \"site_struct/data_struct/component/registration.php\", 3),
-(\"forgot_password\",2, \"site_struct/data_struct/component/forgot_password.php\", 3);";
+(\"home\",2,\"site_struct/data_struct/components/home.php\", 3),
+(\"about_us\",2, \"site_struct/data_struct/components/about_us.php\", 3),
+(\"contact\",2, \"site_struct/data_struct/components/contact.php\", 3),
+(\"catalog\",2, \"site_struct/data_struct/components/catalog.php\", 3),
+(\"reservation\",2, \"site_struct/data_struct/components/reservation.php\", 3),
+(\"faculty\",2, \"site_struct/data_struct/components/faculty.php\", 3),
+(\"registration\",2, \"site_struct/data_struct/components/registration.php\", 3),
+(\"forgot_password\",2, \"site_struct/data_struct/components/forgot_password.php\", 3);";
 mysqli_query($conn , $sql)or die("ERROR 17" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_menu_structure (menu_title , page_component_id , access_level_id) VALUES
  (\"menu1\" , 2 , 3) , 
  (\"menu2\" , 2 , 3),
- (\"menu3\" , 2 , 3);";
+ (\"menu3\" , 2 , 1);";
 mysqli_query($conn, $sql) or die("ERROR 18" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_submenu_structure(submenu_title,menu_id , access_level_id) VALUES
@@ -220,18 +220,18 @@ $sql = "INSERT INTO ".$prefix."_submenu_structure(submenu_title,menu_id , access
  (\"Catalog\",2 , 3) , 
  (\"Reservation\",2 , 2) , 
  (\"Faculty\",2 , 3),
- (\"Test\",3 , 3),
- (\"Test2\",3 , 3),
- (\"Test3\",3 , 3);";
+ (\"Test\",3 , 1),
+ (\"Test2\",3 , 1),
+ (\"Test3\",3 , 1);";
 mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_component (component_title , include_file_id , submenu_id , page_component_id , component_data_id , access_level_id) VALUES
- (\"Home\", 19 , 1, 3, NULL,2), 
- (\"About us\", 20, 2, 3, NULL, 2),
- (\"Contact\", 21, 3, 3, NULL, 2),
- (\"Catalog\", 22, 4, 3, NULL, 2),
- (\"Reservation\", 23, 5, 3, NULL, 2),
- (\"Faculty\", 24, 6, 3, NULL, 2);";
+ (\"Home\", 19 , 1, 3, NULL,3), 
+ (\"About us\", 20, 2, 3, NULL, 3),
+ (\"Contact\", 21, 3, 3, NULL, 3),
+ (\"Catalog\", 22, 4, 3, NULL, 3),
+ (\"Reservation\", 23, 5, 3, NULL, 3),
+ (\"Faculty\", 24, 6, 3, NULL, 3);";
  mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
 
  $sql = "INSERT INTO ".$prefix."_user(access_level_id , user_name , user_email  , user_password , user_gender) VALUES

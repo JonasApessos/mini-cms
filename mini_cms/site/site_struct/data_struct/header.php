@@ -11,6 +11,6 @@ echo "		<h1>".$header_title."</h1>";
 echo"		</div>";
 
 //header login form
-include_once "site_struct/data_struct/componets/login_form.php";
+include_once "site_struct/data_struct/components/login_form.php";
 
 ?>

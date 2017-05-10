@@ -10,7 +10,41 @@ else
 echo "<div class = '".$main_class."'>";
 echo "	<h1>".$page_title."</h1>";
 
-/*$sql = "SELECT re2213_component.include_file_id , include_file_path FROM re2213_component , re2213_include_file WHERE re2213_component.submenu_id = ".$_GET['menu_id']." AND re2213_include_file.include_file_id = re2213_component.include_file_id";
+/*$sql = "SELECT re2213_component.include_file_id , include_file_path FROM re2213_component , re2213_include_file
+WHERE re2213_component.submenu_id = ".$_SESSION['menu_id']."
+AND re2213_include_file.include_file_id = re2213_component.include_file_id
+AND re2213_component.access_level_id = ".$_SESSION['access_level']." ORDER BY re2213_component.include_file_id ASC;";*/
+
+switch($_SESSION['access_level'])
+			{
+				case 3:
+					$sql = "SELECT re2213_component.include_file_id , include_file_path FROM re2213_component , re2213_include_file
+					WHERE re2213_component.submenu_id = ".$_SESSION['menu_id']."
+					AND re2213_include_file.include_file_id = re2213_component.include_file_id
+					AND re2213_component.access_level_id = 3
+					ORDER BY re2213_component.include_file_id ASC;";
+					break;
+				case 2:
+					$sql = "SELECT re2213_component.include_file_id , include_file_path FROM re2213_component , re2213_include_file
+					WHERE re2213_component.submenu_id = ".$_SESSION['menu_id']."
+					AND re2213_include_file.include_file_id = re2213_component.include_file_id
+				    AND re2213_component.access_level_id = 3
+					OR re2213_component.access_level_id = 2
+					ORDER BY re2213_component.include_file_id ASC;";
+					break;
+				case 1:
+					$sql = "SELECT re2213_component.include_file_id , include_file_path FROM re2213_component , re2213_include_file
+					WHERE re2213_component.submenu_id = ".$_SESSION['menu_id']."
+					AND re2213_include_file.include_file_id = re2213_component.include_file_id
+					AND re2213_component.access_level_id = 3
+					OR re2213_component.access_level_id = 2
+					OR re2213_component.access_level_id = 1
+					ORDER BY re2213_component.include_file_id ASC;";
+					break;
+				default:
+					echo "ERROR 22 , could not identify access level;";
+					break;
+			}
 
 $component_rows = mysqli_query($conn , $sql);
 
@@ -19,52 +53,14 @@ mysqli_close($conn);
 foreach($component_rows as $component_row)
 {
 	include_once "".$component_row['include_file_path']."";
+	$component_row = NULL;
 }
-*/
 
+$sql = NULL;
+$conn = NULL;
+$component_rows  = NULL;
+$page_title = NULL;
 
-switch($_SESSION["menu_id"])
-	{
-		case 1:
-		{
-			include_once "componets/home.php";
-			break;
-		}
-		case 2:
-		{
-			include_once "componets/about_us.php";
-			break;
-		}
-		case 3:
-		{
-			include_once "componets/contact.php";
-			break;
-		}
-		case 4:
-		{
-			include_once "componets/catalog.php";
-			break;
-		}
-		case 5:
-		{
-			include_once "componets/reservation.php";
-			break;
-		}
-		case 6:
-		{
-			include_once "componets/faculty.php";
-			break;
-		}
-		case 7:
-		{
-			include_once "componets/registration.php";
-			break;
-		}
-		default:
-		{
-			echo "<h1>error</h1>";
-		}
-	}
 echo "</div>";
 
 ?>
