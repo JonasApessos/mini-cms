@@ -1,16 +1,20 @@
 <?php
-include "site_struct/document_data/db_conn.php";
+include "site_struct/document_data/db_conn.php";//database connection (single use)
 
+
+//menu container
 echo "<div class = '".$menu_class."'>";
 
-$sql = "select menu_id from re2213_menu_structure";
+$sql = "select menu_id from re2213_menu_structure";//getting from database menus
 $menu_rows = mysqli_query($conn , $sql) or die("error 18 " . mysqli_error($conn));
 
 
 foreach ($menu_rows as $menu_row)
 {
-	$sql = "select submenu_title , submenu_id from re2213_submenu_structure , re2213_menu_structure where re2213_submenu_structure.menu_id = ".$menu_row['menu_id']. " and re2213_menu_structure.menu_id = re2213_submenu_structure.menu_id order by submenu_id";
+	$sql = "select submenu_title , submenu_id from re2213_submenu_structure , re2213_menu_structure where re2213_submenu_structure.menu_id = ".$menu_row['menu_id']. " and re2213_menu_structure.menu_id = re2213_submenu_structure.menu_id order by submenu_id";//getting from database submenus
 	$submenu_rows = mysqli_query($conn , $sql) or die ("error 19" . mysqli_error($conn));
+	
+	//drop down submenu structure
 	echo "			<div class = '".$drop_down_class."'>";
 	foreach($submenu_rows as $submenu_row)
 	{
@@ -23,6 +27,6 @@ foreach ($menu_rows as $menu_row)
 			
 echo "		</div>";
 
-mysqli_close($conn);
+mysqli_close($conn);//clossing temporary connection
 
 ?>

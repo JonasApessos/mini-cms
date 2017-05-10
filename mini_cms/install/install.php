@@ -30,6 +30,21 @@ CREATE TABLE re2213_access_level
 mysqli_query($conn, $sql) or die("ERROR 04" . mysqli_error($conn));
 
 $sql = "
+CREATE TABLE re2213_include_file
+(
+	include_file_id INT AUTO_INCREMENT UNIQUE,
+	include_file_title VARCHAR(128),
+	include_file_date_upload DATETIME NOT NULL DEFAULT NOW(),
+	include_file_path VARCHAR(255),
+	page_component_id INT,
+	file_type_id INT,
+	PRIMARY KEY(include_file_id),
+	FOREIGN KEY (page_component_id) REFERENCES re2213_page_component_structure(page_component_id),
+	FOREIGN KEY (file_type_id) REFERENCES re2213_file_type(file_type_id)
+)";
+mysqli_query($conn, $sql) or die("ERROR 07" . mysqli_error($conn));
+
+$sql = "
 CREATE TABLE re2213_user
 (
  usr_name VARCHAR(24) NOT NULL ,
@@ -52,6 +67,7 @@ CREATE TABLE re2213_page_component_structure
 	page_component_title VARCHAR(32),
 	page_component_date_created DATETIME NOT NULL DEFAULT NOW(),
 	access_level_id INT DEFAULT 1,
+	include_file_id INT,
 	PRIMARY KEY(page_component_id),
 	FOREIGN KEY (access_level_id) REFERENCES re2213_access_level(access_level_id)
 )";
@@ -68,20 +84,6 @@ CREATE TABLE re2213_file_type
 )";
 mysqli_query($conn , $sql) or die("ERROR 07" . mysqli_error($conn));
 
-$sql = "
-CREATE TABLE re2213_include_file
-(
-	include_file_id INT AUTO_INCREMENT UNIQUE,
-	include_file_title VARCHAR(128),
-	include_file_date_upload DATETIME NOT NULL DEFAULT NOW(),
-	include_file_path VARCHAR(255),
-	page_component_id INT,
-	file_type_id INT,
-	PRIMARY KEY(include_file_id),
-	FOREIGN KEY (page_component_id) REFERENCES re2213_page_component_structure(page_component_id),
-	FOREIGN KEY (file_type_id) REFERENCES re2213_file_type(file_type_id)
-)";
-mysqli_query($conn, $sql) or die("ERROR 07" . mysqli_error($conn));
 
 $sql = " 
 CREATE TABLE re2213_menu_structure
@@ -111,22 +113,6 @@ CREATE TABLE re2213_submenu_structure
 	FOREIGN KEY (access_level_id) REFERENCES re2213_access_level(access_level_id)
 );";
 mysqli_query($conn, $sql) or die("ERROR 09" . mysqli_error($conn));
-
-/*$sql ="
-CREATE TABLE re2213_category_containt
-(
-	category_id INT AUTO_INCREMENT UNIQUE,
-	category_name VARCHAR(32) ,
-	category_date_created DATETIME NOT NULL DEFAULT NOW(),
-	submenu_id INT,
-	page_component_id INT,
-	access_level_id INT DEFAULT 1,
-	PRIMARY KEY(category_id),
-	FOREIGN KEY (submenu_id) REFERENCES re2213_submenu_structure(submenu_id),
-	FOREIGN KEY (page_component_id) REFERENCES re2213_page_component_structure(page_component_id),
-	FOREIGN KEY (access_level_id) REFERENCES re2213_access_level(access_level_id)
-)";
-mysqli_query($conn, $sql) or die("ERROR 09" . mysqli_error($conn));*/
 
 $sql="
 CREATE TABLE re2213_component_data_image
@@ -175,13 +161,6 @@ $sql = "INSERT INTO re2213_access_level (access_level_title) VALUES
 (\"GUEST\");";
 mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
 
-$sql = "INSERT INTO re2213_page_component_structure (page_component_title , access_level_id) VALUES 
-(\"header\", 3) , 
-(\"menu\", 3) , 
-(\"main\", 3) , 
-(\"footer\", 3)";
-mysqli_query($conn , $sql) or die("ERROR 14" . mysqli_error($conn));
-
 $sql = "
 INSERT INTO re2213_file_type(file_type_title , file_type_extension) VALUES 
 (\"hyper text markup language\" , \"html\"),
@@ -218,6 +197,13 @@ $sql = "INSERT INTO re2213_include_file (include_file_title, file_type_id , incl
 (\"registration\",2, \"site_struct/data_struct/component/registration.php\", 3),
 (\"forgot_password\",2, \"site_struct/data_struct/component/forgot_password.php\", 3)";
 mysqli_query($conn , $sql)or die("ERROR 16" . mysqli_error($conn));
+
+$sql = "INSERT INTO re2213_page_component_structure (page_component_title , include_file_id , access_level_id) VALUES 
+(\"header\",15, 3) , 
+(\"menu\",16, 3) , 
+(\"main\",17, 3) , 
+(\"footer\",18, 3)";
+mysqli_query($conn , $sql) or die("ERROR 14" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_menu_structure (menu_title , page_component_id , access_level_id) VALUES
  (\"menu1\" , 2 , 3) , 

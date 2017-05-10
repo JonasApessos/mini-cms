@@ -1,10 +1,9 @@
 <?php
-include_once "site_struct/document_data/document_data.php";
 
 if(!isset($_GET['submenu_name']))
 	$page_title = "Home";
 else
-	$page_title = $_GET['submenu_name'];
+	$page_title = $_GET['submenu_name'];//submenu title is set in main title
 
 echo "<div class = '".$main_class."'>";
 echo "	<h1>".$page_title."</h1>";
