@@ -75,7 +75,7 @@ $sql = "
 CREATE TABLE ".$prefix."fileType
 (
 	fileType_id INT AUTO_INCREMENT,
-	fileType_title VARCHAR(30),
+	fileType_title VARCHAR(50),
 	fileType_extension VARCHAR(5),
 	fileType_date_created DATETIME NOT NULL DEFAULT NOW(),
 	PRIMARY KEY(fileType_id)
@@ -104,9 +104,9 @@ $sql = "
 CREATE TABLE ".$prefix."resPos
 (
 resPos_id INT AUTO_INCREMENT NOT NULL,
-resPos_title VARCHAR(255),
+resPos_title VARCHAR(64),
 resPos_date_created DATETIME NOT NULL DEFAULT NOW(),
-resPos_desc VARCHAR(64),
+resPos_desc VARCHAR(255),
 PRIMARY KEY(resPos_id)
 )ENGINE = innoDB;";//restaurant positions for the diner tables
 mysqli_query($conn,$sql) or die("ERROR 07".mysqli_error($conn));
@@ -250,7 +250,8 @@ $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv
  (\"Test\",4 , 1),
  (\"Test2\",4 , 1),
  (\"Test3\",4 , 1),
- (\"Test4\",5,2);";
+ (\"Test4\",5,2),
+ (\"Test5\",5,2);";
 mysqli_query($conn, $sql) or die("ERROR 18" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_path) VALUES 
