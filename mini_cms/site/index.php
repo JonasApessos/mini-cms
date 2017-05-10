@@ -1,5 +1,10 @@
 <?php
 	session_start();//starting session
+	
+	$_SESSION['access_level'] = "GUEST";
+	$_SESSION['user_name'] = "none";
+	$_SESSION['user_email'] = "none";
+	
 	$prefix = "re2213";
 	if(!isset($_GET["menu_id"]))
 	{

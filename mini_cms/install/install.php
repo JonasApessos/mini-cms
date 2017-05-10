@@ -6,7 +6,7 @@ $prefix = "re2213";
 $db_name = "re2213_restaurant_db";
 $sql = NULL;
 
-$conn = mysqli_connect($server_name , $server_user , $server_password ) or die("ERROR 00 " . mysqli_error($conn));
+$conn = mysqli_connect($server_name , $server_user , $server_password ) or die("ERROR 00 " . mysqli_connect_error($conn));
 
 $sql = "CREATE DATABASE " . $db_name . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 
@@ -75,14 +75,15 @@ mysqli_query($conn, $sql) or die("ERROR 07" . mysqli_error($conn));
 $sql = "
 CREATE TABLE ".$prefix."_user
 (
- usr_name VARCHAR(24) NOT NULL ,
- usr_password VARCHAR(24) NOT NULL ,
- usr_gender VARCHAR(7) NOT NULL,
- usr_desc VARCHAR(255) , 
- usr_reg_date DATETIME NOT NULL DEFAULT NOW(),
- usr_id INT AUTO_INCREMENT UNIQUE,
- access_level_id INT DEFAULT 1,
- PRIMARY KEY(usr_id),
+ user_name VARCHAR(24) NOT NULL UNIQUE,
+ user_email VARCHAR(48) NOT NULL UNIQUE,
+ user_password VARCHAR(24) NOT NULL UNIQUE,
+ user_gender VARCHAR(7) NOT NULL,
+ user_desc VARCHAR(255) , 
+ user_reg_date DATETIME NOT NULL DEFAULT NOW(),
+ user_id INT AUTO_INCREMENT UNIQUE,
+ access_level_id INT DEFAULT 3,
+ PRIMARY KEY(user_id),
  FOREIGN KEY (access_level_id) REFERENCES ".$prefix."_access_level(access_level_id)
  );";
 mysqli_query($conn, $sql) or die("ERROR 08" . mysqli_error($conn));
@@ -233,7 +234,13 @@ $sql = "INSERT INTO ".$prefix."_component (component_title , component_file_asso
  (\"Faculty\", \"site_struct/data_struct/components/faculty.php\", 6, 3, NULL, 2);";
  mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
 
-mysqli_close($conn) or die("ERROR 21" . mysqli_error($conn));
+ $sql = "INSERT INTO ".$prefix."_user(access_level_id , user_name , user_email  , user_password , user_gender) VALUES
+ (1 , \"john\" , \"john@gmail.com\" , \"jogn123\" , \"male\"),
+ (2 , \"marie\" , \"marie@gmail.com\" , \"marie123\" , \"female\"),
+ (2 , \"vedel\" , \"vedel@gmail.com\" , \"vedel123\" , \"female\");";
+ mysqli_query($conn, $sql) or die("ERROR 21" . mysqli_error($conn));
+ 
+mysqli_close($conn) or die("ERROR 22" . mysqli_error($conn));
 
 $sql = NULL;
 $conn = NULL;
