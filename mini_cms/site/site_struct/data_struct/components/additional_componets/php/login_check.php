@@ -34,7 +34,7 @@ else
 
 $sql = "
 UPDATE ".$prefix."user 
-SET ".$prefix."user.user_state = TRUE , ".$prefix."user.user_logged_in = NOW() 
+SET ".$prefix."user.user_state = TRUE,".$prefix."user.user_logged_in = NOW() 
 WHERE ".$prefix."user.user_email = \"".$email."\" 
 AND ".$prefix."user.user_password = \"".$password."\";";
 

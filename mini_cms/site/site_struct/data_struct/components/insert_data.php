@@ -46,7 +46,7 @@ function filter_data($data)
 		$user_pass = crypt(filter_data($_POST['user_pass']),"T51");
 		$user_gender = filter_data($_POST['user_gender']);
 
-		$sql = "INSERT INTO ".$prefix."user(accessLv_id , user_name , user_email  , user_password , user_gender) VALUES
+		$sql = "INSERT INTO ".$prefix."user(accessLv_id,user_name,user_email,user_password,user_gender) VALUES
 		( 2 ,
 			\"".$user_name."\",
 			\"".$user_email."\",
