@@ -13,5 +13,5 @@ include_once "../../document_data/db_conn.php";
 	
 	mysqli_close($conn);
 
-	Header("Location:../../../index.php");
+	Header("Location:../../../../site");
 ?>

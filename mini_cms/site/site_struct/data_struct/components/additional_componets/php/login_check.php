@@ -36,5 +36,5 @@ echo $_SESSION['user_name'];
 echo $_SESSION['user_email'];
 echo $_SESSION['access_level'];
 
-Header("Location: ../../../../../");
+Header("Location: ../../../../../index.php");
 ?>

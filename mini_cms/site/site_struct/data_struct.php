@@ -7,40 +7,40 @@
 			switch($_SESSION['access_level'])
 			{
 				case 3:
-					$sql = "SELECT re2213_page_component_structure.page_component_title , re2213_page_component_structure.submenu_id , re2213_include_file.include_file_path
-					FROM re2213_page_component_structure , re2213_include_file
-					WHERE (re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
-                          AND re2213_page_component_structure.submenu_id = 0)
+					$sql = "SELECT ".$prefix."_page_component_structure.page_component_title , ".$prefix."_page_component_structure.submenu_id , ".$prefix."_include_file.include_file_path
+					FROM ".$prefix."_page_component_structure , ".$prefix."_include_file
+					WHERE (".$prefix."_page_component_structure.include_file_id = ".$prefix."_include_file.include_file_id 
+                          AND ".$prefix."_page_component_structure.submenu_id = 1)
 					AND 
 					(
-					re2213_page_component_structure.access_level_id = 3 
+					".$prefix."_page_component_structure.access_level_id = 3 
 					)
-					ORDER BY re2213_page_component_structure.page_component_id ASC;";
+					ORDER BY ".$prefix."_page_component_structure.page_component_id ASC;";
 					break;
 				case 2:
-					$sql = "SELECT re2213_page_component_structure.page_component_title , re2213_page_component_structure.submenu_id , re2213_include_file.include_file_path
-					FROM re2213_page_component_structure , re2213_include_file
-					WHERE (re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
-                          AND re2213_page_component_structure.submenu_id = 0)
+					$sql = "SELECT ".$prefix."_page_component_structure.page_component_title , ".$prefix."_page_component_structure.submenu_id , ".$prefix."_include_file.include_file_path
+					FROM ".$prefix."_page_component_structure , ".$prefix."_include_file
+					WHERE (".$prefix."_page_component_structure.include_file_id = ".$prefix."_include_file.include_file_id 
+                          AND ".$prefix."_page_component_structure.submenu_id = 1)
 					AND 
 					(
-					re2213_page_component_structure.access_level_id = 3 
-					OR re2213_page_component_structure.access_level_id = 2
+					".$prefix."_page_component_structure.access_level_id = 3 
+					OR ".$prefix."_page_component_structure.access_level_id = 2
 					)
-					ORDER BY re2213_page_component_structure.page_component_id ASC;";
+					ORDER BY ".$prefix."_page_component_structure.page_component_id ASC;";
 					break;
 				case 1:
-					$sql = "SELECT re2213_page_component_structure.page_component_title , re2213_page_component_structure.submenu_id , re2213_include_file.include_file_path
-					FROM re2213_page_component_structure , re2213_include_file
-					WHERE (re2213_page_component_structure.include_file_id = re2213_include_file.include_file_id 
-                          AND re2213_page_component_structure.submenu_id = 0)
+					$sql = "SELECT ".$prefix."_page_component_structure.page_component_title , ".$prefix."_page_component_structure.submenu_id , ".$prefix."_include_file.include_file_path
+					FROM ".$prefix."_page_component_structure , ".$prefix."_include_file
+					WHERE (".$prefix."_page_component_structure.include_file_id = ".$prefix."_include_file.include_file_id 
+                          AND ".$prefix."_page_component_structure.submenu_id = 1)
 					AND 
 					(
-					re2213_page_component_structure.access_level_id = 3 
-					OR re2213_page_component_structure.access_level_id = 2
-					OR re2213_page_component_structure.access_level_id = 1 
+					".$prefix."_page_component_structure.access_level_id = 3 
+					OR ".$prefix."_page_component_structure.access_level_id = 2
+					OR ".$prefix."_page_component_structure.access_level_id = 1 
 					)
-					ORDER BY re2213_page_component_structure.page_component_id ASC;";
+					ORDER BY ".$prefix."_page_component_structure.page_component_id ASC;";
 					break;
 				default:
 					echo "ERROR 22 , could not identify access level;";
@@ -60,6 +60,5 @@
 					$page_component_row = NULL;
 				}
 			}
-			mysqli_close($conn);
 			
 ?>

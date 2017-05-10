@@ -18,9 +18,8 @@ if(!isset($_SESSION['access_level']))
 	$_SESSION['user_email'] = "none";
 }
 
-
-if(!isset($_GET["menu_id"]))
-	$_SESSION["menu_id"] = 1;//setting menu selection session id
+if(!isset($_GET["menu_id"]) || empty($_GET['menu_id']))
+	$_SESSION["menu_id"] = 2;//setting menu selection session id
 else
 	$_SESSION["menu_id"] = $_GET["menu_id"];
 
@@ -38,16 +37,28 @@ echo "  <div class = \"containment\" >";
 include_once "site_struct/data_struct.php";//include site data structure
 		
 echo "  </div>";
-if($_SESSION['access_level'] == 1)
+
+$sql = "SELECT re2213_component_data_image.component_data_image_path FROM re2213_component_data_image , re2213_component_data
+WHERE re2213_component_data_image.file_type_id = 6 
+AND re2213_component_data_image.component_data_image_id = re2213_component_data.component_data_image_id
+AND re2213_component_data.access_level_id = ".$_SESSION['access_level'].";";
+
+$img_rows = mysqli_query($conn , $sql) or die("error images : " . mysqli_error($conn));
+
+foreach($img_rows as $img_row)
+{
+	echo "<img src = \"".$img_row['component_data_image_path']."\">";
+}
+/*if($_SESSION['access_level'] == 1)
 {
 	echo "<div style = \"float:left; clear:both;\">";
 	echo "<img  src = \"../images/img_bt_add.png\" style = \"float:left;\">";
 	echo "<img src = \"../images/img_bt_sub.png\" style = \"float:left;\">";
 	echo "<img src = \"../images/img_bt_edit.png\" style = \"float:left;\">";
 	echo "</div>";
-}
+}*/
 
 echo "</body>";
 echo "</html>";
-
+mysqli_close($conn);
 ?>

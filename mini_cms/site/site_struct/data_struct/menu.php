@@ -6,23 +6,26 @@ switch($_SESSION['access_level'])
 			{
 				case 3:
 					$sql = "SELECT menu_id
-					FROM re2213_menu_structure
-					WHERE re2213_menu_structure.access_level_id = 3
+					FROM ".$prefix."_menu_structure
+					WHERE ".$prefix."_menu_structure.access_level_id = 3
+                    AND NOT ".$prefix."_menu_structure.menu_id = 1
 					ORDER BY menu_id ASC;";
 					break;
 				case 2:
 					$sql = "SELECT menu_id
-					FROM re2213_menu_structure
-					WHERE re2213_menu_structure.access_level_id = 3
-					OR re2213_menu_structure.access_level_id = 2
+					FROM ".$prefix."_menu_structure
+					WHERE ".$prefix."_menu_structure.access_level_id = 3
+                    AND NOT ".$prefix."_menu_structure.menu_id = 1
+					OR ".$prefix."_menu_structure.access_level_id = 2
 					ORDER BY menu_id ASC;";
 					break;
 				case 1:
 					$sql = "SELECT menu_id
-					FROM re2213_menu_structure
-					WHERE re2213_menu_structure.access_level_id = 3
-					OR re2213_menu_structure.access_level_id = 2
-					OR re2213_menu_structure.access_level_id = 1
+					FROM ".$prefix."_menu_structure
+					WHERE ".$prefix."_menu_structure.access_level_id = 3
+                    AND NOT ".$prefix."_menu_structure.menu_id = 1
+					OR ".$prefix."_menu_structure.access_level_id = 2
+					OR ".$prefix."_menu_structure.access_level_id = 1
 					ORDER BY menu_id ASC;";
 					break;
 				default:
@@ -40,32 +43,32 @@ foreach ($menu_rows as $menu_row)
 			{
 				case 3:
 					$sql = "SELECT submenu_title , submenu_id
-					FROM re2213_submenu_structure , re2213_menu_structure
-					WHERE re2213_submenu_structure.menu_id = ".$menu_row['menu_id']. "
-					AND re2213_menu_structure.menu_id = re2213_submenu_structure.menu_id
-					AND re2213_submenu_structure.access_level_id = 3
+					FROM ".$prefix."_submenu_structure , ".$prefix."_menu_structure
+					WHERE ".$prefix."_submenu_structure.menu_id = ".$menu_row['menu_id']. "
+					AND ".$prefix."_menu_structure.menu_id = ".$prefix."_submenu_structure.menu_id
+					AND ".$prefix."_submenu_structure.access_level_id = 3
 					ORDER BY submenu_id ASC;";
 					break;
 				case 2:
 					$sql = "SELECT submenu_title , submenu_id
-					FROM re2213_submenu_structure , re2213_menu_structure
-					WHERE re2213_submenu_structure.menu_id = ".$menu_row['menu_id']. "
-					AND re2213_menu_structure.menu_id = re2213_submenu_structure.menu_id
+					FROM ".$prefix."_submenu_structure , ".$prefix."_menu_structure
+					WHERE ".$prefix."_submenu_structure.menu_id = ".$menu_row['menu_id']. "
+					AND ".$prefix."_menu_structure.menu_id = ".$prefix."_submenu_structure.menu_id
 					AND( 
-					re2213_submenu_structure.access_level_id = 3
-					OR re2213_submenu_structure.access_level_id = 2
+					".$prefix."_submenu_structure.access_level_id = 3
+					OR ".$prefix."_submenu_structure.access_level_id = 2
 					)
 					ORDER BY submenu_id ASC;";
 					break;
 				case 1:
 					$sql = "SELECT submenu_title , submenu_id
-					FROM re2213_submenu_structure , re2213_menu_structure
-					WHERE re2213_submenu_structure.menu_id = ".$menu_row['menu_id']. "
-					AND re2213_menu_structure.menu_id = re2213_submenu_structure.menu_id
+					FROM ".$prefix."_submenu_structure , ".$prefix."_menu_structure
+					WHERE ".$prefix."_submenu_structure.menu_id = ".$menu_row['menu_id']. "
+					AND ".$prefix."_menu_structure.menu_id = ".$prefix."_submenu_structure.menu_id
 					AND (
-					re2213_submenu_structure.access_level_id = 3
-					OR re2213_submenu_structure.access_level_id = 2
-					OR re2213_submenu_structure.access_level_id = 1
+					".$prefix."_submenu_structure.access_level_id = 3
+					OR ".$prefix."_submenu_structure.access_level_id = 2
+					OR ".$prefix."_submenu_structure.access_level_id = 1
 					)
 					ORDER BY submenu_id ASC;";
 					break;
