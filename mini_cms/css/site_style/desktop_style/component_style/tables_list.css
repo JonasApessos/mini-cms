@@ -1,0 +1,88 @@
+@media screen and (min-width:480px)
+{
+	.table_list_style
+	{
+		width:100%;
+		margin:auto;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(30,30,30,1.0);
+	}
+	
+	.table_list_style div
+	{
+		width:95%;
+		margin:auto;
+		padding:0%;
+		float:none;
+		clear:both;
+	}
+	
+	.table_list_style div div
+	{
+		width:100%;
+		margin:1% auto;
+		float:left;
+		clear:both;
+		background-color:rgba(50,50,50,1.0); 
+		box-shadow:0px 0px 10px 5px rgba(0,0,0,0.25);
+		transition:box-shadow 1s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
+	}
+	
+	.table_list_style div div div 
+	{
+		width:97.7%;
+		margin:1%;
+		float:left;
+		border:2px solid rgba(255,140,0,1.0);
+	}
+	
+	.table_list_style div div div div 
+	{
+		width:100%;
+		margin:auto;
+		border:0px solid rgba(255,140,0,0.0);
+		box-shadow:0px 0px 10px 5px rgba(0,0,0,0.0);
+	}
+	
+	.table_list_style div div div div:nth-child(1)
+	{
+		border-bottom:1px solid rgba(255,140,0,1.0);
+		background-color:rgba(70,70,70,1.0);
+	}
+	
+	.table_list_style div div div div:nth-child(2)
+	{
+		box-shadow:0px 0px 10px 5px rgba(0,0,0,0.0);
+		transition:none;
+	}
+	
+	.table_list_style div div div div:nth-child(2) div
+	{
+		width:10%;
+		min-width:100px;
+		float:left;
+		margin:1%;
+		clear:none;
+		background-color:rgba(30,30,30,1.0);
+		border:1px solid rgba(255,140,0,1.0);
+		box-shadow:inset 0px 0px 5px 2px rgba(0,0,0,0.25);
+	}
+	
+	.table_list_style div div div div h3
+	{
+		text-align:center;
+	}
+	
+	.table_list_style div div div div h4
+	{
+		text-align:center;
+	}
+	
+	.table_list_style div div:hover
+	{
+		box-shadow:0px 0px 5px 2px rgba(255,140,0,1.0);
+	}
+}

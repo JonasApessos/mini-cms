@@ -11,12 +11,12 @@ if($_SESSION["access_level"] > 2)
 	echo "<h2>Login</h2>";
 	echo "<div>";
 	echo "<h3>Email</h3>";
-	echo "<input type = \"email\" placeholder = \"example@examble.com\" name = \"login_email\" onChange = \"user_login_email()\">";
+	echo "<input type = \"email\" placeholder = \"example@examble.com\" name = \"login_email\" maxlength = \"48\" onChange = \"user_login_email()\">";
 	echo "</div>";
 	
 	echo "<div>";
 	echo "<h3>Password</h3>";
-	echo "<input type = \"password\" name = \"password_login\" onChange = \"user_login_pass(this)\">";
+	echo "<input type = \"password\" name = \"password_login\" maxlength = \"48\" onChange = \"user_login_pass(this)\">";
 	echo "</div>";
 	
 	echo "<div>";
