@@ -29,4 +29,7 @@ $faculty_div_inverted = "faculty_inverted";
 
 $menu_height  = 0;
 $sub_menu_height = 0;
+
+//js components onChange events
+$header_login_script = "login_check.js";
 ?>

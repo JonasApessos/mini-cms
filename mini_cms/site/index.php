@@ -1,11 +1,10 @@
 ﻿<?php
 	session_start();//starting session
 	
-	$_SESSION['access_level'] = NULL;
 	
-	if(!isset($_GET['user_name']))
+	if(!isset($_GET['access_level']))
 	{
-		$_SESSION['access_level'] = 2;
+		$_SESSION['access_level'] = 3;
 		$_SESSION['user_name'] = "none";
 		$_SESSION['user_email'] = "none";
 	}
@@ -17,7 +16,7 @@
 	}
 	
 	
-	echo $_SESSION['user_name'];
+echo $_SESSION['user_name'];
 echo $_SESSION['user_email'];
 echo $_SESSION['access_level'];
 	
@@ -54,7 +53,8 @@ echo $_SESSION['access_level'];
 
 <link rel="stylesheet" href="../css/site_style/desktop_style/component_style/drop_down_menu.php" media="screen">
 
-<script src = "../absolute_menu.js"></script><!-- absolute menu javascript execution arrow menu animation-->
+<script src = "../js/absolute_menu.js"></script><!-- absolute menu javascript execution arrow menu animation-->
+<script src = <?php echo "../js/".$header_login_script ?>></script>
 
 <title>Deluxe Restaurant</title>
 </head>
