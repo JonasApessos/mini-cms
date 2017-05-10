@@ -14,10 +14,11 @@ $css_data_row = NULL;
 $css_data_rows = NULL;
 
 echo "<link rel=\"stylesheet\" href=\"../css/site_style/desktop_style/component_style/drop_down_menu.php\" media=\"screen\">";
-echo "<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDYo2lMIObZYq2QN4sx7sEqBTsyPfxxwog&callback=google_map \"></script>";
-echo "<script src = \"../js/init.js\"></script>";
 echo "<script src = \"../js/absolute_menu.js\"></script>";
 echo "<script src = \"../js/google_map.js\"></script>";
+echo "<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDYo2lMIObZYq2QN4sx7sEqBTsyPfxxwog&callback=google_map\"></script>";
+echo "<script src = \"../js/res_cal.js\"></script>";
 echo "<script src =  \"../js/".$header_login_script."\"></script>";
+echo "<script src = \"../js/init.js\"></script>";
 echo "<title>Deluxe Restaurant</title>";
 ?>

@@ -205,7 +205,8 @@ $sql = "INSERT INTO ".$prefix."_include_file (include_file_title, file_type_id ,
 (\"faculty\",2, \"site_struct/data_struct/components/faculty.php\", 3),
 (\"registration\",2, \"site_struct/data_struct/components/registration.php\", 3),
 (\"forgot_password\",2, \"site_struct/data_struct/components/forgot_password.php\", 3),
-(\"reservation\",4, \"../css/site_style/desktop_style/component_style/reservation.css\", 1);";
+(\"reservation\",4, \"../css/site_style/desktop_style/component_style/reservation.css\", 1),
+(\"res_cal\",4, \"../css/site_style/desktop_style/component_style/res_cal.css\", 1);";
 mysqli_query($conn , $sql)or die("ERROR 17" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."_menu_structure (menu_title , page_component_id , access_level_id) VALUES

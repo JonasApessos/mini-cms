@@ -11,10 +11,11 @@
 	
 	.res_form div
 	{
-		width:20%;
 		min-width:300px;
 		height:auto;
-		margin:1% auto;
+		float:left;
+		padding:1%;
+		margin:0% 32%;
 	}
 	
 	.res_form tbody tr td
