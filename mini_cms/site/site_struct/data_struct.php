@@ -1,5 +1,6 @@
 <?php			
 			include "site_struct/document_data/db_conn.php";
+			include_once "site_struct/document_data/document_data.php";
 			
 			$_SESSION['access_level'];
 			
@@ -42,7 +43,7 @@
 
 			$page_component_rows = mysqli_query($conn , $sql) or die("ERROR 23" . mysqli_error($conn));
 			
-			mysqli_close($conn);
+			
 			if(!isset($page_component_rows))
 				echo "No data";
 			else
@@ -53,6 +54,7 @@
 					$page_component_row = NULL;
 				}
 			}
+			mysqli_close($conn);
 			
 			$sql = NULL;
 			$conn = NULL;

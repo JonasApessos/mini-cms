@@ -1,7 +1,5 @@
 <?php
 
-include "site_struct/document_data/db_conn.php";
-
 if(!isset($_GET['submenu_name']))
 	$page_title = "Home";
 else
@@ -48,19 +46,12 @@ switch($_SESSION['access_level'])
 
 $component_rows = mysqli_query($conn , $sql);
 
-mysqli_close($conn);
-
 foreach($component_rows as $component_row)
 {
 	include_once "".$component_row['include_file_path']."";
 	$component_row = NULL;
 }
-
-$sql = NULL;
-$conn = NULL;
-$component_rows  = NULL;
-$page_title = NULL;
-
+$component_rows = NULL;
 echo "</div>";
 
 ?>

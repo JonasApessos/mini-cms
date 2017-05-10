@@ -1,5 +1,4 @@
 <?php
-	include_once "site_struct/document_data/document_data.php";
 
 echo "<form action = '../data_parse/login_data_parse.php' method='POST'>";
 echo "	<table class='".$table_form_class."'>";

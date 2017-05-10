@@ -12,20 +12,22 @@ echo".dropdown";
 		echo "min-width:125px;";
 	    echo "height:50px;";
 		echo "background-color:rgba(20,20,20,1);";
-		echo "border: ".$border_width."px solid ". $border_normal_color2 . ";";
+		/*echo "border: ".$border_width."px solid ". $border_normal_color2 . ";";*/
 		echo "border-radius:25px;";
+		echo "box-shadow:0px 0px 0px rgba(50,50,50,0);";
 		echo "float:left;";
 		echo "margin:auto;";
 		echo "position:relative;";
 		echo "z-index:0;";
 		echo "overflow:hidden;";
-		echo "transition: z-index 0s, height 1s;"; 
+		echo "transition: z-index 0s, height 1s , box-shadow 1s;"; 
 	echo "}";
 
 	echo ".dropdown:hover";
 	echo "{";
 	echo "	z-index:1;";
 	echo "	height:" . $menu_height ."px;";
+	echo "box-shadow:0px 0px 5px 2px rgba(25,25,25,1);";
 	echo "}";
 
 	echo ".dropdown div

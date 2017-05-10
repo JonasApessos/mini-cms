@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $server_name = "localhost";
 $server_user = "root";
 $server_password = "";
@@ -189,7 +189,7 @@ $sql = "INSERT INTO ".$prefix."_include_file (include_file_title, file_type_id ,
 (\"contact_css\",4, \"../css/site_style/desktop_style/component_style/contact.css\", 1),
 (\"catalog_css\",4, \"../css/site_style/desktop_style/component_style/catalog.css\", 1),
 (\"faculty_css\",4, \"../css/site_style/desktop_style/component_style/faculty.css\", 1),
-(\"login_form_css\",4, \"../css/site_style/desktop_style/component_style/login_form.css\", 1),
+(\"login_form_css\",4, \"../css/site_style/desktop_style/component_style/login_form.php\", 1),
 (\"register_form_css\",4, \"../css/site_style/desktop_style/component_style/register_form.css\", 1),
 (\"db_conn\",2, \"site_struct/document_data/db_conn.php\", 1),
 (\"document_data\",2, \"site_struct/data_struct/document_data/document_data.php\" , 1),

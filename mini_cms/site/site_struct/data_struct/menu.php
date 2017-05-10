@@ -1,7 +1,4 @@
 <?php
-include "site_struct/document_data/db_conn.php";//database connection (single use)
-
-
 //menu container
 echo "<div class = '".$menu_class."'>";
 
@@ -93,9 +90,4 @@ foreach ($menu_rows as $menu_row)
 }
 			
 echo "		</div>";
-mysqli_close($conn);//clossing temporary connection
-$sql = NULL;
-$conn = NULL;
-$menu_rows = NULL;
-$submenu_rows = NULL;
 ?>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	session_start();//starting session
 	
 	$_SESSION['access_level'] = NULL;
@@ -41,7 +41,11 @@ echo $_SESSION['access_level'];
 <?php
 	include "site_struct/document_data/db_conn.php";
 	
-	$sql  = "SELECT include_file_path FROM " . $prefix . "_include_file , ".$prefix."_page_component_structure where file_type_id = 4 AND ".$prefix."_page_component_structure.page_component_id = ".$prefix."_include_file.page_component_id;";
+	$sql  = "
+	SELECT ".$prefix."_include_file.include_file_path 
+	FROM ".$prefix."_include_file , ".$prefix."_component
+	WHERE ".$prefix."_include_file.file_type_id = 4 AND ".$prefix."_component.submenu_id = 1";
+	
 	$css_data_rows = mysqli_query($conn , $sql)or die("ERROR 02" . mysqli_error($conn));
 	mysqli_close($conn);
 	foreach($css_data_rows as $css_data_row)
@@ -53,7 +57,6 @@ echo $_SESSION['access_level'];
 ?>
 
 <link rel="stylesheet" href="../css/site_style/desktop_style/component_style/drop_down_menu.php" media="screen">
-<link rel="stylesheet" href="../css/site_style/desktop_style/component_style/login_form.php" media="screen">
 
 <script src = "../absolute_menu.js"></script><!-- absolute menu javascript execution arrow menu animation-->
 

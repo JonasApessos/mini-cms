@@ -4,9 +4,10 @@
 	{
 		width:100%;
 		height:auto;
+		background-color:rgba(245,245,245,1);
 		overflow:hidden;
 		border:2px solid black;
-		border-color:rgb(255,255,255);
+		border-color:rgba(240,240,240,1);
 		float:left;
 		clear:both;
 		transition:border-color 1s,height 1s;

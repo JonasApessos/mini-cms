@@ -1,5 +1,4 @@
 <?php
-include_once "site_struct/document_data/document_data.php";
 
 echo "<div class = '".$faculty_class."'>";
 echo "	<div>";

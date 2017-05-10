@@ -6,7 +6,7 @@
 		height:52px;
 		background-color:rgba(30,30,30,1);
 		border:2px solid black;
-		border-color:rgb(255,255,255);
+		border-color:rgb(245,245,245);
 		float:left;
 		clear:both;
 		transition:border-color 1s;
