@@ -10,6 +10,8 @@ var week = Math.round(((days/7) - (days/31)));
 var month = (week/4);
 
 var prevId = 0;
+var createI_01 = document.createElement('input');
+var oldCreatei_02 = 0;
 
 function resCall(){}
 function createCallChilds(){}
@@ -48,9 +50,14 @@ function createCallChilds()
 		createP_01.appendChild(textP_01);
 		createDiv_02.appendChild(createP_01);
 		idDiv_02.appendChild(createDiv_02);
+		createDiv_02.appendChild(createI_01);
 		
 		createDiv_02.id = "div_date_" + i;
 		createDiv_02.setAttribute("onclick","setBoxSelection(this.id)");
+		createi_01.setAttribute("id","iDate_"+i);
+		createI_01.setAttribute("type","hidden");
+		createI_01.setAttribute("name","day_cal_"+i);
+		createI_01.setAttribute("value",i);
 	}
 	
 }
@@ -59,14 +66,35 @@ function setBoxSelection(newId)
 {
 	if(prevId == 0)
 		prevId = newId;
+	
+	var idDiv_03 = document.getElementById(newId);
+	var idDiv_04 = document.getElementById(prevId);
+	var createi_02 = document.createElement("input");
+	var idInput_01 = document.getElementById("day_cal");
 		
 	document.getElementById(newId).style.backgroundColor = "rgba(40,40,40,1)";
 	document.getElementById(newId).style.boxShadow = "0px 0px 4px 2.5px rgba(255,143,0,1)";
-
+	
 	if(prevId != newId)
 	{
 		document.getElementById(prevId).style.backgroundColor = "rgba(20,20,20,1)";
 		document.getElementById(prevId).style.boxShadow = "0px 0px 4px 2.5px rgba(0,0,0,0.25)";
+		idDiv_04.removeChild(oldCreatei_02);
 	}
+	
+	idDiv_03.appendChild(createi_02);
+	
+	console.log("input : " + createi_02);
+	
+	createi_02.setAttribute("id","day_cal");
+	createi_02.setAttribute("type","hidden");
+	createi_02.setAttribute("name","day_call");
+	createi_02.setAttribute("value",newId );
+	
+	//createi_02.setAttribute("value")
+	console.log("newId: " + newId);
+	console.log("prevId: " + prevId);
+	
 	prevId = newId;
+	oldCreatei_02 = createi_02;
 }
