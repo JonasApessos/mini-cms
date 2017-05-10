@@ -1,34 +1,39 @@
 <?php
 
-echo "<div class = '".$header_login_form."'>";
-if($_SESSION["access_level"] == 3)
+
+if($_SESSION["access_level"] > 2)
 {
+	echo "<div class = '".$header_login_form."'>";
+	
 	echo "<form action = \"site_struct/data_struct/components/additional_componets/php/login_check.php\" method = \"POST\" name = \"login_form\">";
-	echo "<table>";
-	echo "<tbody>";
-	echo "<tr>";
-	echo "<td><p>Email</p></td>";
-	echo "<td><input type = \"text\" placeholder = \"example@examble.com\" name = \"login_email\" onChange = \"user_login_email()\"></td>";
-	echo "</tr>";
-	echo "<tr>";
-	echo "<td><p>Password</p></td>";
-	echo "<td><input type = \"password\" name = \"password_login\" onChange = \"user_login_pass(this)\"></td>";
-	echo "</tr>";
-	echo "<tr>";
-	echo "<td></td>";
-	echo "<td><input type = \"submit\" value = \"submit\" onChange=\"user_login(this)\"></td>";
-	echo "</tr>";
-	echo "<tr>";
-	echo "<td><p><a href=\"site_struct\data_struct\components\create_account.php\">create account?</a></p></td>";
-	echo "<td><p><a href=?menu_id=9>forgot password?</a></p></td>";
-	echo "</tr>";
-	echo "</tbody>";
-	echo "</table>";
+	
+	echo "<div>";
+	echo "<h3>Email</h3>";
+	echo "<input type = \"email\" placeholder = \"example@examble.com\" name = \"login_email\" onChange = \"user_login_email()\">";
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<h3>Password</h3>";
+	echo "<input type = \"password\" name = \"password_login\" onChange = \"user_login_pass(this)\">";
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<input type = \"submit\" value = \"submit\" onChange=\"user_login(this)\">";
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<h4><a href=\"site_struct\data_struct\components\create_account.php\">create account?</a></h4>";
+	echo "<h4><a href=?menu_id=9>forgot password?</a></h4>";
+	echo "</div>";
+
 	echo "</form>";
 
 }
 else
 {
+	$header_login_form = "loged_form_top";
+	
+	echo "<div class = '".$header_login_form."'>";
 	echo "<div>";
 	echo "<img src = \"\" alt = \"profil_image\" width = \"100px;\"/>";
 	echo "</div>";

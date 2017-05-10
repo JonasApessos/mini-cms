@@ -7,12 +7,12 @@
 	}
 }
 	
-@media screen and (max-width:480px)
+@media screen and (min-width:480px)
 {
 	body
 	{
-		margin:0% 0%;
-		padding:0% 0%;
+		margin:auto;
+		padding:0%;
 		background-color:rgba(240,240,240,1);
 		color:rgba(255,143,0,1);
 		border:none;
@@ -26,20 +26,10 @@
 	.containment
 	{
 		width:100%;
-		margin:0% 0%;
-		padding:0% 0%;
+		margin:auto;
+		padding:0%;
+		float:left;
+		clear:both;
 		border:none;		
 	}
-	
-	.containment:hover
-	{
-		border:none;	
-	}
-	
-	::selection
-	{
-		color:rgba(0,0,0,0.0);
-		background-color:rgba(0,0,0,0.0);
-	}
-	
 }

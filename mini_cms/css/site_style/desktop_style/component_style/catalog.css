@@ -1,65 +1,66 @@
 @media screen and (min-width:480px)
 {
-.catalog
-{
-	width:100%;
-	float:left;
-	margin:auto;
-	color:rgb(255,143,0);
-	background-color:rgba(30,30,30,1);
-}
+	.catalog
+	{
+		width:100%;
+		float:left;
+		margin:auto;
+		padding:0%;
+		background-color:rgba(30,30,30,1);
+	}
 
-.catalog div
-{
-	background-color:rgb(50,50,50);
-	box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
-	width:45%;
-	min-width:100px;
-	height:auto;
-	margin:1.5%;
-	padding:1%;
-	float:left;
-	transition:box-shadow 1s;
-	transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
-}
+	.catalog div
+	{
+		background-color:rgb(50,50,50);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+		width:45%;
+		min-width:100px;
+		height:auto;
+		margin:1% 1.5% 0% 1.5%;
+		padding:1%;
+		float:left;
+		transition:box-shadow 1s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
+	}
 
-.catalog div div:nth-child(1)
-{
-	max-width:150px;
-	min-width:100px;
-	max-height:150px;
-	min-height:100px;
-	float:left;
-	clear:left;
-	margin:0% 1% 0% 0%;
-}
-
-
-.catalog div div:nth-child(2)
-{
-	width:70%;
-	height:auto;
-	clear:right;
-	margin:auto;
-	text-align:center;
-	background-color:rgb(60,60,60);
-}
+	.catalog div div:nth-child(2)
+	{
+		width:65%;
+		height:auto;
+		float:left;
+		clear:right;
+		margin:auto;
+		padding:0%;
+		text-align:center;
+		background-color:rgb(70,70,70);
+	}
 
 
-.catalog div div:nth-child(3)
-{
-	width:100%;
-	height:auto;
-	float:left;
-	clear:both;
-	margin:2% 0% 0% 0%;
-	box-shadow:none;
-	transition:none;
-}
+	.catalog div div:nth-child(3)
+	{
+		width:98%;
+		height:auto;
+		float:left;
+		clear:both;
+		margin:1% auto auto auto;
+		padding:1%;
+		background-color:rgba(70,70,70,1.0);
+	}
 
-.catalog div:hover
-{
-	box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
-}
+	.catalog div img
+	{
+		width:25%;
+		min-width:200px;
+		float:left;
+		clear:left;
+		margin:auto 10% auto auto;
+		padding:0%;
+		background-color:rgba(50,50,50,1.0);
+	}
+
+	.catalog div:hover
+	{
+		box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
+	}
 
 }

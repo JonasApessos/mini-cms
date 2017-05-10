@@ -94,12 +94,11 @@ foreach ($menu_rows as $menu_row => $menu_data)
 	}
 	echo "</div>";
 }
-$submenu_data = 0;
-$submenu_row = 0;
-$submenu_rows = 0;
-$menu_row = 0;
-$menu_rows = 0;
-$menu_data = 0;
+
+
+mysqli_free_result($submenu_rows);
+mysqli_free_result($menu_rows);
+
 			
 echo "</div>";
 ?>

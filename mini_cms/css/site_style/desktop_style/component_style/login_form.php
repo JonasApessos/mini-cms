@@ -8,140 +8,129 @@
 	{
 		width:25%;
 		height:auto;
-		background-color:rgb(30,30,30);
+		background-color:rgba(30,30,30,1.0);
 		margin:1% 1% 1% 0%;
 		padding:1%;
-		color:rgb(255,143,0);
 		float:right;
 		clear:right;
-		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
-		transition:box-shadow 1s;
-		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 	
-	.login_form_top:hover
+	.login_form_top div
 	{
-		box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
+		width:98%;
+		clear:both;
+		margin:1% auto;
+		padding:1%;
+		float:left;
+		background-color:rgba(50,50,50,1.0);
 	}
 	
-	.login_form_top table
-	{
-		width:100%;
-		color:rgb(255,143,0);
-		margin:auto;
-	}
-	
-	.login_form_top table tr td input
-	{
-		width:75%;
-		background-color:rgb(50,50,50);
-		border:2px solid white;
-		border-color:rgb(200,133,0);
-		color:rgb(255,143,0);
-		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
-		transition: border-color 1s , background-color 1s , box-shadow 1s;
-		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
-	}
-	
-	.login_form_top table tr td input:hover
-	{
-		border-color:rgb(255,143,0);
-		background-color:rgb(70,70,70);
-		box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
-	}
-	
-	.login_form_top table tr td:nth-child(odd)
-	{
-		text-align:left;
-	}
-	
-	.login_form_top table tr td:nth-child(even)
-	{
-		text-align:right;
-	}
-	
-    a:visited
-	{
-		color:rgba(200,133,0,1);
-		text-decoration:none;
-	}
-	
-   a:link
-	{
-		color:rgba(200,133,0,1);
-		text-decoration:none;
-	}
-	
-   a:hover
-	{
-		color:rgb(255,143,0);
-		text-decoration:none;
-	}
-	
-   a:active
-	{
-		color:rgb(200,133,0);
-		text-decoration:none;
-	}
-	
-	.login_form_top div:nth-child(1)
+	.login_form_top div input
 	{
 		width:25%;
-		min-width:50px;
+		height:20px;
+		float:right;
+		clear:right;
+		margin:auto;
+		padding:0%;
+	}
+	
+	.login_form_top div h3
+	{
+		width:auto;
+		clear:left;
+		float:left;
+		margin:0%;
+		padding:0%;
+	}
+	
+	.login_form_top div h4:nth-child(1)
+	{
+		width:auto;
 		float:left;
 		clear:left;
-		box-shadow:0px 0px 4px 5px rgba(0,0,0,0.25);
-		background-color:rgba(50,50,50,1);
-		transition:box-shadow 1.0s;
-		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
+		margin:auto;
+		padding:0%;
 	}
 	
-	.login_form_top div:nth-child(2)
+	.login_form_top div h4:nth-child(2)
 	{
-		text-align:center;
-		width:70%;
-		margin:0% 0% 0% 5%;
-		float:left;
+		width:auto;
+		float:right;
 		clear:right;
-		box-shadow:0px 0px 4px 5px rgba(0,0,0,0.25);
-		background-color:rgba(50,50,50,1);
-		transition:box-shadow 1.0s;
-		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
+		margin:auto;
+		padding:0%;
 	}
 	
-	.login_form_top div:nth-child(3)
+	.login_form_top a:link
 	{
-		width:100%;
-		clear:both;
-		float:left;
-		box-shadow:0px 0px 4px 5px rgba(0,0,0,0);
+		color:rgba(230,120,0,1.0);
+		text-decoration:none;
 	}
 	
-	.login_form_top div:nth-child(3) input[type = "submit"]
+	.login_form_top a:visited
+	{
+		color:rgba(230,120,0,1.0);
+		text-decoration:none;
+	}
+	
+	.login_form_top a:hover
+	{
+		color:rgba(255,140,0,1.0);
+		text-decoration:none;
+	}
+	
+	.login_form_top a:active
+	{
+		color:rgba(230,120,0,1.0);
+		text-decoration:none;
+	}
+}
+
+@media screen and (min-width:480px)
+{
+	.loged_form_top
 	{
 		width:25%;
+		height:auto;
+		background-color:rgba(30,30,30,1.0);
+		margin:1% 1% 1% 0%;
+		padding:1%;
+		float:right;
+		clear:right;
+	}
+	
+	.loged_form_top div:nth-child(1)
+	{
+		width:25%;
+		min-width:100px;
+		float:left;
+		clear:left;
+		margin:auto 5% 1% auto;
+		padding:0%;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	
+	.loged_form_top div:nth-child(2)
+	{
+		width:68%;
+		min-width:0%;
+		float:left;
+		clear:right;
 		margin:auto;
-		color:rgba(255,143,0,1);
-		border:2px solid rgba(230,143,0,1);
-		box-shadow:0px 0px 4px 5px rgba(0,0,0,0.25);
-		background-color:rgba(50,50,50,1);
-		transition:box-shadow 1.0s, background-color 1.0s;
-		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
+		padding:1%;
+		background-color:rgba(50,50,50,1.0);
 	}
 	
-	.login_form_top div:nth-child(3) input[type = "submit"]:hover
+	.loged_form_top div:nth-child(3)
 	{
-		box-shadow:0px 0px 4px 2.5px rgba(255,143,0,1);
-		background-color:rgba(100,100,100,1);
-	}
-	
-	.login_form_top div:hover
-	{
-		box-shadow:0px 0px 4px 2.5px rgba(255,143,0,1);
-	}
-	
-	.login_form_top div:nth-child(3):hover
-	{
-		box-shadow:none;
+		width:98%;
+		min-width:0%;
+		clear:both;
+		float:left;
+		margin:1% auto 0% auto;
+		padding:1%;
+		background-color:rgba(50,50,50,1.0);
 	}
 }

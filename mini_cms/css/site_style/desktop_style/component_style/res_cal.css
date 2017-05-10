@@ -21,7 +21,7 @@ select
 	padding:0% 0%;
 	margin:0% 0%;
 	clear:both;
-	overflow:hidden;
+	overflow:none;
 }
 
 #res_cal div
@@ -131,6 +131,7 @@ select
 	color:rgba(255,143,0,1.0);
 	margin:1% 1%;
 	width:25%;
+	float:left;
 	min-width:100px;
 	border:1px solid white;
 	border-color:rgba(255,143,0,1.0);

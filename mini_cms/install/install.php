@@ -144,10 +144,21 @@ CREATE TABLE ".$prefix."reservation
 	user_id INT NOT NULL,
 	Dtable_id INT NOT NULL,
 	PRIMARY KEY(reservation_id),
-	FOREIGN KEY (user_id) REFERENCES ".$prefix."user(user_id),
-	FOREIGN KEY (Dtable_id) REFERENCES ".$prefix."Dtable(Dtable_id)
+	FOREIGN KEY (user_id) REFERENCES ".$prefix."user(user_id)
 ) ENGINE = innoDB;";
 mysqli_query($conn, $sql) or die("ERROR 10" . mysqli_error($conn));
+
+$sql ="
+CREATE TABLE ".$prefix."resDate
+(
+	resDate_id INT AUTO_INCREMENT,
+	Dtable_id INT,
+	reservation_id INT,
+	PRIMARY KEY(resDate_id),
+	FOREIGN KEY (Dtable_id) REFERENCES ".$prefix."Dtable(Dtable_id),
+	FOREIGN key (reservation_id) REFERENCES ".$prefix."reservation(reservation_id)
+) ENGINE = innoDB;";
+mysqli_query($conn,$sql) or die ("ERROR 10.5" . mysqli_error($conn));
 
 $sql = " 
 CREATE TABLE ".$prefix."mStruct
