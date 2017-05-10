@@ -1,3 +1,4 @@
+"use strict";
 function nameFieldCheck(input_value){}
 function peopleFieldCheck(input_value){}
 

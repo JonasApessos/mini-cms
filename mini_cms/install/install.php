@@ -122,7 +122,6 @@ $sql = "
 CREATE TABLE ".$prefix."Dtable
 (
 	Dtable_id INT AUTO_INCREMENT NOT NULL,
-	Dtable_available BOOLEAN NOT NULL DEFAULT TRUE,
 	Dtable_date_created DATETIME NOT NULL DEFAULT NOW(),
 	Dtable_capacity INT(2) NOT NULL DEFAULT 1,
 	resPos_id INT DEFAULT 1 NOT NULL,

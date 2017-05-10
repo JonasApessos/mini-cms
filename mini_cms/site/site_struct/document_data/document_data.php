@@ -18,7 +18,7 @@ $faculty_class = "faculty";
 $res_class = "res_form";
 
 //main title
-$page_title = "Home";
+$page_title = null;
 
 //header title
 $header_title = "Restaurant";
