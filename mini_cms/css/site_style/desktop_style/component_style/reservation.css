@@ -62,7 +62,8 @@
 	
 	.res_form div div div select
 	{
-		width:10%;
+		width:5%;
+		min-width:50px;
 		float:right;
 		clear:right;
 		margin:auto;

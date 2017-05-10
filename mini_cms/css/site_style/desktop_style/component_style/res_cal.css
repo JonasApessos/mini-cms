@@ -75,8 +75,8 @@ select
 
 #res_cal div div:nth-child(1) select
 {
-	width:15%;
-	min-width:40px;
+	width:5%;
+	min-width:50px;
 	margin:auto;
 	padding:0%;
 	clear:none;

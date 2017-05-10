@@ -7,10 +7,11 @@
 	.login_form_top
 	{
 		width:25%;
+		min-width:200px;
 		height:auto;
 		margin:1% 1% 1% 0%;
 		padding:1%;
-		float:right;
+		float:left;
 		clear:right;
 		background-color:rgba(30,30,30,1.0);
 		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
@@ -21,6 +22,7 @@
 	.login_form_top div
 	{
 		width:98%;
+		min-width:0%;
 		clear:both;
 		margin:1% auto;
 		padding:1%;
@@ -55,6 +57,11 @@
 		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
 		transition:box-shadow 1s;
 		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
+	}
+	
+	.login_form_top div div input[type="submit"]
+	{
+		height:auto;
 	}
 	
 	.login_form_top div h2
@@ -138,10 +145,11 @@
 	.loged_form_top
 	{
 		width:25%;
+		min-width:200px;
 		height:auto;
-		margin:1% 1% 1% 0%;
+		margin:1% auto 1% auto;
 		padding:1%;
-		float:right;
+		float:left;
 		clear:right;
 		background-color:rgba(30,30,30,1.0);
 		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
@@ -152,6 +160,7 @@
 	.loged_form_top div
 	{
 		width:98%;
+		min-width:0%;
 		float:left;
 		margin:auto;
 		padding:1%;
