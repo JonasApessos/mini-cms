@@ -58,15 +58,28 @@ CREATE TABLE re2213_page_component_structure
 mysqli_query($conn, $sql) or die("ERROR 06" . mysqli_error($conn));
 
 $sql = "
+CREATE TABLE re2213_file_type
+(
+	file_type_id INT AUTO_INCREMENT UNIQUE,
+	file_type_title VARCHAR(30),
+	file_type_extension VARCHAR(5),
+	file_type_date_added DATETIME NOT NULL DEFAULT NOW(),
+	PRIMARY KEY(file_type_id)
+)";
+mysqli_query($conn , $sql) or die("ERROR 07" . mysqli_error($conn));
+
+$sql = "
 CREATE TABLE re2213_include_file
 (
 	include_file_id INT AUTO_INCREMENT UNIQUE,
-	include_file_title VARCHAR(128) UNIQUE,
+	include_file_title VARCHAR(128),
 	include_file_date_upload DATETIME NOT NULL DEFAULT NOW(),
 	include_file_path VARCHAR(255),
 	page_component_id INT,
+	file_type_id INT,
 	PRIMARY KEY(include_file_id),
-	FOREIGN KEY (page_component_id) REFERENCES re2213_page_component_structure(page_component_id)
+	FOREIGN KEY (page_component_id) REFERENCES re2213_page_component_structure(page_component_id),
+	FOREIGN KEY (file_type_id) REFERENCES re2213_file_type(file_type_id)
 )";
 mysqli_query($conn, $sql) or die("ERROR 07" . mysqli_error($conn));
 
@@ -156,23 +169,60 @@ CREATE TABLE re2213_component
 );";
 mysqli_query($conn, $sql) or die("ERROR 12" . mysqli_error($conn));
 
+$sql = "
+INSERT INTO re2213_file_type(file_type_title , file_type_extension) VALUES 
+(\"hyper text markup language\" , \"html\"),
+(\"hypertext preprocessor\" , \"php\"),
+(\"javascript\" , \"js\"),
+(\"casceding style sheet\" , \"css\")";
+mysqli_query($conn , $sql)or die("ERROR 13" . mysqli_error($conn));
+
+$sql = "INSERT INTO re2213_include_file (include_file_title, file_type_id , include_file_path, page_component_id) VALUES 
+(\"desktop_style\",4, \"../css/site_style/desktop_style.css\", 1),
+(\"header\",4, \"../css/site_style/header.css\", 1),
+(\"menu\",4, \"../css/site_style/menu.css\", 1),
+(\"main\",4, \"../css/site_style/main.css\", 1),
+(\"footer\",4, \"../css/site_style/footer.css\", 1),
+(\"home.css\",4, \"../css/site_style/home.css\", 1),
+(\"about_us\",4, \"../css/site_style/about_us.css\", 1),
+(\"contact\",4, \"../css/site_style/contact.css\", 1),
+(\"catalog\",4, \"../css/site_style/catalog.css\", 1),
+(\"faculty\",4, \"../css/site_style/faculty.css\", 1),
+(\"login_form\",4, \"../css/site_style/login_form.css\", 1),
+(\"register_form\",4, \"../css/site_style/register_form.css\", 1),
+(\"db_conn\",2, \"site_struct/document_data/db_conn.php\", 1),
+(\"document_data\",2, \"site_struct/data_struct/document_data/document_data.php\" , 1),
+(\"header\",2, \"site_struct/data_struct/header.php\" , NULL),
+(\"menu\",2, \"site_struct/data_struct/menu.php\" , NULL),
+(\"main\",2, \"site_struct/data_struct/main.php\" , NULL),
+(\"footer\",2, \"site_struct/data_struct/footer.php\" , NULL),
+(\"home\",2,\"site_struct/data_struct/component/home.php\", 3),
+(\"about_us\",2, \"site_struct/data_struct/component/about_us.php\", 3),
+(\"contact\",2, \"site_struct/data_struct/component/catalog.php\", 3),
+(\"catalog\",2, \"site_struct/data_struct/component/about_us.php\", 3),
+(\"reservation\",2, \"site_struct/data_struct/component/reservation.php\", 3),
+(\"faculty\",2, \"site_struct/data_struct/component/faculty.php\", 3),
+(\"registration\",2, \"site_struct/data_struct/component/registration.php\", 3),
+(\"forgot_password\",2, \"site_struct/data_struct/component/forgot_password.php\", 3)";
+mysqli_query($conn , $sql)or die("ERROR 14" . mysqli_error($conn));
+
 $sql = "INSERT INTO re2213_access_level (access_level_title) VALUES 
 (\"ADMIN\") , 
 (\"PUBLIC\") , 
 (\"GUEST\");";
-mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 15" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_page_component_structure (page_component_title , access_level_id) VALUES 
 (\"header\", 2) , 
 (\"menu\", 2) , 
 (\"main\", 2) , 
 (\"footer\", 2)";
-mysqli_query($conn , $sql) or die("ERROR 14" . mysqli_error($conn));
+mysqli_query($conn , $sql) or die("ERROR 16" . mysqli_error($conn));
 
-$sql = "INSERT INTO re2213_menu_structure (menu_title , access_level_id) VALUES
- (\"menu1\" , 2) , 
- (\"menu2\" , 2);";
-mysqli_query($conn, $sql) or die("ERROR 15" . mysqli_error($conn));
+$sql = "INSERT INTO re2213_menu_structure (menu_title , page_component_id , access_level_id) VALUES
+ (\"menu1\" , 2 , 2) , 
+ (\"menu2\" , 2 , 2);";
+mysqli_query($conn, $sql) or die("ERROR 17" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_submenu_structure(submenu_title,menu_id , access_level_id) VALUES
  (\"Home\",1 , 2) , 
@@ -181,7 +231,7 @@ $sql = "INSERT INTO re2213_submenu_structure(submenu_title,menu_id , access_leve
  (\"Catalog\",2 , 2) , 
  (\"Reservation\",2 , 2) , 
  (\"Faculty\",2 , 2);";
-mysqli_query($conn, $sql) or die("ERROR 16" . mysqli_error($conn));
+mysqli_query($conn, $sql) or die("ERROR 18" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_component (component_title , component_file_assosiation , submenu_id , page_component_id , component_data_id , access_level_id) VALUES
  (\"Home\", \"site_struct/data_struct/components/home.php\" , 1, 3, NULL,2), 
@@ -190,9 +240,9 @@ $sql = "INSERT INTO re2213_component (component_title , component_file_assosiati
  (\"Catalog\", \"site_struct/data_struct/components/catalog.php\", 4, 3, NULL, 2),
  (\"Reservation\", \"site_struct/data_struct/components/reservation.php\", 5, 3, NULL, 2),
  (\"Faculty\", \"site_struct/data_struct/components/faculty.php\", 6, 3, NULL, 2) ";
- mysqli_query($conn, $sql) or die("ERROR 17" . mysqli_error($conn));
+ mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
-mysqli_close($conn) or die("ERROR 18" . mysqli_error($conn));
+mysqli_close($conn) or die("ERROR 20" . mysqli_error($conn));
 
 $sql = NULL;
 $conn = NULL;
