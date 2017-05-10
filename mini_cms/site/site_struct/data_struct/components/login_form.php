@@ -19,7 +19,7 @@ if($_SESSION["access_level"] == 3)
 	echo "<td><input type = \"submit\" value = \"submit\" onChange=\"user_login(this)\"></td>";
 	echo "</tr>";
 	echo "<tr>";
-	echo "<td><p><a href=\" site_struct\data_struct\components\create_account.php \">create account?</a></p></td>";
+	echo "<td><p><a href=\"site_struct\data_struct\components\create_account.php\">create account?</a></p></td>";
 	echo "<td><p><a href=?menu_id=9>forgot password?</a></p></td>";
 	echo "</tr>";
 	echo "</tbody>";
@@ -30,7 +30,7 @@ if($_SESSION["access_level"] == 3)
 else
 {
 	echo "<div>";
-	echo "<img src = \"../d2s.jpg\" alt = \"profil_image\" width = \"100px;\"/>";
+	echo "<img src = \"\" alt = \"profil_image\" width = \"100px;\"/>";
 	echo "</div>";
 	
 	echo "<div>";

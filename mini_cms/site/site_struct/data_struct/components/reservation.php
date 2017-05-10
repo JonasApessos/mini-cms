@@ -2,7 +2,7 @@
 echo "<div class = \"".$res_class."\">";
 echo "<div>";
 
-echo "<form action=\"site_struct/data_struct/components/test.php\" method = \"GET\">";
+echo "<form action=\"site_struct/data_struct/components/additional_componets/php/res_table.php\" method = \"GET\">";
 
 echo "<table>";
 echo "<tbody>";
@@ -19,10 +19,11 @@ echo "</tr>";
 
 echo "<tr>";
 echo "<td><h2>Comment</h2></td>";
-echo "<td><textarea spellcheck = \"true\" ></textarea></td>";
+echo "<td><textarea spellcheck = \"true\" name = \"res_comment\"></textarea></td>";
 echo "</tr>";
 
 echo "<tr id = \"res_cal\">";
+echo "<p>asdfas</p>";
 echo "</tr>";
 
 echo "<tr>";

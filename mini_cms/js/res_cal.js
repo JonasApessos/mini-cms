@@ -64,6 +64,7 @@ function createCallChilds()
 	
 	createSel_01 = document.createElement('select');
 	createDiv_02.appendChild(createSel_01);
+	createSel_01.id = "minutes_id";
 
 	
 	for(var i = 0; i < minutesArrayLen; i++)
@@ -79,6 +80,7 @@ function createCallChilds()
 	
 	createSel_01 = document.createElement('select');
 	createDiv_02.appendChild(createSel_01);
+	createSel_01.id = "hours_id";
 	
 	for(var i = 0; i < hoursArrayLen; i++)
 	{
@@ -126,8 +128,8 @@ function createCallChilds()
 	createI_01.setAttribute("id","res_date_id");
 	createI_01.setAttribute("type","text");
 	createI_01.setAttribute("name","res_date");
-	createI_01.disabled = true;
-	createI_01.setAttribute("value",(date.getUTCMonth()  + 1) + "/" + date.getUTCFullYear());
+	createI_01.readOnly = true;
+	createI_01.setAttribute("value",(date.getUTCMonth()  + 1) + "-" + date.getUTCFullYear());
 }
 
 function setBoxSelection(newId)
@@ -141,17 +143,18 @@ function setBoxSelection(newId)
 		
 	document.getElementById(newId).style.backgroundColor = "rgba(40,40,40,1)";
 	document.getElementById(newId).style.boxShadow = "0px 0px 4px 2.5px rgba(255,143,0,1.0)";
-	idInput_01.setAttribute("value",idDiv_03.getAttribute("value") + "/" +(date.getUTCMonth()  + 1) + "/" + date.getUTCFullYear());
+	idInput_01.setAttribute("value",idDiv_03.getAttribute("value") + "-" +(date.getUTCMonth()  + 1) + "-" + date.getUTCFullYear() + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex]);
+	
 	
 	if(prevId != newId)
 	{
 		document.getElementById(prevId).style.backgroundColor = "rgba(20,20,20,1)";
 		document.getElementById(prevId).style.boxShadow = "0px 0px 4px 2.5px rgba(0,0,0,0.25)";
-		oldIdInput_01.removeAttribute("name");
+		//oldIdInput_01.removeAttribute("name");
 	}	
 	
 	prevId = newId;
-	oldIdInput_01 = idInput_01;
+	//oldIdInput_01 = idInput_01;
 }
 
 function dateCheck()
