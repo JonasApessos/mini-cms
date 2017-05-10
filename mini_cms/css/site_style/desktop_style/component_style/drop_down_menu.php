@@ -1,28 +1,34 @@
-@media screen and (min-width:480px)
-{
-.dropdown
-	{
-		width:10%;
-		min-width:125px;
-	    height:50px;
-		background-color:rgba(20,20,20,1);
-		border:1px solid black;
-		border-radius:25px;
-		float:left;
-		margin:auto;
-		position:relative;
-		z-index:0;
-		overflow:hidden;
-		transition: z-index 0s, height 1s; 
-	}
+<?php
+	#header("content-type:text/css; charset: UTF-8")
+	include_once "../php_style/style_variable.php";
+?>
+<?php
 
-	.dropdown:hover
-	{
-		z-index:1;
-		height:150px;
-	}
+echo "@media screen and (min-width:480px)";
+echo "{";
+echo".dropdown";
+	echo "{";
+		echo "width:10%;";
+		echo "min-width:125px;";
+	    echo "height:50px;";
+		echo "background-color:rgba(20,20,20,1);";
+		echo "border: ".$border_width."px solid ". $border_normal_color2 . ";";
+		echo "border-radius:25px;";
+		echo "float:left;";
+		echo "margin:auto;";
+		echo "position:relative;";
+		echo "z-index:0;";
+		echo "overflow:hidden;";
+		echo "transition: z-index 0s, height 1s;"; 
+	echo "}";
 
-	.dropdown div
+	echo ".dropdown:hover";
+	echo "{";
+	echo "	z-index:1;";
+	echo "	height:" . $menu_height ."px;";
+	echo "}";
+
+	echo ".dropdown div
 	{
 		background-color:rgb(200,130,0);
 		width:100%;
@@ -72,4 +78,4 @@
 		text-decoration:none;
 	}
 	
-}
+}";?>

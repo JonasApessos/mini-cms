@@ -169,13 +169,26 @@ CREATE TABLE re2213_component
 );";
 mysqli_query($conn, $sql) or die("ERROR 12" . mysqli_error($conn));
 
+$sql = "INSERT INTO re2213_access_level (access_level_title) VALUES 
+(\"ADMIN\") , 
+(\"PUBLIC\") , 
+(\"GUEST\");";
+mysqli_query($conn, $sql) or die("ERROR 13" . mysqli_error($conn));
+
+$sql = "INSERT INTO re2213_page_component_structure (page_component_title , access_level_id) VALUES 
+(\"header\", 3) , 
+(\"menu\", 3) , 
+(\"main\", 3) , 
+(\"footer\", 3)";
+mysqli_query($conn , $sql) or die("ERROR 14" . mysqli_error($conn));
+
 $sql = "
 INSERT INTO re2213_file_type(file_type_title , file_type_extension) VALUES 
 (\"hyper text markup language\" , \"html\"),
 (\"hypertext preprocessor\" , \"php\"),
 (\"javascript\" , \"js\"),
 (\"casceding style sheet\" , \"css\")";
-mysqli_query($conn , $sql)or die("ERROR 13" . mysqli_error($conn));
+mysqli_query($conn , $sql)or die("ERROR 15" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_include_file (include_file_title, file_type_id , include_file_path, page_component_id) VALUES 
 (\"desktop_style\",4, \"../css/site_style/desktop_style.css\", 1),
@@ -204,33 +217,20 @@ $sql = "INSERT INTO re2213_include_file (include_file_title, file_type_id , incl
 (\"faculty\",2, \"site_struct/data_struct/component/faculty.php\", 3),
 (\"registration\",2, \"site_struct/data_struct/component/registration.php\", 3),
 (\"forgot_password\",2, \"site_struct/data_struct/component/forgot_password.php\", 3)";
-mysqli_query($conn , $sql)or die("ERROR 14" . mysqli_error($conn));
-
-$sql = "INSERT INTO re2213_access_level (access_level_title) VALUES 
-(\"ADMIN\") , 
-(\"PUBLIC\") , 
-(\"GUEST\");";
-mysqli_query($conn, $sql) or die("ERROR 15" . mysqli_error($conn));
-
-$sql = "INSERT INTO re2213_page_component_structure (page_component_title , access_level_id) VALUES 
-(\"header\", 2) , 
-(\"menu\", 2) , 
-(\"main\", 2) , 
-(\"footer\", 2)";
-mysqli_query($conn , $sql) or die("ERROR 16" . mysqli_error($conn));
+mysqli_query($conn , $sql)or die("ERROR 16" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_menu_structure (menu_title , page_component_id , access_level_id) VALUES
- (\"menu1\" , 2 , 2) , 
- (\"menu2\" , 2 , 2);";
+ (\"menu1\" , 2 , 3) , 
+ (\"menu2\" , 2 , 3);";
 mysqli_query($conn, $sql) or die("ERROR 17" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_submenu_structure(submenu_title,menu_id , access_level_id) VALUES
- (\"Home\",1 , 2) , 
- (\"About us\",1 , 2) , 
- (\"Contact\",1 , 2) , 
- (\"Catalog\",2 , 2) , 
+ (\"Home\",1 , 3) , 
+ (\"About us\",1 , 3) , 
+ (\"Contact\",1 , 3) , 
+ (\"Catalog\",2 , 3) , 
  (\"Reservation\",2 , 2) , 
- (\"Faculty\",2 , 2);";
+ (\"Faculty\",2 , 3);";
 mysqli_query($conn, $sql) or die("ERROR 18" . mysqli_error($conn));
 
 $sql = "INSERT INTO re2213_component (component_title , component_file_assosiation , submenu_id , page_component_id , component_data_id , access_level_id) VALUES
