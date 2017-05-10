@@ -1,10 +1,5 @@
 <?php
 
-/*if(!isset($_GET['submenuname']) || empty($_GET['submenuname']))
-	$page_title = "No page";
-else
-	$page_title = $_GET['submenuname'];//submenu title is set in main title*/
-
 switch($_SESSION['access_level'])
 {
 	case 3://get main content only from access level 3

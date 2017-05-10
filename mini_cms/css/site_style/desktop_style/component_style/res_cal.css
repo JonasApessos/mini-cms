@@ -1,140 +1,109 @@
 @media screen and (min-width:480px)
 {
-select
-{
-	width:40%;
-	margin:auto;
-	padding:0% 0%;
-	clear:both;
-	float:left;
-	background-color:rgba(30,30,30,1.0);
-	border:1px solid white;
-	border-color:rgba(255,143,0,1.0);
-}
+	select
+	{
+		width:40%;
+		background-color:rgba(30,30,30,1.0);
+		border:1px solid white;
+		border-color:rgba(255,143,0,1.0);
+	}
 
-#res_cal
-{
-	min-width:0%;
-	width:100%;
-	float:none;
-	padding:0%;
-	margin:auto;
-	clear:both;
-	overflow:visible;
-}
+	#res_cal
+	{
+		min-width:0%;
+		width:100%;
+		float:none;
+		padding:0%;
+		margin:auto;
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
+		transition:none;
+		overflow:visible;
+	}
 
-#res_cal div
-{
-	min-width:0%;
-	width:100%;
-	clear:both;
-	float:left;
-	margin:auto;
-	padding:0%;
-	border:2px solid white;
-	border-color:rgba(255,143,0,0.9);
-	box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
-	background-color:rgba(50,50,50,1);
-}
+	#res_cal div
+	{
+		min-width:0%;
+		width:100%;
+		padding:0%;
+		border:2px solid white;
+		border-color:rgba(255,143,0,0.9);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+		background-color:rgba(50,50,50,1);
+	}
 
-#res_cal div div:nth-child(1)
-{
-	min-width:0%;
-	width:100%;
-	clear:both;
-	float:left;
-	margin:auto;
-	padding:0%;
-	border:0px solid white;
-	border-bottom:1px solid white;
-	border-color:rgba(255,143,0,1.0);
-	box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
-	background-color:rgba(30,30,30,1.0);
-}
+	#res_cal div div:nth-child(1)
+	{
+		clear:both;
+		margin:auto;
+		border:0px solid white;
+		border-bottom:1px solid white;
+		border-color:rgba(255,143,0,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
+		background-color:rgba(30,30,30,1.0);
+	}
 
-#res_cal div div:nth-child(1) h3
-{
-	width:40%;
-	min-width:0px;
-	text-align:center;
-	float:left;
-	margin:auto 1%;
-	padding:0%;
-	clear:none;
-}
+	#res_cal div div:nth-child(1) h3
+	{
+		width:40%;
+		min-width:0px;
+		text-align:center;
+		float:left;
+		margin:auto 1%;
+		padding:0%;
+		clear:none;
+	}
 
-#res_cal div div p
-{
-	min-width:0px;
-	margin:5%;
-	padding:0%;
-	clear:both;
-	text-align:center;
-	float:none;
-}
+	#res_cal div div p
+	{
+		min-width:0px;
+		margin:5%;
+		padding:0%;
+		clear:both;
+		text-align:center;
+		float:none;
+	}
 
-#res_cal div div:nth-child(1) select
-{
-	width:5%;
-	min-width:50px;
-	margin:auto;
-	padding:0%;
-	clear:none;
-	float:right;
-	color:rgba(255,143,0,1);
-}
+	#res_cal div div:nth-child(1) select
+	{
+		clear:none;
+	}
 
-#res_cal div div:nth-child(2)
-{
-	min-width:0%;
-	width:100%;
-	clear:both;
-	margin:auto;
-	float:left;
-	padding:0%;
-	border:0px solid white;
-	box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
-	background-color:rgba(30,30,30,0.0);
-}
+	#res_cal div div:nth-child(2)
+	{
+		clear:both;
+		margin:auto;
+		border:0px solid white;
+		background-color:rgba(30,30,30,0.0);
+	}
 
-#res_cal div div:nth-child(2) div
-{
-	text-align:center;
-	min-width:0%;
-	width:10%;
-	margin:1%;
-	padding:0%;
-	float:left;
-	clear:none;
-	border:1px solid white;
-	border-color:rgba(255,143,0,1.0);
-	background-color:rgba(20,20,20,1.0);
-}
+	#res_cal div div:nth-child(2) div
+	{
+		text-align:center;
+		width:10%;
+		margin:1%;
+		float:left;
+		clear:none;
+		border:1px solid white;
+		border-color:rgba(255,143,0,1.0);
+		background-color:rgba(20,20,20,1.0);
+	}
 
-#res_cal div div:nth-child(3)
-{
-	width:100%;
-	float:left;
-	min-width:0%;
-	margin:auto;
-	padding:0%;
-	clear:both;
-	border:0px solid white;
-	border-top:1px solid white;
-	border-color:rgba(255,143,0,1.0);
-	background-color:rgba(30,30,30,1.0);
-}
+	#res_cal div div:nth-child(3)
+	{
+		margin:auto;
+		border:0px solid white;
+		border-top:1px solid white;
+		border-color:rgba(255,143,0,1.0);
+		background-color:rgba(30,30,30,1.0);
+	}
 
-#res_cal div div:nth-child(3) input[type = "text"]
-{
-	background-color:rgba(70,70,70,1.0);
-	color:rgba(255,143,0,1.0);
-	margin:1%;
-	padding:0%;
-	width:25%;
-	float:left;
-	min-width:100px;
-	border:1px solid white;
-	border-color:rgba(255,143,0,1.0);
-}
+	#res_cal div div:nth-child(3) input[type = "text"]
+	{
+		background-color:rgba(70,70,70,1.0);
+		margin:1%;
+		float:left;
+		min-width:100px;
+		border:1px solid white;
+		border-color:rgba(255,143,0,1.0);
+	}
 }

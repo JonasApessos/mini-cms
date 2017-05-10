@@ -21,7 +21,7 @@ if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_p
 
 	echo "<div>";
 	echo "<h2>Number of people</h2>";
-	echo "<input type = \"text\" name = \"res_people\" onfocusout = \"peopleFieldCheck(this.value)\" placeholder = \"ex. 5\">";
+	echo "<input type = \"number\" name = \"res_people\" onfocusout = \"peopleFieldCheck(this.value)\" placeholder = \"ex. 5\">";
 	echo "</div>";
 
 	echo "<div>";
@@ -82,6 +82,44 @@ else
 	echo "<div>";
 	echo "<h2>Date: ".$_POST['res_date']."</h2>";
 	echo "<input type = \"hidden\" name = \"fin_res_date\" value = \"".$_POST['res_date']."\" readonly=\"readonly\">";
+	echo "</div>";
+	
+	echo "<div>";
+	
+	include_once "site_struct/data_struct/components/table_place.php";
+	
+	/*echo "<div>";
+	echo "<h2>Reserve Table</h2>";
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<h3>Position</h3>";
+	echo "</div>";
+	
+	echo "<div>";
+	
+	echo "<div>";
+	echo "<h4>position title</h4>";
+	echo "</div>";
+	
+	echo "<div>";
+	
+	echo "<div>";
+	echo "<h5>table id</h5>";
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<h5>table id2</h5>";
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<h5>table id3</h5>";
+	echo "</div>";
+	
+	echo "</div>";
+	
+	echo "</div>";*/
+	
 	echo "</div>";
 	
 	echo "</div>";

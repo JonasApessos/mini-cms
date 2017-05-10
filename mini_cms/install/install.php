@@ -141,7 +141,6 @@ CREATE TABLE ".$prefix."reservation
 	reservation_date DATETIME NOT NULL DEFAULT \"1000-10-10\",
 	reservation_comm VARCHAR(255) NOT NULL DEFAULT \"none\",
 	user_id INT NOT NULL,
-	Dtable_id INT NOT NULL,
 	PRIMARY KEY(reservation_id),
 	FOREIGN KEY (user_id) REFERENCES ".$prefix."user(user_id)
 ) ENGINE = innoDB;";
@@ -275,15 +274,15 @@ mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv_id) VALUES
 (\"Body\",1,3),
-(\"Home\",2 , 3) , 
-(\"About us\",2 , 3) , 
-(\"Contact\",2 , 3) , 
-(\"Catalogue\",3 , 3) , 
-(\"Reservation\",3 , 2) , 
-(\"Faculty\",3 , 3),
-(\"Test\",4 , 1),
-(\"Test2\",4 , 1),
-(\"Test3\",4 , 1),
+(\"Home\",2,3) , 
+(\"About us\",2,3) , 
+(\"Contact\",2,3) , 
+(\"Catalogue\",3,3) , 
+(\"Reservation\",3,2) , 
+(\"Faculty\",3,3),
+(\"Test\",4,1),
+(\"Test2\",4,1),
+(\"Test3\",4,1),
 (\"Test4\",5,2),
 (\"Test5\",5,2);";
 mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));

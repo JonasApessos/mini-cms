@@ -14,6 +14,7 @@
 	width:99%;
 	margin:auto;
 	padding:0%;
+	float:none;
 	clear:both;
 	transition:none;
 }
@@ -27,7 +28,6 @@
 	padding:1%;
 	background-color:rgba(50,50,50,1.0);
 	box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
-	clear:both;
 	transition:box-shadow 1s;
 	transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 }
@@ -36,7 +36,6 @@
 {
 	width:70%;
 	background-color:rgb(70,70,70);
-	float:left;
 	clear:right;
 	margin:auto;
 	padding:0%;

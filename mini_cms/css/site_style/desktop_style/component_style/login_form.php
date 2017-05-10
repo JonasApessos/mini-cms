@@ -192,6 +192,7 @@
 		min-width:0%;
 		float:left;
 		clear:right;
+		text-align:center;
 		margin:auto;
 		padding:1%;
 		background-color:rgba(70,70,70,1.0);

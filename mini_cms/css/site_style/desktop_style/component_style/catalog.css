@@ -26,8 +26,6 @@
 	.catalog div div:nth-child(2)
 	{
 		width:65%;
-		height:auto;
-		float:left;
 		clear:right;
 		margin:auto;
 		padding:0%;
@@ -39,11 +37,8 @@
 	.catalog div div:nth-child(3)
 	{
 		width:98%;
-		height:auto;
-		float:left;
 		clear:both;
 		margin:1% auto auto auto;
-		padding:1%;
 		background-color:rgba(70,70,70,1.0);
 	}
 

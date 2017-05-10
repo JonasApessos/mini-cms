@@ -8,7 +8,6 @@
 		margin:auto;
 		padding:0%;
 		background-color:rgba(30,30,30,1);
-		color:rgba(255,143,0,1);
 	}
 	
 	.res_form div
@@ -18,6 +17,8 @@
 		padding:0%;
 		clear:both;
 		float:none;
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+		transition:box-shadow 1s;
 	}
 	
 	.res_form div div
@@ -26,17 +27,12 @@
 		margin:1% auto;
 		float:left;
 		padding:1%;
-		clear:both;
 		background-color:rgba(50,50,50,1.0);
 	}
 	
 	.res_form div div div
 	{
 		width:98%;
-		margin:1% auto;
-		float:left;
-		padding:1%;
-		clear:both;
 		background-color:rgba(70,70,70,1.0);
 	}
 	
@@ -52,12 +48,9 @@
 	
 	.res_form div div div input
 	{
-		width:25%;
 		height:30px;
 		float:right;
 		clear:right;
-		margin:auto;
-		padding:0%;
 	}
 	
 	.res_form div div div select
@@ -79,6 +72,17 @@
 		margin:auto;
 		padding:0%;
 	}
+	
+	.res_form div div div input[type="number"]
+	{
+		width:5%;
+		height:20px;
+	}
+	
+	.res_form div:hover
+	{
+		box-shadow:0px 0px 5px 2px rgba(255,140,0,1.0);
+	}
 }
 
 @media screen and (min-width:480px)
@@ -91,7 +95,6 @@
 		margin:auto;
 		padding:0%;
 		background-color:rgba(30,30,30,1);
-		color:rgba(255,143,0,1);
 	}
 	
 	.res_form2 div
@@ -109,18 +112,106 @@
 		margin:1% auto;
 		float:left;
 		padding:1%;
-		clear:both;
 		background-color:rgba(50,50,50,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+		transition: 1s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 	
 	.res_form2 div div div
 	{
 		width:98%;
-		margin:1% auto;
-		float:left;
-		padding:1%;
-		clear:both;
 		background-color:rgba(70,70,70,1.0);
+	}
+	
+	.res_form2 div div div:nth-child(6)
+	{
+		width:100%;
+		text-align:center;
+		padding:0%;
+		margin:0%;
+	}
+	
+	.res_form2 div div div:nth-child(6) div 
+	{
+		width:98%;
+		margin:0%;
+		padding:0%;
+		border-bottom:2px solid rgba(255,140,0,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
+	}
+	
+	.res_form2 div div div:nth-child(6) div:nth-child(2)
+	{
+		width:100%;
+		min-width:105px;
+		margin:1%;
+		padding:1%;
+		background-color:rgba(90,90,90,0.0);
+		border:0px solid rgba(255,140,0,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+	}
+	
+	.res_form2 div div div:nth-child(6) div:nth-child(2) div
+	{
+		width:25%;
+		min-width:105px;
+		margin:1%;
+		padding:1%;
+		clear:none;
+		background-color:rgba(90,90,90,1.0);
+		border:2px solid rgba(255,140,0,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+	}
+	
+	.res_form2 div div div:nth-child(6) div:nth-child(2) div div:nth-child(1)
+	{
+		width:98%;
+		min-width:0%;
+		clear:both;
+		margin:auto;
+		padding:0%;
+		background-color:rgba(90,90,90,1.0);
+		border-bottom:0px solid rgba(255,140,0,0.0);
+	}
+	
+	.res_form2 div div div:nth-child(6) div:nth-child(2) div div:nth-child(2)
+	{
+		width:98%;
+		min-width:0%;
+		background-color:rgba(70,70,70,1.0);
+		border:0px solid rgba(255,140,0,0.0);
+		box-shadow:inset 0px 0px 5px 2px rgba(0,0,0,0.25);
+		clear:none;
+	}
+	
+	.res_form2 div div div:nth-child(6) div:nth-child(2) div div:nth-child(2) div
+	{
+		width:47%;
+		min-width:100px;
+		margin:1%;
+		padding:0%;
+		float:left;
+		background-color:rgba(90,90,90,1.0);
+		border:1px solid rgba(255,140,0,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+		clear:none;
+	}
+	
+	.res_form2 div div div:nth-child(6) h2
+	{
+		float:none;
+		padding:0%;
+		margin:0%;
+		clear:both;
+	}
+	
+	.res_form2 div div div:nth-child(6) h3
+	{
+		float:none;
+		margin:0%;
+		padding:0%;
+		clear:both;
 	}
 	
 	.res_form2 div div div h2
@@ -135,11 +226,13 @@
 	
 	.res_form2 div div div input
 	{
-		width:25%;
 		height:30px;
 		float:right;
 		clear:right;
-		margin:auto;
-		padding:0%;
+	}
+	
+	.res_form2 div div:hover
+	{
+		box-shadow:0px 0px 5px 2px rgba(255,140,0,1.0);
 	}
 }
