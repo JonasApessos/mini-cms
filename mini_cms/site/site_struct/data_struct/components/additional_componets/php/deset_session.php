@@ -1,7 +1,6 @@
 <?php
 	session_start();
 ?>
-
 <?php
 	include_once "../../../../document_data/db_conn.php";
 	include_once "../../../../document_data/document_data.php";
@@ -9,14 +8,12 @@
 <?php
 
 $sql = "
-UPDATE ".$prefix."user
-SET ".$prefix."user.user_state = FALSE , ".$prefix."user.user_logged_out = NOW()
-WHERE ".$prefix."user.user_email = \"".$_SESSION["user_email"]."\" 
-AND ".$prefix."user.user_name = \"".$_SESSION["user_name"]."\"
-AND ".$prefix."user.accessLv_id = ".$_SESSION["access_level"]."
-;";
+UPDATE ".$prefix."userLogin
+SET ".$prefix."userLogin.userLogin_state = FALSE , ".$prefix."userLogin.userLogin_date_out = NOW()
+WHERE ".$prefix."userLogin.user_id = ".$_SESSION["user_id"]."
+AND userLogin_state = true;";
 
-mysqli_query($conn,$sql) or die(mysqli_error($conn));
+mysqli_query($conn,$sql) or die("ERROR 09 ".mysqli_error($conn));
 
 if(!mysqli_error($conn))
 {
