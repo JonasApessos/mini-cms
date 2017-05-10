@@ -2,7 +2,7 @@
 echo "<div class = \"".$res_class."\">";
 echo "<div>";
 
-echo "<form>";
+echo "<form action=\"site_struct/data_struct/components/test.php\" method = \"GET\">";
 
 echo "<table>";
 echo "<tbody>";
@@ -10,6 +10,11 @@ echo "<tbody>";
 echo "<tr>";
 echo "<td><h2>Name</h2></td>";
 echo "<td><input type = \"text\" name = \"res_name\">";
+echo "</tr>";
+
+echo "<tr>";
+echo "<td><h2>Smoking</h2></td>";
+echo "<td><select name = \"smoking\"><option value = \"yes\">Yes</option><option value = \"no\">No</option></select></td>";
 echo "</tr>";
 
 echo "<tr>";
