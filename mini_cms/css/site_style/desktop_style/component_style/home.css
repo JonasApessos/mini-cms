@@ -1,0 +1,81 @@
+@media screen and (min-width:480px)
+{
+.home_containt
+{
+	width:90%;
+	height:auto;
+	float:left;
+	margin:0% 4%;
+	clear:both;
+	padding:1%;
+	color:rgb(255,143,0);
+}
+
+.home_containt div:nth-child(odd) /* first containt*/
+{
+	width:90%;
+	float:left;
+	margin:1% auto;
+	background-color:rgb(30,30,30);
+	border:2px solid rgb(255,143,0);
+	clear:both;
+	padding:0.5%;
+}
+
+.home_containt div:nth-child(odd) div:nth-child(odd) /* image containt*/ 
+{
+	width:50%;
+	max-width:500px;
+	float:left;
+	clear:left;
+	background-color:rgb(50,50,50);
+	border:1px solid rgb(255,143,0);
+}
+
+.home_containt div:nth-child(odd) div:nth-child(even)/* text containt*/
+{
+	width:45%;
+	float:right;
+	clear:right;
+	text-align:center;
+	background-color:rgb(50,50,50);
+	border:1px solid rgb(255,143,0);
+}
+
+
+
+.home_containt div:nth-child(even)/*second containt */
+{
+	width:90%;
+	float:right;
+	margin:1% auto;
+	background-color:rgb(30,30,30);
+	border:2px solid rgb(255,143,0);
+	clear:both;
+	padding:0.5%;
+}
+
+.home_containt div:nth-child(even) div:nth-child(odd)/* image containt*/
+{
+	width:50%;
+	max-width:500px;
+	float:left;
+	clear:left;
+	background-color:rgb(50,50,50);
+	border:1px solid rgb(255,143,0);
+	margin:none;
+	padding:none;
+}
+
+.home_containt div:nth-child(even) div:nth-child(even)/*text containt*/
+{
+	width:45%;
+	float:right;
+	clear:right;
+	text-align:center;
+	background-color:rgb(50,50,50);
+	border:1px solid rgb(255,143,0);
+	margin:none;
+	padding:none;
+}
+}

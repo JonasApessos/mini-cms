@@ -1,0 +1,27 @@
+@media screen and (min-width:480px)
+{
+	.main
+	{
+		width:100%;
+		height:auto;
+		overflow:hidden;
+		border:2px solid black;
+		border-color:rgb(255,255,255);
+		float:left;
+		clear:both;
+		transition:border-color 1s,height 1s;
+	}
+
+	.main:hover
+	{
+		border-color:rgb(255,153,0);
+	}
+	
+	.main > h1
+	{
+		text-align:center;
+		margin:auto;
+		color:rgb(255,143,0);
+		border-bottom:3px solid rgb(255,143,0);
+	}
+}

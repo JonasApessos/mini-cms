@@ -1,0 +1,50 @@
+@media screen and (min-width:480px)
+{
+.contact
+{
+	width:96%;
+	float:left;
+	padding:1%;
+	color:rgb(255,143,0);
+	margin:1%;
+	background-color:rgb(30,30,30);
+}
+
+.contact tr td h3
+{
+	color:rgb(255,143,0);
+	text-align:left;
+}
+
+.contact div:nth-child(1)
+{
+	width:20%;
+	min-width:200px;
+	float:left;
+	clear:left;
+	border:1px solid rgb(255,143,0);
+	background-color:rgb(50,50,50);
+}
+
+.contact div:nth-child(2)
+{
+	width:70%;
+	height:512px;
+	float:left;
+	clear:right;
+	margin:0% 1% 1% 4%;
+	border:1px solid rgb(255,143,0);
+	background-color:rgb(50,50,50);
+}
+
+.contact div:nth-child(3)
+{
+	width:95%;
+	height:200px;
+	float:left;
+	clear:both;
+	margin:0% 1%;
+	border:1px solid rgb(255,143,0);
+	background-color:rgb(50,50,50);
+}
+}

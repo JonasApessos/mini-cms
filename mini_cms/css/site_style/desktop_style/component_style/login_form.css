@@ -1,0 +1,84 @@
+@media screen and (min-width:480px)
+{
+.login_form_top
+	{
+		width:25%;
+		height:auto;
+		background-color:rgb(30,30,30);
+		margin:1% auto;
+		padding:1%;
+		color:rgb(255,143,0);
+		float:right;
+		clear:right;
+		border:1px solid rgb(255,255,255);
+		transition: border-color 1.5s;
+	}
+	
+	.login_form_top:hover
+	{
+		border-color:rgb(255,143,0);
+	}
+	
+	.login_form_top table
+	{
+		color:rgb(255,143,0);
+		margin:auto;
+	}
+	
+	.login_form_top table tr td input[type = text]
+	{
+		width:75%;
+		background-color:rgb(50,50,50);
+		border:2px solid white;
+		border-color:rgb(200,133,0);
+		color:rgb(255,143,0);
+		transition: border-color 1.5s , background-color 1.5s;
+	}
+	
+	.login_form_top table tr td input[type = text]:hover
+	{
+		border-color:rgb(255,143,0);
+		background-color:rgb(70,70,70);
+	}
+	
+	.login_form_top table tr td input[type = password]
+	{
+		width:75%;
+		background-color:rgb(50,50,50);
+		border:2px solid white;
+		border-color:rgb(200,133,0);
+		color:rgb(255,143,0);
+		transition: border-color 1.5s , background-color 1.5s;
+	}
+	
+	.login_form_top table tr td input[type = password]:hover
+	{
+		border-color:rgb(255,143,0);
+		background-color:rgb(70,70,70);
+	}
+	
+	
+	login_form_top.a:visited
+	{
+		color:rgb(0,255,0);
+		text-decoration:none;
+	}
+	
+	a:link
+	{
+		color:rgb(0,255,0);
+		text-decoration:none;
+	}
+	
+	a:hover
+	{
+		color:rgb(0,255,0);
+		text-decoration:none;
+	}
+	
+	a:active
+	{
+		color:rgb(0,255,0);
+		text-decoration:none;
+	}
+}

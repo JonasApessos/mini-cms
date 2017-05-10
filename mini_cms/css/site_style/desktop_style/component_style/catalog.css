@@ -1,0 +1,55 @@
+@media screen and (min-width:480px)
+{
+.catalog
+{
+	width:100%;
+	height:auto;
+	margin:auto;
+	color:rgb(255,143,0);
+}
+
+.catalog div
+{
+	background-color:rgb(30,30,30);
+	width:45%;
+	min-width:100px;
+	height:auto;
+	margin:2.5%;
+	float:left;
+}
+
+.catalog div div:nth-child(1)
+{
+	max-width:150px;
+	min-width:100px;
+	max-height:150px;
+	min-height:100px;
+	float:left;
+	clear:left;
+	margin:0%;
+	border:2px solid rgb(255,143,0);
+}
+
+
+.catalog div div:nth-child(2)
+{
+	width:70%;
+	height:auto;
+	float:left;
+	clear:right;
+	margin:auto;
+	text-align:center;
+	background-color:rgb(50,50,50);
+	border:2px solid rgb(255,143,0);
+}
+
+
+.catalog div div:nth-child(3)
+{
+	width:99%;
+	height:auto;
+	float:left;
+	clear:both;
+	margin:0%;
+}
+}

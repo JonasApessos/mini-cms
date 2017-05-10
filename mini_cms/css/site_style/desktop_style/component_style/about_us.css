@@ -1,0 +1,20 @@
+@media screen and (min-width:480px)
+{
+.about_us_page
+{
+	height:auto;
+	margin:auto;
+	padding:2%;
+}
+
+.about_us_page div
+{
+	width:90%;
+	height:auto;
+	margin:auto;
+	background-color:rgb(30,30,30);
+	border:2px solid rgb(255,143,0);
+	color:rgb(255,143,0);
+	text-align:center;
+}
+}

@@ -1,0 +1,21 @@
+
+	body
+	{
+		background-color:rgb(240,240,240);
+	}
+	
+	h4
+	{
+		font-family:Arial;
+	}
+
+	.absolute_container
+	{
+	    display:none;
+	}
+	
+	.containment
+	{
+		width:90%;
+		margin:auto;
+	}

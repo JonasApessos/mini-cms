@@ -1,0 +1,12 @@
+@media screen and (min-width:480px)
+{
+	.adm_db_view
+	{
+		width:25%;
+		height:auto;
+		background-color:rgb(30,30,30);
+		float:left;
+		clear:both;
+		margin:auto;
+	}
+}
