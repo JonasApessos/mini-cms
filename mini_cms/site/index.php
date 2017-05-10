@@ -41,11 +41,7 @@ echo $_SESSION['access_level'];
 <?php
 	include "site_struct/document_data/db_conn.php";
 	
-	$sql  = "
-	SELECT ".$prefix."_include_file.include_file_path 
-	FROM ".$prefix."_include_file , ".$prefix."_component
-	WHERE ".$prefix."_include_file.file_type_id = 4 AND ".$prefix."_component.submenu_id = 1";
-	
+	$sql  = "SELECT include_file_path FROM " . $prefix . "_include_file , ".$prefix."_page_component_structure where file_type_id = 4 AND ".$prefix."_page_component_structure.page_component_id = ".$prefix."_include_file.page_component_id;";
 	$css_data_rows = mysqli_query($conn , $sql)or die("ERROR 02" . mysqli_error($conn));
 	mysqli_close($conn);
 	foreach($css_data_rows as $css_data_row)

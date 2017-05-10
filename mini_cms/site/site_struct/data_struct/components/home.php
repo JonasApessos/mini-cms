@@ -1,5 +1,6 @@
 <?php
-echo "<div class = 'home_containt'>";
+echo "<div class = \"home_containt\">";
+echo "<div>";
 echo "	<div>";
 echo "		<div>";
 echo "			<img src='' alt = 'home_image' >";

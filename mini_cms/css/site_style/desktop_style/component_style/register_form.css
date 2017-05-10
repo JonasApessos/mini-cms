@@ -28,27 +28,27 @@
 	{
 		width:75%;
 		background-color:rgb(50,50,50);
-		color:rgb(255,153,0);
-		border:2px solid rgb(255,153,0);
+		color:rgb(255,143,0);
+		border:2px solid rgb(255,143,0);
 		border-color:rgb(230,143,0);
 		transition:border-color 1s;
 	}
 	
 	.login_form tbody tr td input[type = text]:hover
 	{
-		border-color:rgb(255,153,0);
+		border-color:rgb(255,143,0);
 	}
 	
 	.login_form tbody tr td input[type = text]:focus
 	{
-		outline-color:rgb(255,153,0);
+		outline-color:rgb(255,143,0);
 	}
 	
 	.login_form tbody tr td input[type = password]
 	{
 		width:75%;
 		background-color:rgb(50,50,50);
-		color:rgb(255,153,0);
+		color:rgb(255,143,0);
 		border:2px solid rgb(230,143,0);
 		border-color:rgb(230,143,0);
 		transition:border-color 1s;
@@ -56,7 +56,7 @@
 	
 	.login_form tbody tr td input[type = password]:hover
 	{
-		border-color:rgb(255,153,0);
+		border-color:rgb(255,143,0);
 	}
 	
 	.login_form tbody tr td textarea
@@ -64,13 +64,13 @@
 		background-color:rgb(50,50,50);
 		border :2px solid black;
 		border-color:rgb(230,143,0);
-		color:rgb(255,153,0);
+		color:rgb(255,143,0);
 		transition:border-color 1s;
 	}
 	
 	.login_form tbody tr td textarea:hover
 	{
-		border-color:rgb(255,153,0);
+		border-color:rgb(255,143,0);
 	}
 	
 	.login_form tbody tr td input[type = submit]
@@ -78,7 +78,7 @@
 		background-color:rgb(30,30,30);
 		border:2px solid black;
 		border-color:rgb(230,143,0);
-		color:rgb(255,153,0);
+		color:rgb(255,143,0);
 		transition:border-color 1s, background-color 1s;
 	}
 	
@@ -90,6 +90,6 @@
 	
 	.login_form tbody tr td input[type = password]:hover
 	{
-		border-color:rgb(255,153,0);
+		border-color:rgb(255,143,0);
 	}
 }

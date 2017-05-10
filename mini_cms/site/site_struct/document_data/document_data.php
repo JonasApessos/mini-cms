@@ -14,6 +14,7 @@ $about_us_class = "about_us_page";
 $contact_class = "contact";
 $catalog_class = "catalog";
 $faculty_class = "faculty";
+$res_class = "res_form";
 
 //main title
 $page_title = "Home";

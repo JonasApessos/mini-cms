@@ -18,7 +18,7 @@
 	
 	.login_form_top:hover
 	{
-		box-shadow:0px 0px 0px 4px rgba(255,143,0,1);
+		box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
 	}
 	
 	.login_form_top table
@@ -35,13 +35,15 @@
 		border:2px solid white;
 		border-color:rgb(200,133,0);
 		color:rgb(255,143,0);
-		transition: border-color 1.5s , background-color 1.5s;
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,1);
+		transition: border-color 1s , background-color 1s , box-shadow 1s;
 	}
 	
 	.login_form_top table tr td input[type = text]:hover
 	{
 		border-color:rgb(255,143,0);
 		background-color:rgb(70,70,70);
+		box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
 	}
 	
 	.login_form_top table tr td input[type = password]
@@ -51,13 +53,15 @@
 		border:2px solid white;
 		border-color:rgb(200,133,0);
 		color:rgb(255,143,0);
-		transition: border-color 1.5s , background-color 1.5s;
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,1);
+		transition: border-color 1s , background-color 1s , box-shadow 1s;
 	}
 	
 	.login_form_top table tr td input[type = password]:hover
 	{
 		border-color:rgb(255,143,0);
 		background-color:rgb(70,70,70);
+		box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
 	}
 	
 	
@@ -67,7 +71,8 @@
 		border:2px solid white;
 		border-color:rgba(200,133,0,1);
 		color:rgba(200,133,0,1);
-		transition:background-color 1.5s , border-color 1.5s, color 1.5s;
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,1);
+		transition: border-color 1s , background-color 1s , box-shadow 1s , color 1s;
 	}
 	
 	.login_form_top table tr td input[type =  submit]:hover
@@ -75,6 +80,7 @@
 		background-color:rgba(70,70,70,1);
 		border-color:rgba(255,143,0,1);
 		color:rgba(255,143,0,1);
+		box-shadow:0px 0px 5px 2px rgba(255,143,0,1);
 	}
 	
 	.login_form_top table tr td:nth-child(odd)
