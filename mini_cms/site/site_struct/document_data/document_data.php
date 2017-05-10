@@ -33,4 +33,8 @@ $sub_menu_height = 0;
 
 //js components onChange events
 $header_login_script = "login_check.js";
+
+//prefix
+$prefix = "re2213";
+$prefix .= "_";
 ?>

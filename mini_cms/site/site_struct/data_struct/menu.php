@@ -5,28 +5,28 @@ echo "<div class = '".$menu_class."'>";
 switch($_SESSION['access_level'])
 			{
 				case 3:
-					$sql = "SELECT menu_id
-					FROM ".$prefix."_menu_structure
-					WHERE ".$prefix."_menu_structure.access_level_id = 3
-                    AND NOT ".$prefix."_menu_structure.menu_id = 1
-					ORDER BY menu_id ASC;";
+					$sql = "SELECT mStruct_id
+					FROM ".$prefix."mStruct
+					WHERE ".$prefix."mStruct.accessLv_id = 3
+                    AND NOT ".$prefix."mStruct.mStruct_id = 1
+					ORDER BY mStruct_id ASC;";
 					break;
 				case 2:
-					$sql = "SELECT menu_id
-					FROM ".$prefix."_menu_structure
-					WHERE ".$prefix."_menu_structure.access_level_id = 3
-                    AND NOT ".$prefix."_menu_structure.menu_id = 1
-					OR ".$prefix."_menu_structure.access_level_id = 2
-					ORDER BY menu_id ASC;";
+					$sql = "SELECT mStruct_id
+					FROM ".$prefix."mStruct
+					WHERE ".$prefix."mStruct.accessLv_id = 3
+                    AND NOT ".$prefix."mStruct.mStruct_id = 1
+					OR ".$prefix."mStruct.accessLv_id = 2
+					ORDER BY ".$prefix."mStruct.mStruct_id ASC;";
 					break;
 				case 1:
-					$sql = "SELECT menu_id
-					FROM ".$prefix."_menu_structure
-					WHERE ".$prefix."_menu_structure.access_level_id = 3
-                    AND NOT ".$prefix."_menu_structure.menu_id = 1
-					OR ".$prefix."_menu_structure.access_level_id = 2
-					OR ".$prefix."_menu_structure.access_level_id = 1
-					ORDER BY menu_id ASC;";
+					$sql = "SELECT mStruct_id
+					FROM ".$prefix."mStruct
+					WHERE ".$prefix."mStruct.accessLv_id = 3
+                    AND NOT ".$prefix."mStruct.mStruct_id = 1
+					OR ".$prefix."mStruct.accessLv_id = 2
+					OR ".$prefix."mStruct.accessLv_id = 1
+					ORDER BY mStruct_id ASC;";
 					break;
 				default:
 					echo "ERROR 22 , could not identify access level;";
@@ -42,35 +42,35 @@ foreach ($menu_rows as $menu_row)
 	switch($_SESSION['access_level'])
 			{
 				case 3:
-					$sql = "SELECT submenu_title , submenu_id
-					FROM ".$prefix."_submenu_structure , ".$prefix."_menu_structure
-					WHERE ".$prefix."_submenu_structure.menu_id = ".$menu_row['menu_id']. "
-					AND ".$prefix."_menu_structure.menu_id = ".$prefix."_submenu_structure.menu_id
-					AND ".$prefix."_submenu_structure.access_level_id = 3
-					ORDER BY submenu_id ASC;";
+					$sql = "SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
+					FROM ".$prefix."subMStruct , ".$prefix."mStruct
+					WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_row['mStruct_id']. "
+					AND ".$prefix."mStruct.mStruct_id = ".$prefix."subMStruct.mStruct_id
+					AND ".$prefix."subMStruct.accessLv_id = 3
+					ORDER BY ".$prefix."subMStruct.subMStruct_id ASC;";
 					break;
 				case 2:
-					$sql = "SELECT submenu_title , submenu_id
-					FROM ".$prefix."_submenu_structure , ".$prefix."_menu_structure
-					WHERE ".$prefix."_submenu_structure.menu_id = ".$menu_row['menu_id']. "
-					AND ".$prefix."_menu_structure.menu_id = ".$prefix."_submenu_structure.menu_id
+					$sql = "SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
+					FROM ".$prefix."subMStruct , ".$prefix."mStruct
+					WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_row['mStruct_id']. "
+					AND ".$prefix."mStruct.mStruct_id = ".$prefix."subMStruct.mStruct_id
 					AND( 
-					".$prefix."_submenu_structure.access_level_id = 3
-					OR ".$prefix."_submenu_structure.access_level_id = 2
+					".$prefix."subMStruct.accessLv_id = 3
+					OR ".$prefix."subMStruct.accessLv_id = 2
 					)
-					ORDER BY submenu_id ASC;";
+					ORDER BY ".$prefix."subMStruct.subMStruct_id ASC;";
 					break;
 				case 1:
-					$sql = "SELECT submenu_title , submenu_id
-					FROM ".$prefix."_submenu_structure , ".$prefix."_menu_structure
-					WHERE ".$prefix."_submenu_structure.menu_id = ".$menu_row['menu_id']. "
-					AND ".$prefix."_menu_structure.menu_id = ".$prefix."_submenu_structure.menu_id
+					$sql = "SELECT ".$prefix."subMStruct.subMStruct_title , ".$prefix."subMStruct.subMStruct_id
+					FROM ".$prefix."subMStruct , ".$prefix."mStruct
+					WHERE ".$prefix."subMStruct.mStruct_id = ".$menu_row['mStruct_id']. "
+					AND ".$prefix."mStruct.mStruct_id = ".$prefix."subMStruct.mStruct_id
 					AND (
-					".$prefix."_submenu_structure.access_level_id = 3
-					OR ".$prefix."_submenu_structure.access_level_id = 2
-					OR ".$prefix."_submenu_structure.access_level_id = 1
+					".$prefix."subMStruct.accessLv_id = 3
+					OR ".$prefix."subMStruct.accessLv_id = 2
+					OR ".$prefix."subMStruct.accessLv_id = 1
 					)
-					ORDER BY submenu_id ASC;";
+					ORDER BY ".$prefix."subMStruct.subMStruct_id ASC;";
 					break;
 				default:
 					echo "ERROR 22 , could not identify access level;";
@@ -83,8 +83,8 @@ foreach ($menu_rows as $menu_row)
 	echo "			<div class = '".$drop_down_class."'>";
 	foreach($submenu_rows as $submenu_row)
 	{
-		echo "			   <a href='?menu_id=".$submenu_row['submenu_id']."&submenu_name=".$submenu_row['submenu_title']."'><div>";
-		echo "				    <h4>".$submenu_row['submenu_title']."</h4>";
+		echo "			   <a href='?menu_id=".$submenu_row['subMStruct_id']."&subMStruct_name=".$submenu_row['subMStruct_title']."'><div>";
+		echo "				    <h4>".$submenu_row['subMStruct_title']."</h4>";
 		echo "				</div></a>";
 		$submenu_row = NULL;
 	}

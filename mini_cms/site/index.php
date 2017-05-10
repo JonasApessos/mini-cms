@@ -9,7 +9,6 @@ echo "<head>";
 
 include_once "site_struct/document_data/document_data.php";
 
-$prefix = "re2213";
 
 if(!isset($_SESSION['access_level']))
 {
@@ -38,25 +37,31 @@ include_once "site_struct/data_struct.php";//include site data structure
 		
 echo "  </div>";
 
-$sql = "SELECT re2213_component_data_image.component_data_image_path FROM re2213_component_data_image , re2213_component_data
-WHERE re2213_component_data_image.file_type_id = 6 
-AND re2213_component_data_image.component_data_image_id = re2213_component_data.component_data_image_id
-AND re2213_component_data.access_level_id = ".$_SESSION['access_level'].";";
+$sql = "SELECT ".$prefix."compDataImg.compDataImg_id , ".$prefix."compDataImg.compDataImg_path FROM ".$prefix."compDataImg , ".$prefix."compData
+WHERE ".$prefix."compDataImg.fileType_id = 6 
+AND ".$prefix."compDataImg.compDataImg_id = ".$prefix."compData.compDataImg_id
+AND ".$prefix."compData.accessLv_id = ".$_SESSION['access_level'].";";
 
 $img_rows = mysqli_query($conn , $sql) or die("error images : " . mysqli_error($conn));
 
-foreach($img_rows as $img_row)
+foreach($img_rows as $img_row => $img_data)
 {
-	echo "<img src = \"".$img_row['component_data_image_path']."\">";
+	switch($img_data['compDataImg_id'])
+	{
+		case 1:
+			echo "<img src = \"".$img_data['compDataImg_path']."\">";
+			break;
+		case 2:
+			echo "<img src = \"".$img_data['compDataImg_path']."\">";
+			break;
+		case 3:
+			echo "<img src = \"".$img_data['compDataImg_path']."\">";
+			break;
+		default:
+			echo "admin buttons not found\n";
+			break;
+	}
 }
-/*if($_SESSION['access_level'] == 1)
-{
-	echo "<div style = \"float:left; clear:both;\">";
-	echo "<img  src = \"../images/img_bt_add.png\" style = \"float:left;\">";
-	echo "<img src = \"../images/img_bt_sub.png\" style = \"float:left;\">";
-	echo "<img src = \"../images/img_bt_edit.png\" style = \"float:left;\">";
-	echo "</div>";
-}*/
 
 echo "</body>";
 echo "</html>";
