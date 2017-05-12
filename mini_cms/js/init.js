@@ -1,6 +1,12 @@
 "use_strict";
 function initFunc()
 {
-	//googleMap();
-	resCall();
+	try
+	{
+		resCall();
+	}
+	catch(err)
+	{
+		console.log("function does not exist");
+	}
 }

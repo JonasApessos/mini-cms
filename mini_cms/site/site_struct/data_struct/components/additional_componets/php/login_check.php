@@ -19,7 +19,7 @@ $user_rows = mysqli_query($conn , $sql) or die("ERROR 07: ".mysqli_query($conn))
 
 foreach($user_rows as $user_row => $user_data)
 {
-	if(!isset($user_data['user_id']))
+	if(empty($user_data['user_id']) || $user_data['user_blocked'])
 	{
 		Header("Location: ../../../../../index.php");
 	}
@@ -35,14 +35,7 @@ foreach($user_rows as $user_row => $user_data)
 		mysqli_query($conn , $sql) or die("ERROR 08: ".mysqli_error($conn));
 	}
 }
-$user_data = NULL;
-$user_row = NULL;
-echo "user_id: ".$_SESSION['user_id'];
-//$sql = "
-//INSERT INTO ".$prefix."userLogin(userLogin_state,userLogin_date,user_id)
-//VALUES (TRUE,NOW(),".$_SESSION['user_id'].");";
-
-//mysqli_query($conn , $sql) or die("ERROR 08: ".mysqli_error($conn));
+mysqli_free_result($user_rows);
 
 
 

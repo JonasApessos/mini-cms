@@ -2,7 +2,7 @@
 //header logo
 echo "<div class = \"". $header_class ."\">";
 echo "<div class = \"".$header_logo_class."\">";
-echo "<img src=\''\" alt = \"LOGO\">";
+echo "<img src=\"\" alt = \"LOGO\">";
 echo "</div>";
 
 //header site title

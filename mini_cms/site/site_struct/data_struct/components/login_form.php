@@ -11,7 +11,7 @@ if($_SESSION["access_level"] > 2)
 	echo "<h2>Login</h2>";
 	echo "<div>";
 	echo "<h3>Email</h3>";
-	echo "<input type = \"email\" placeholder = \"example@examble.com\" name = \"login_email\" maxlength = \"48\" onChange = \"user_login_email()\">";
+	echo "<input type = \"email\" placeholder = \"example@example.com\" name = \"login_email\" maxlength = \"48\" onChange = \"user_login_email()\">";
 	echo "</div>";
 	
 	echo "<div>";
@@ -42,7 +42,7 @@ else
 	echo "<div>";
 	
 	echo "<div>";
-	echo "<img src = \"\" alt = \"profil_image\" width = \"100px;\"/>";
+	echo "<img src = \"\" alt = \"profil_image\" width = \"100px;\">";
 	echo "</div>";
 	
 	echo "<div>";

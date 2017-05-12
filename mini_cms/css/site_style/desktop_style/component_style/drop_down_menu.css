@@ -1,30 +1,48 @@
 @media screen and (min-width:480px)
 {
-.dropdown
+	.dropdown
 	{
 		width:10%;
-		min-width:125px;
-	    height:50px;
-		background-color:rgba(20,20,20,1);
-		border:1px solid black;
+		min-width:175px;
+	    height:100%;
+		background-color:rgba(20,20,20,1.0);
+		border:0px solid black;
 		border-radius:25px;
 		float:left;
 		margin:auto;
 		position:relative;
 		z-index:0;
 		overflow:hidden;
-		transition: z-index 0s, height 1s; 
+		transition: z-index 0s, height 1s, width 0.5s; 
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 
 	.dropdown:hover
 	{
+		width:12%;
 		z-index:1;
-		height:150px;
+		height:auto;
 	}
-
+	
 	.dropdown div
 	{
-		background-color:rgb(200,130,0);
+		background-color:rgba(240,135,0,1.0);
+		width:100%;
+		height:50px;
+		text-align:center;
+		float:left;
+		clear:both;
+		color:rgb(255,255,255);
+		border-bottom:2px solid black;
+		border-width:2px;
+		border-color:rgba(200,120,0,1.0);
+		box-shadow:10px 0px 10px 2px rgba(0,0,0,0.25);
+		transition: none;
+	}
+
+	.dropdown a div
+	{
+		background-color:rgba(200,130,0,1.0);
 		width:100%;
 		height:50px;
 		text-align:center;
@@ -32,11 +50,12 @@
 		clear:both;
 		border-bottom:2px solid black;
 		border-width:2px;
-		border-color:rgba(200,120,0,1);
-		transition: background-color 1s, border-radius 1s , border-color 1s;
+		border-color:rgba(200,120,0,1.0);
+		transition: background-color 1s, border-radius 1s, border-color 1s;
+		transition-timing-function:cubic-bezier(0.25,1.0,0.25,1.0);
 	}
 
-	.dropdown div:hover
+	.dropdown a div:hover
 	{
 		background-color:rgba(230,133,0,1);
 		border-radius:0px 0px 25px 25px;

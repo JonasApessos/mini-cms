@@ -88,6 +88,7 @@ CREATE TABLE ".$prefix."user
 	user_password VARCHAR(48) NOT NULL UNIQUE,
 	user_gender VARCHAR(1) NOT NULL,
 	user_date_created DATETIME NOT NULL DEFAULT NOW(),
+	user_blocked BOOLEAN NOT NULL DEFAULT FALSE,
 	accessLv_id INT DEFAULT 3 NOT NULL,
 	PRIMARY KEY(user_id),
 	FOREIGN KEY (accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
@@ -163,7 +164,7 @@ CREATE TABLE ".$prefix."mStruct
 (
     mStruct_id INT AUTO_INCREMENT NOT NULL,
     mStruct_date_created DATETIME NOT NULL DEFAULT NOW(),
-    mStruct_title VARCHAR(15),
+    mStruct_title VARCHAR(32),
 	accessLv_id INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (mStruct_id),
 	FOREIGN KEY (accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
@@ -175,7 +176,7 @@ CREATE TABLE ".$prefix."subMStruct
 (
     subMStruct_id INT AUTO_INCREMENT NOT NULL,
     subMStruct_date_created DATETIME NOT NULL DEFAULT NOW(),
-    subMStruct_title VARCHAR(15),
+    subMStruct_title VARCHAR(32),
     mStruct_id INT DEFAULT 1 NOT NULL,
 	accessLv_id INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (subMStruct_id),
@@ -219,8 +220,10 @@ CREATE TABLE ".$prefix."incFile
 	incFile_date_created DATETIME NOT NULL DEFAULT NOW(),
 	incFile_path VARCHAR(255),
 	fileType_id INT DEFAULT 1 NOT NULL,
+	accessLV_id INT DEFAULT 1 NOT NULL,
 	PRIMARY KEY(incFile_id),
-	FOREIGN KEY (fileType_id) REFERENCES ".$prefix."fileType(fileType_id)
+	FOREIGN KEY (fileType_id) REFERENCES ".$prefix."fileType(fileType_id),
+	FOREIGN KEY (accessLV_id) REFERENCES ".$prefix."accessLV(accessLV_id)
 ) ENGINE = innoDB;";//this table contains all the header files to be include during the entry of the application
 mysqli_query($conn, $sql) or die("ERROR 15" . mysqli_error($conn));
 
@@ -241,6 +244,30 @@ CREATE TABLE ".$prefix."PCompStruct
 	FOREIGN KEY (incFile_id) REFERENCES ".$prefix."incFile(incFile_id)
 ) ENGINE = innoDB;";//the page component structure is the table where it determines the position and hierarchical structure of your application contain , from the body to the main contain
 mysqli_query($conn, $sql) or die("ERROR 16" . mysqli_error($conn));
+
+$sql = "
+CREATE TABLE ".$prefix."category
+(
+	category_id INT AUTO_INCREMENT,
+	category_title VARCHAR(32) NOT NULL DEFAULT \"None\",
+	PRIMARY KEY(category_id)
+) ENGINE = innoDB;";
+
+mysqli_query($conn, $sql) or die ("ERROR 17" . mysqli_error($conn));
+
+$sql = "
+CREATE TABLE ".$prefix."product
+(
+	product_id INT AUTO_INCREMENT,
+	product_title VARCHAR(64),
+	product_price FLOAT(5,2) NOT NULL DEFAULT 1.00,
+	product_desc VARCHAR(255),
+	category_id INT,
+	PRIMARY KEY(product_id),
+	FOREIGN KEY (category_id) REFERENCES ".$prefix."category(category_id)
+) ENGINE = innoDB;";
+
+mysqli_query($conn,$sql) or die ("ERROR 18" . mysqli_error($conn));
 
 
 /*
@@ -266,9 +293,9 @@ mysqli_query($conn , $sql)or die("ERROR 18" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."mStruct (mStruct_title ,accessLv_id) VALUES
 (\"menu0\",3),
-(\"menu1\",3), 
-(\"menu2\",3),
-(\"menu3\",1),
+(\"Information\",3), 
+(\"Reservation\",3),
+(\"List's and editing\",1),
 (\"menu4\",2);";
 mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
@@ -278,61 +305,64 @@ $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv
 (\"About us\",2,3) , 
 (\"Contact\",2,3) , 
 (\"Catalogue\",3,3) , 
-(\"Reservation\",3,2) , 
-(\"Faculty\",3,3),
+(\"Submit Reservation\",3,2) , 
+(\"Faculty\",2,3),
 (\"Users List\",4,1),
 (\"Tables List\",4,1),
-(\"Reservations\",4,1),
+(\"Reservation list\",4,1),
 (\"Test4\",5,2),
 (\"Test5\",5,2);";
 mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
 
-$sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_path) VALUES 
-(\"desktop_style\",4, \"../css/site_style/desktop_style/desktop_style.css\"),
-(\"header\",4, \"../css/site_style/desktop_style/header.css\"),
-(\"menu\",4, \"../css/site_style/desktop_style/menu.css\"),
-(\"main\",4, \"../css/site_style/desktop_style/main.css\"),
-(\"footer\",4, \"../css/site_style/desktop_style/footer.css\"),
-(\"home_css\",4, \"../css/site_style/desktop_style/component_style/home.css\"),
-(\"about_us_css\",4, \"../css/site_style/desktop_style/component_style/about_us.css\"),
-(\"contact_css\",4, \"../css/site_style/desktop_style/component_style/contact.css\"),
-(\"catalog_css\",4, \"../css/site_style/desktop_style/component_style/catalog.css\"),
-(\"faculty_css\",4, \"../css/site_style/desktop_style/component_style/faculty.css\"),
-(\"login_form_css\",4, \"../css/site_style/desktop_style/component_style/login_form.php\"),
-(\"register_form_css\",4, \"../css/site_style/desktop_style/component_style/register_form.css\"),
-(\"db_conn\",2, \"site_struct/document_data/db_conn.php\"),
-(\"document_data\",2, \"site_struct/data_struct/document_data/document_data.php\"),
-(\"header\",2, \"site_struct/data_struct/header.php\"),
-(\"menu\",2, \"site_struct/data_struct/menu.php\"),
-(\"main\",2, \"site_struct/data_struct/main.php\"),
-(\"footer\",2, \"site_struct/data_struct/footer.php\"),
-(\"home\",2,\"site_struct/data_struct/components/home.php\"),
-(\"about_us\",2, \"site_struct/data_struct/components/about_us.php\"),
-(\"contact\",2, \"site_struct/data_struct/components/contact.php\"),
-(\"catalogue\",2, \"site_struct/data_struct/components/catalog.php\"),
-(\"reservation\",2, \"site_struct/data_struct/components/reservation.php\"),
-(\"faculty\",2, \"site_struct/data_struct/components/faculty.php\"),
-(\"registration\",2, \"site_struct/data_struct/components/registration.php\"),
-(\"forgot_password\",2, \"site_struct/data_struct/components/forgot_password.php\"),
-(\"reservation\",4, \"../css/site_style/desktop_style/component_style/reservation.css\"),
-(\"res_cal\",4, \"../css/site_style/desktop_style/component_style/res_cal.css\"),
-(\"drop_down_menu\",4, \"../css/site_style/desktop_style/component_style/drop_down_menu.php\"),
-(\"init\",3, \"../js/init.js\"),
-(\"absolute_menu\",3, \"../js/absolute_menu.js\"),
-(\"inputCheck\",3, \"../js/inputCheck.js\"),
-(\"res_cal\",3, \"../js/res_cal.js\"),
-(\"login_check\",3, \"../js/login_check.js\"),
-(\"users_list\",2,\"site_struct/data_struct/components/user_list.php\"),
-(\"users_list_css\",4, \"../css/site_style/desktop_style/component_style/users_list.css\"),
-(\"tables_list\",2,\"site_struct/data_struct/components/tables_list.php\"),
-(\"tables_list_css\",4, \"../css/site_style/desktop_style/component_style/tables_list.css\"),
-(\"reservations\",2,\"site_struct/data_struct/components/reservations.php\"),
-(\"reservations_css\",4, \"../css/site_style/desktop_style/component_style/reservations.css\");";
+$sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_path,accessLV_id) VALUES 
+(\"desktop_style\",4, \"../css/site_style/desktop_style/desktop_style.css\",3),
+(\"header\",4, \"../css/site_style/desktop_style/header.css\",3),
+(\"menu\",4, \"../css/site_style/desktop_style/menu.css\",3),
+(\"main\",4, \"../css/site_style/desktop_style/main.css\",3),
+(\"footer\",4, \"../css/site_style/desktop_style/footer.css\",3),
+(\"home_css\",4, \"../css/site_style/desktop_style/component_style/home.css\",3),
+(\"about_us_css\",4, \"../css/site_style/desktop_style/component_style/about_us.css\",3),
+(\"contact_css\",4, \"../css/site_style/desktop_style/component_style/contact.css\",3),
+(\"catalog_css\",4, \"../css/site_style/desktop_style/component_style/catalog.css\",3),
+(\"faculty_css\",4, \"../css/site_style/desktop_style/component_style/faculty.css\",3),
+(\"login_form_css\",4, \"../css/site_style/desktop_style/component_style/login_form.php\",3),
+(\"register_form_css\",4, \"../css/site_style/desktop_style/component_style/register_form.css\",3),
+(\"db_conn\",2, \"site_struct/document_data/db_conn.php\",3),
+(\"document_data\",2, \"site_struct/data_struct/document_data/document_data.php\",3),
+(\"header\",2, \"site_struct/data_struct/header.php\",3),
+(\"menu\",2, \"site_struct/data_struct/menu.php\",3),
+(\"main\",2, \"site_struct/data_struct/main.php\",3),
+(\"footer\",2, \"site_struct/data_struct/footer.php\",3),
+(\"home\",2,\"site_struct/data_struct/components/home.php\",3),
+(\"about_us\",2, \"site_struct/data_struct/components/about_us.php\",3),
+(\"contact\",2, \"site_struct/data_struct/components/contact.php\",3),
+(\"catalogue\",2, \"site_struct/data_struct/components/catalog.php\",3),
+(\"reservation\",2, \"site_struct/data_struct/components/reservation.php\",2),
+(\"faculty\",2, \"site_struct/data_struct/components/faculty.php\",3),
+(\"registration\",2, \"site_struct/data_struct/components/registration.php\",3),
+(\"forgot_password\",2, \"site_struct/data_struct/components/forgot_password.php\",3),
+(\"reservation\",4, \"../css/site_style/desktop_style/component_style/reservation.css\",2),
+(\"res_cal\",4, \"../css/site_style/desktop_style/component_style/res_cal.css\",2),
+(\"drop_down_menu\",4, \"../css/site_style/desktop_style/component_style/drop_down_menu.css\",3),
+(\"user_editor_css\",4, \"../css/site_style/desktop_style/component_style/user_editor.css\",1),
+(\"init\",3, \"../js/init.js\",3),
+(\"absolute_menu\",3, \"../js/absolute_menu.js\",3),
+(\"inputCheck\",3, \"../js/inputCheck.js\",3),
+(\"res_cal\",3, \"../js/res_cal.js\",2),
+(\"login_check\",3, \"../js/login_check.js\",3),
+(\"users_list\",2,\"site_struct/data_struct/components/user_list.php\",1),
+(\"users_list_css\",4, \"../css/site_style/desktop_style/component_style/users_list.css\",1),
+(\"tables_list\",2,\"site_struct/data_struct/components/tables_list.php\",1),
+(\"tables_list_css\",4, \"../css/site_style/desktop_style/component_style/tables_list.css\",1),
+(\"reservations\",2,\"site_struct/data_struct/components/reservations.php\",1),
+(\"reservations_css\",4, \"../css/site_style/desktop_style/component_style/reservations.css\",1),
+(\"user_editor\",2,\"site_struct/data_struct/components//additional_componets/php/user_editor.php\",1),
+(\"user_editor_js\",3, \"../js/user_editor.js\",1);";
 mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES
 (\"add_btn\",\"../images/img_bt_add.png\",6),
-(\"del_btn\",\"../images/img_bt_sub.png\",6), 
+(\"del_btn\",\"../images/img_bt_lock.png\",6), 
 (\"edit_btn\",\"../images/img_bt_edit.png\",6);";
 mysqli_query($conn, $sql) or die("ERROR 22" . mysqli_error($conn));
 
@@ -354,13 +384,13 @@ VALUES
 (\"Catalogue\",22,3,5,NULL),
 (\"Reservation\",23,2,6,NULL),
 (\"Faculty\",24,3,7,NULL),
-(\"Users List\",35,1,8,NULL),
-(\"Tables List\",37,1,9,NULL),
-(\"Reservations\",39,1,10,NULL);";
+(\"Users List\",36,1,8,NULL),
+(\"Tables List\",38,1,9,NULL),
+(\"Reservations\",40,1,10,NULL);";
 mysqli_query($conn , $sql) or die("ERROR 24" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."user(accessLv_id , user_name , user_email  , user_password , user_gender) VALUES
-(1 , \"john\" , \"john@gmail.com\" , \"".crypt("john123","T51")."\" , \"M\"),
+(1 , \"master\" , \"hostMaster@gmail.com\" , \"".crypt("master123","T51")."\" , \"M\"),
 (2 , \"marie\" , \"marie@gmail.com\" , \"".crypt("marie123","T51")."\" , \"F\"),
 (2 , \"vedel\" , \"vedel@gmail.com\" , \"".crypt("vedel123","T51")."\" , \"F\");";
 mysqli_query($conn, $sql) or die("ERROR 25" . mysqli_error($conn));
@@ -382,8 +412,20 @@ $sql ="INSERT INTO ".$prefix."Dtable(Dtable_capacity,resPos_id,user_id) VALUES
 (3,3,1),
 (4,3,1);";
 mysqli_query($conn , $sql) or die("ERROR 27". mysqli_error($conn));
+
+$sql = "INSERT INTO ".$prefix."category (category_title) VALUES 
+(\"Main Dishes\"),
+(\"Deserts\");";
+mysqli_query($conn , $sql) or die("ERROR 28". mysqli_error($conn));
+
+$sql = "INSERT INTO ".$prefix."product (product_title, product_desc, product_price, category_id) VALUES 
+(\"La mere rouge\", \"A delicacy brough from france with love\",14.99, 1),
+(\"Buffet Noire\", \"A buffet with a lot kinds of meat\", 24.99, 1),
+(\"Cream a Vannile\",\"Desert made by the chef himself with a lot of cream and fruit on top of it\" ,13.99, 2),
+(\"La Croix\",\"A dishe for the believers of god\" ,54.99, 2);";
+ mysqli_query($conn , $sql) or die("ERROR 29". mysqli_error($conn));
  
-mysqli_close($conn) or die("ERROR 28" . mysqli_error($conn));
+mysqli_close($conn) or die("ERROR 30" . mysqli_error($conn));
 
 $sql = NULL;//clear data sql for garbage collection purposes as well security reasons (for remote installation mostly)
 $conn = NULL;//same with the above
