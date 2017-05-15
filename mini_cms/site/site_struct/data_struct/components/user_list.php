@@ -1,4 +1,8 @@
 <?php
+include_once "lib/lib_class/input_class.php";
+
+$usr_input = new input();
+
 $sql = "
 SELECT ".$prefix."user.user_id ,".$prefix."user.user_name , ".$prefix."user.user_email , ".$prefix."user.user_gender , ".$prefix."user.user_date_created, ".$prefix."user.user_blocked, ".$prefix."user.accessLv_id
 FROM ".$prefix."user;";
@@ -21,17 +25,68 @@ foreach($user_rows as $user_row => $user_data)
 	
 	echo "<div>";
 	
-	echo "<div><h3>User ID: </h3><input type = \"number\" name = \"user_id\" value = \"".$user_data['user_id']."\" readonly = \"readonly\"></div>";
+	$usr_input->set_type("number");
+	$usr_input->set_name("user_id");
+	$usr_input->set_value($user_data['user_id']);
+	$usr_input->set_readonly();
 	
-	echo "<div><h3>Name: </h3><input type = \"text\" name = \"user_name\" value = \"".$user_data['user_name']."\"></div>";
+	echo "<div><h3>User ID: </h3>";
+	echo $usr_input->display();
+	echo "</div>";
 	
-	echo "<div><h3>Email: </h3><input type = \"text\" name = \"user_email\" value = \"".$user_data['user_email']."\"></div>";
+	$usr_input->clear_data();
 	
-	echo "<div><h3>Gender: </h3><input type = \"text\" name = \"user_gender\" value = \"".$user_data['user_gender']."\"></div>";
+	$usr_input->set_type("text");
+	$usr_input->set_name("user_name");
+	$usr_input->set_value($user_data['user_name']);
 	
-	echo "<div><h3>Blocked: </h3><input type = \"text\" name = \"user_blocked\" value = \"".($user_data['user_blocked'] ? "Yes" : "No")."\" readonly = \"readonly\"></div>";
+	echo "<div><h3>Name: </h3>";
+	echo $usr_input->display();
+	echo "</div>";
 	
-	echo "<div><h3>Date Created: </h3><input type = \"text\" name = \"user_date_created\" value = \"".$user_data['user_date_created']."\" readonly = \"readonly\"></div>";
+	$usr_input->clear_data();
+	
+	$usr_input->set_type("text");
+	$usr_input->set_name("user_email");
+	$usr_input->set_value($user_data['user_email']);
+	
+	echo "<div><h3>Email: </h3>";
+	echo $usr_input->display();
+	echo "</div>";
+	
+	$usr_input->clear_data();
+	
+	$usr_input->set_type("text");
+	$usr_input->set_name("user_gender");
+	$usr_input->set_value($user_data['user_gender']);
+	
+	echo "<div><h3>Gender: </h3>";
+	echo $usr_input->display();
+	echo "</div>";
+	
+	$usr_input->clear_data();
+	
+	$usr_input->set_type("text");
+	$usr_input->set_name("user_blocked");
+	$usr_input->set_value($user_data['user_blocked'] ? "Yes" : "No");
+	$usr_input->set_readonly();
+	
+	echo "<div><h3>Blocked: </h3>";
+	echo $usr_input->display();
+	echo "</div>";
+	
+	$usr_input->clear_data();
+	
+	$usr_input->set_type("text");
+	$usr_input->set_name("user_date_created");
+	$usr_input->set_value($user_data['user_date_created']);
+	$usr_input->set_readonly();
+	
+	echo "<div><h3>Date Created: </h3>";
+	echo $usr_input->display();
+	echo "</div>";
+	
+	$usr_input->clear_data();
 	
 	echo "<div><h3>access level: </h3><select name = \"user_access_level\">";
 	
@@ -56,6 +111,7 @@ echo "</div>";
 echo "</div>";
 echo "</div>";
 
+unset($usr_input);
 mysqli_free_result($user_rows);
 mysqli_free_result($access_lv_rows);
 ?>

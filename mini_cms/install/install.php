@@ -356,8 +356,11 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"tables_list_css\",4, \"../css/site_style/desktop_style/component_style/tables_list.css\",1),
 (\"reservations\",2,\"site_struct/data_struct/components/reservations.php\",1),
 (\"reservations_css\",4, \"../css/site_style/desktop_style/component_style/reservations.css\",1),
-(\"user_editor\",2,\"site_struct/data_struct/components//additional_componets/php/user_editor.php\",1),
-(\"user_editor_js\",3, \"../js/user_editor.js\",1);";
+(\"user_editor\",2,\"site_struct/data_struct/components/additional_componets/php/user_editor.php\",1),
+(\"user_editor_js\",3, \"../js/user_editor.js\",1),
+(\"table_editor_css\",4, \"../css/site_style/desktop_style/component_style/table_editor.css\",1),
+(\"table_editor\",2,\"site_struct/data_struct/components/additional_componets/php/table_editor.php\",1),
+(\"table_editor_js\",3, \"../js/table_editor.js\",1);";
 mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES

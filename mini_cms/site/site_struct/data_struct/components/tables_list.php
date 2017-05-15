@@ -1,4 +1,7 @@
 <?php
+
+include_once "site_struct/data_struct/components/additional_componets/php/table_editor.php";
+
 $sql = "
 SELECT ".$prefix."resPos.resPos_id , ".$prefix."resPos.resPos_title , ".$prefix."resPos.resPos_desc
 FROM ".$prefix."resPos;";
@@ -28,13 +31,15 @@ foreach($pos_rows as $pos_row => $pos_data)
 	foreach($table_rows as $table_row => $table_data)
 	{
 		echo "<div>";
-		echo "<h4>".$table_data['Dtable_id']."</h4>";
+		echo "<h4>Table ID: ".$table_data['Dtable_id']."</h4>";
 		echo "</div>";
 	}
 	echo "</div>";
 	
 	echo "</div>";
 }
+
+echo "<button type=\"submit\" onClick=\"display_table_editor()\"><div><img src=\"../images/img_bt_add.png\"><h4>Add table</h4></div></button> ";
 
 echo "</div>";
 echo "</div>";
