@@ -59,9 +59,5 @@ function filter_data($data)
 		echo "access_denied";
 	
 	mysqli_close($conn);
-	echo $user_name."<br>";
-	echo $user_email."<br>";
-	echo $user_pass."<br>";
-	echo $user_gender;
 	Header("Location:../../../../site");
 ?>

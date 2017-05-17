@@ -126,7 +126,7 @@ CREATE TABLE ".$prefix."Dtable
 	Dtable_date_created DATETIME NOT NULL DEFAULT NOW(),
 	Dtable_capacity INT(2) NOT NULL DEFAULT 1,
 	resPos_id INT DEFAULT 1 NOT NULL,
-	user_id INT NOT NULL DEFAULT 1,
+	Dtable_blocked BOOLEAN NOT NULL Default 0, 
 	PRIMARY KEY(Dtable_id),
 	FOREIGN KEY (resPos_id) REFERENCES ".$prefix."resPos(resPos_id)
 ) ENGINE = innoDB;";//by default a table belongs to the administrator(owner) of the restaurant
@@ -360,7 +360,10 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"user_editor_js\",3, \"../js/user_editor.js\",1),
 (\"table_editor_css\",4, \"../css/site_style/desktop_style/component_style/table_editor.css\",1),
 (\"table_editor\",2,\"site_struct/data_struct/components/additional_componets/php/table_editor.php\",1),
-(\"table_editor_js\",3, \"../js/table_editor.js\",1);";
+(\"table_editor_js\",3, \"../js/table_editor.js\",1),
+(\"room_editor_css\",4, \"../css/site_style/desktop_style/component_style/room_editor.css\",1),
+(\"room_editor\",2,\"site_struct/data_struct/components/additional_componets/php/room_editor.php\",1),
+(\"room_editor_js\",3, \"../js/room_editor.js\",1);";
 mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES
@@ -404,16 +407,16 @@ $sql = "INSERT INTO ".$prefix."resPos(resPos_title,resPos_desc) VALUES
 (\"main floor\",\"enjoy our in display cooking with our best chef cooking in front of you while you eat.\");";
 mysqli_query($conn,$sql) or die("ERROR 26". mysqli_error($conn));
 
-$sql ="INSERT INTO ".$prefix."Dtable(Dtable_capacity,resPos_id,user_id) VALUES
-(5,1,1),
-(2,1,1),
-(10,1,1),
-(6,2,1),
-(3,2,1),
-(7,2,1),
-(5,3,1),
-(3,3,1),
-(4,3,1);";
+$sql ="INSERT INTO ".$prefix."Dtable(Dtable_capacity,resPos_id) VALUES
+(5,1),
+(2,1),
+(10,1),
+(6,2),
+(3,2),
+(7,2),
+(5,3),
+(3,3),
+(4,3);";
 mysqli_query($conn , $sql) or die("ERROR 27". mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."category (category_title) VALUES 

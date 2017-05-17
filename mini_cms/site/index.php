@@ -32,6 +32,7 @@ include_once "site_struct/data_struct/components/admin_images.php";
 echo "</body>";
 echo "</html>";
 mysqli_close($conn);//closing db connection for the client
-$conn = 0;
-$sql = 0;
+
+unset($conn);
+unset($sql);
 ?>

@@ -1,8 +1,12 @@
 <?php
+include_once "site_struct/data_struct/components/lib/lib_class/button_class.php";
+
 echo "<div>";
 echo "<h2>Reserve Table</h2>";
 echo "</div>";
-	
+
+$table_input = new input();
+
 $sql = "
 SELECT ".$prefix."resPos.resPos_id , ".$prefix."resPos.resPos_title
 FROM ".$prefix."resPos;";
@@ -33,18 +37,27 @@ foreach ($res_pos_rows as $res_pos_row => $res_pos_data)
 		AND ".$prefix."Dtable.resPos_id = ".$res_pos_data['resPos_id']."
 		AND re2213_Dtable.resPos_id = re2213_resPos.resPos_id;;";
 
-$res_table_rows = mysqli_query($conn, $sql) or die("ERROR 13 " . mysqli_error($conn));
-
+	$res_table_rows = mysqli_query($conn, $sql) or die("ERROR 13 " . mysqli_error($conn));
+	
 	foreach($res_table_rows as $res_table_row => $res_table_data)
 	{	
+		$table_input->set_type("hidden");
+		$table_input->set_readonly();
+		$table_input->set_value($res_table_data['Dtable_id']);
+		
 		echo "<div>";
 		echo "<h5>Table ".$res_table_data['Dtable_id']."</h5>";
-		echo "<input type=\"hidden\" value =\"".$res_table_data['Dtable_id']."\" readonly=\"readonly\">";
+		echo $table_input->display();
 		echo "</div>";
+		$table_input->clear_data();
 	}
 	echo "</div>";
 	echo "</div>";		
 }
+$table_input->set_type("hidden");
+$table_input->set_name("res_table_list");
+$table_input->set_readonly();
+$table_input->display();
 
 echo "</div>";
 ?>
