@@ -198,18 +198,22 @@ class html_standard_attributes_proccess extends html_standard_attributes
 		else
 			$this->chain_attributes .= " checked=\"".$at_input."\"";
 	}
+	public function set_spellcheck()
+	{
+			$this->chain_attributes .= " spellcheck=\"TRUE\"";
+	}
 	//--------SET SWITCH--------//
 	public function set_required()
 	{
-		$this->chain_attributes .= " required";
+		$this->chain_attributes .= " required=\"required\"";
 	}
 	public function set_disabled()
 	{
-		$this->chain_attributes .= " disabled";
+		$this->chain_attributes .= " disabled=\"disabled\"";
 	}
 	public function set_readonly()
 	{
-		$this->chain_attributes .= " readonly";
+		$this->chain_attributes .= " readonly=\"readonly\"";
 	}
 	//--------SET EVENTS--------//
 	public function set_onfocusout($at_input)

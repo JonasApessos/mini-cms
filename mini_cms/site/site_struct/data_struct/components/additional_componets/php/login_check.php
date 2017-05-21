@@ -6,14 +6,14 @@ include "../../../../document_data/document_data.php";
 include_once "../../../../document_data/db_conn.php"; 
 ?>
 <?php
-
 $email = $_POST['login_email'];
 $password = crypt($_POST['password_login'],"T51");
 
 $sql = "SELECT * 
 FROM ".$prefix."user 
-WHERE user_email = \"".$email."\" 
-AND user_password = \"".$password."\" LIMIT 1;";
+WHERE ".$prefix."user.user_email = \"".$email."\" 
+AND ".$prefix."user.user_password = \"".$password."\"
+AND ".$prefix."user.user_blocked = FALSE LIMIT 1;";
 
 $user_rows = mysqli_query($conn , $sql) or die("ERROR 07: ".mysqli_query($conn));
 
@@ -43,7 +43,6 @@ mysqli_close($conn);
 
 $sql = NULL;
 $conn = NULL;
-$user_rows = NULL;
 $email = NULL;
 $password = NULL;
 

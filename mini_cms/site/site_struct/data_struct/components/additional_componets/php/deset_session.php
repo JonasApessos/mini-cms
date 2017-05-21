@@ -1,9 +1,9 @@
 <?php
-	session_start();
+session_start();
 ?>
 <?php
-	include_once "../../../../document_data/db_conn.php";
-	include_once "../../../../document_data/document_data.php";
+include_once "../../../../document_data/db_conn.php";
+include_once "../../../../document_data/document_data.php";
 ?>
 <?php
 

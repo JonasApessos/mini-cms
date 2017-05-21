@@ -13,12 +13,14 @@ class select extends html_standard_attributes_proccess
 		echo "</select>";
 	}
 	
-	public function add_option($title,$value,$label)
+	public function add_option($label,$value)
 	{
 		((!empty($value)) ?	$this->set_option_value($value) : "");
 		((!empty($label)) ?	$this->set_option_label($label) : "");
 		
-		$this->options .= "<option ".$this->option_attr.">".$title."</option>";
+		$this->options .= "<option ".$this->option_attr."></option>";
+		
+		$this->option_attr = "";
 	}
 	
 	public function set_option_disabled()
@@ -41,15 +43,16 @@ class select extends html_standard_attributes_proccess
 		$this->option_attr .= " value=\"".$at_input."\"";
 	}
 	
-	public function option_clear_attr()
+	private function option_clear_attr()
 	{
 		$this->option_attr = "";
 	}
 	
-	public function option_clear_data()
+	public function clear_data()
 	{
 		$this->option_clear_attr();
 		$this->options = "";
+		$this->chain_attributes= "";
 	}
 }
 ?>

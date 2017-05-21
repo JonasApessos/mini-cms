@@ -1,14 +1,17 @@
 <?php
-include_once "lib/lib_class/input_class.php";
+include_once "site_struct/data_struct/components/lib/lib_class/input_class.php";
+include_once "site_struct/data_struct/components/lib/lib_class/textarea_class.php";
+include_once "site_struct/data_struct/components/lib/lib_class/select_class.php";
 
 $res_input = new input();
+$res_textarea = new textarea();
+$res_select = new select();
 
 if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_people']))
 {
+	echo "<form action=\"#\" method=\"POST\">";
 	echo "<div class = \"".$res_class."\">";
 	echo "<div>";
-
-	echo "<form action=\"\" method=\"POST\" onChange = \"updateForm()\">";
 	
 	echo "<div>";
 
@@ -25,15 +28,21 @@ if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_p
 	
 	$res_input->clear_data();
 	
+	$res_select->set_name("res_smoking");
+	$res_select->add_option("Yes","TRUE");
+	$res_select->add_option("No","FALSE");
+	
 	echo "<div>";
 	echo "<h2>Smoking</h2>";
-	echo "<select name = \"res_smoking\"><option value = \"1\">Yes</option><option value = \"0\">No</option></select>";
+	echo $res_select->display();
 	echo "</div>";
+	
+	$res_select->clear_data();
 
 	$res_input->set_type("number");
 	$res_input->set_name("res_people");
-	$res_input->set_min_max("1","100");
-	$res_input->set_onfocusout("peopleFieldCheck(this.value)");
+	$res_input->set_min_max("1","20");
+	$res_input->set_onfocusout("PeopleFieldCheck(this.value)");
 	$res_input->set_placeholder("ex. 5");
 	
 	echo "<div>";
@@ -43,16 +52,22 @@ if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_p
 
 	$res_input->clear_data();
 	
+	$res_textarea->set_spellcheck(true);
+	$res_textarea->set_name("res_comment");
+	$res_textarea->set_maxlength(255);
+	$res_textarea->set_placeholder("ex. i want a table close to the window with a champange ready");
+
 	echo "<div>";
 	echo "<h2>Comment</h2>";
-	echo "<textarea spellcheck = \"true\" maxlength = \"255\" name = \"res_comment\" placeholder = \"ex. i want a table close to the window with a champange ready\"></textarea>";
+	echo $res_textarea->display();
 	echo "</div>";
+	
+	$res_textarea->clear_data();
 
 	echo "<div id = \"res_cal\">";
 	echo "</div>";
 
 	$res_input->set_type("submit");
-	$res_input->set_value("reserve");
 	
 	echo "<div>";
 	echo $res_input->display();
@@ -65,7 +80,7 @@ if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_p
 	echo "</div>";
 
 	echo "</div>";
-
+	
 	echo "</form>";
 }
 else
@@ -139,12 +154,18 @@ else
 	echo $res_input->display();
 	echo "</div>";
 	
-	echo "<div>";
-	
 	$res_input->clear_data();
+	
+	echo "<div>";
 	
 	include_once "site_struct/data_struct/components/table_place.php";
 	
+	echo "</div>";
+	
+	$res_input->set_type("submit");
+	
+	echo "<div>";
+	echo $res_input->display();
 	echo "</div>";
 	
 	echo "</div>";
@@ -154,4 +175,6 @@ echo "</div>";
 echo "</div>";
 
 unset($res_input);
+unset($res_select);
+unset($res_textarea);
 ?>

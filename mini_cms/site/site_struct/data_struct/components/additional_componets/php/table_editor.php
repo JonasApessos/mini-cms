@@ -18,8 +18,10 @@ echo "<div>";
 echo "<h1>Add new table</h1>";
 echo "<form action=\"site_struct/data_struct/components/additional_componets/php/add_new_table.php\" method=\"POST\">";
 
-$table_input->set_type("text");
+$table_input->set_type("number");
 $table_input->set_name("table_capacity");
+$table_input->set_required();
+$table_input->set_min_max(1,10);
 
 echo "<div><h3>Table capacity: </h3>";
 echo $table_input->display();
@@ -31,26 +33,27 @@ $table_select->set_name("table_respos");
 
 foreach($pos_rows as $pos_row => $pos_data)
 {
-	$table_select->add_option($pos_data['resPos_title'],$pos_data['resPos_id'],"");
-	$table_select->option_clear_attr();
+	$table_select->add_option($pos_data['resPos_title'],$pos_data['resPos_id']);
 }
 
 echo "<div><h3>Restaurant position: </h3>";
 echo $table_select->display();
 echo "</div>";
-$table_select->option_clear_data();
+
 $table_select->clear_data();
 
 $table_input->clear_data();
 
 $table_select->set_name("table_blocked");
-$table_select->add_option("Yes",1,"");
-$table_select->add_option("No",0,"");
+$table_select->add_option("Yes","TRUE");
+$table_select->add_option("No","FALSE");
 
 echo "<div><h3>Table blocked: </h3>";
 echo $table_select->display();
 echo "</div>";
+
 $table_input->clear_data();
+
 $table_input->set_type("submit");
 
 $table_button->set_type("button");

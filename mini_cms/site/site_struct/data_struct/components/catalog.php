@@ -20,7 +20,7 @@ foreach($prod_cad_rows as $prod_cad_row => $prod_cad_data)
 	{
 		echo "<div>";
 
-		echo "<img src=\"../images/716301.jpg\" alt = \"dishe_001\" >";
+		echo "<img src=\"\" alt = \"dishe_001\" >";
 
 		echo "<div>";
 		echo "<p>".$prod_data['product_desc']."</p>";

@@ -3,6 +3,7 @@ Header("Pragma: no-cache");//disable web automatic content cashing
 session_start();//starting session
 ?>
 <?php
+//echo "step1: " . ((memory_get_usage()/1000)/1000) . "MB\n";
 include_once "site_struct/document_data/db_conn.php";//db connection
 include_once "site_struct/document_data/document_data.php";//header with global variables
 ?>
@@ -31,8 +32,10 @@ include_once "site_struct/data_struct/components/admin_images.php";
 
 echo "</body>";
 echo "</html>";
+//echo "step2: " . ((memory_get_usage()/1000)/1000) . "MB\n";
 mysqli_close($conn);//closing db connection for the client
 
 unset($conn);
 unset($sql);
+//echo "step3: " . ((memory_get_usage()/1000)/1000) . "MB\n";
 ?>

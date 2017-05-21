@@ -14,6 +14,7 @@ echo "<h1>Add new user</h1>";
 echo "<form action=\"site_struct/data_struct/components/additional_componets/php/add_new_user.php\" method=\"POST\">";
 
 $usr_input->set_type("text");
+$usr_input->set_required();
 $usr_input->set_name("user_name");
 
 echo "<div><h3>Name: </h3>";
@@ -23,6 +24,7 @@ echo "</div>";
 $usr_input->clear_data();
 
 $usr_input->set_type("email");
+$usr_input->set_required();
 $usr_input->set_name("user_email");
 
 echo "<div><h3>Email: </h3>";
@@ -32,20 +34,19 @@ echo "</div>";
 $usr_input->clear_data();
 
 $usr_select->set_name("user_gender");
-$usr_select->add_option("Male","M","");
-$usr_select->add_option("Female","F","");
-$usr_select->add_option("Other","O","");
+$usr_select->add_option("Male","M");
+$usr_select->add_option("Female","F");
+$usr_select->add_option("Other","O");
 
 echo "<div><h3>Gender: </h3>";
 echo $usr_select->display();
 echo "</div>";
 
 $usr_select->clear_data();
-$usr_select->option_clear_data();
 
 $usr_select->set_name("user_blocked");
-$usr_select->add_option("Yes",1,"");
-$usr_select->add_option("No",0,"");
+$usr_select->add_option("Yes","TRUE");
+$usr_select->add_option("No","FALSE");
 
 
 echo "<div><h3>Blocked: </h3>";
@@ -53,13 +54,11 @@ echo $usr_select->display();
 echo "</div>";
 
 $usr_select->clear_data();
-$usr_select->option_clear_data();
 
 $usr_select->set_name("user_accessLv");
 
 foreach($access_lv_rows as $access_lv_row => $access_lv_data)
 {
-	//echo "<option value=\"".$access_lv_data['accessLv_id']."\">".$access_lv_data['accessLv_title']."</option>";
 	$usr_select->add_option($access_lv_data['accessLv_title'],$access_lv_data['accessLv_id'],"");
 }
 echo "<div><h3>Access Level: </h3>";
@@ -67,6 +66,7 @@ echo $usr_select->display();
 echo "</div>";
 
 $usr_input->set_type("password");
+$usr_input->set_required();
 $usr_input->set_name("user_temp_password");
 
 echo "<div><h3>Temporary Password: </h3>";
@@ -91,7 +91,7 @@ $usr_button->clear_data();
 echo "</form>";
 
 unset($usr_select);
-//unset($usr_input);
+unset($usr_input);
 unset($usr_button);
 
 echo "</div>";

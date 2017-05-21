@@ -1,72 +1,81 @@
 <?php
+//include_once "site_struct/data_struct/components/lib/lib_class/input_class.php";
+//include_once "site_struct/data_struct/components/lib/lib_class/select_class.php";
+
 include_once "lib/lib_class/input_class.php";
+include_once "lib/lib_class/select_class.php";
 
 $cr_ac_input = new input();
+$cr_ac_select = new select();
 
 $cr_ac_input->set_type("text");
 $cr_ac_input->set_name("user_name");
+$cr_ac_input->set_required();
 
-echo "<form action = \"insert_data.php\" method = \"POST\">";
-echo "<table>";
-echo "<tbody>";
+echo "<form action = \"additional_componets/php/insert_data.php\" method = \"POST\">";
+echo "<div>";
+echo "<div>";
+echo "<div>";
 
-echo "<tr>";
-echo "<td><p>Username</p></td>";
-echo "<td>";
+echo "<div>";
+echo "<h4>Username</h4>";
 echo $cr_ac_input->display();
-echo "</td>";
-echo "</tr>";
+echo "</div>";
 
 
 $cr_ac_input->clear_data();
 
 $cr_ac_input->set_type("email");
 $cr_ac_input->set_name("user_email");
+$cr_ac_input->set_required();
 
-echo "<tr>";
-echo "<td><p>Email</p></td>";
-echo "<td>";
+echo "<div>";
+echo "<h4>Email</h4>";
 echo $cr_ac_input->display();
-echo "</td>";
-echo "</tr>";
+echo "</div>";
 
 $cr_ac_input->clear_data();
 
-echo "<tr>";
-echo "<td><p>Gender</p></td>";
-echo "<td><select name = \"user_gender\">";
-echo "<option value = \"M\"><p>male</p></option>";
-echo "<option value = \"F\"><p>female</p></option>";
-echo "<option value = \"O\"><p>other</p></option>";
-echo "</select></td>";
-echo "</tr>";
+$cr_ac_select->set_name("user_gender");
+$cr_ac_select->add_option("Male","M","");
+$cr_ac_select->option_clear_attr();
+$cr_ac_select->add_option("Female","F","");
+$cr_ac_select->option_clear_attr();
+$cr_ac_select->add_option("Other","O","");
+
+
+echo "<div>";
+echo "<h4>Gender</h4>";
+echo $cr_ac_select->display();
+echo "</div>";
+
+$cr_ac_select->option_clear_data();
+$cr_ac_select->clear_data();
 
 $cr_ac_input->set_type("password");
 $cr_ac_input->set_name("user_pass");
 $cr_ac_input->set_required();
 
-echo "<tr>";
-echo "<td><p>Password</p></td>";
-echo "<td>";
+echo "<div>";
+echo "<h4>Password</h4>";
 echo $cr_ac_input->display();
-echo "</td>";
-echo "</tr>";
+echo "</div>";
 
 $cr_ac_input->clear_data();
 
 $cr_ac_input->set_type("submit");
 
-echo "<tr>";
-echo "<td>";
+echo "<div>";
 echo $cr_ac_input->display();
-echo "</td>";
-echo "</tr>";
+echo "</div>";
 
 $cr_ac_input->clear_data();
 
-echo "</tbody>";
-echo "</table>";
+echo "</div>";
+echo "</div>";
+echo "</div>";
 echo "</form>";
 
 unset($cr_ac_input);
+unset($cr_ac_select);
 ?>

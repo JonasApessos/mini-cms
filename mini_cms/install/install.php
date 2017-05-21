@@ -89,6 +89,7 @@ CREATE TABLE ".$prefix."user
 	user_gender VARCHAR(1) NOT NULL,
 	user_date_created DATETIME NOT NULL DEFAULT NOW(),
 	user_blocked BOOLEAN NOT NULL DEFAULT FALSE,
+	user_phonenumber VARCHAR(16) NOT NULL DEFAULT \"NONE\",
 	accessLv_id INT DEFAULT 3 NOT NULL,
 	PRIMARY KEY(user_id),
 	FOREIGN KEY (accessLv_id) REFERENCES ".$prefix."accessLv(accessLv_id)
@@ -129,7 +130,7 @@ CREATE TABLE ".$prefix."Dtable
 	Dtable_blocked BOOLEAN NOT NULL Default 0, 
 	PRIMARY KEY(Dtable_id),
 	FOREIGN KEY (resPos_id) REFERENCES ".$prefix."resPos(resPos_id)
-) ENGINE = innoDB;";//by default a table belongs to the administrator(owner) of the restaurant
+) ENGINE = innoDB;";
 mysqli_query($conn, $sql) or die("ERROR 09".mysqli_error($conn));
 
 $sql = "
@@ -142,6 +143,7 @@ CREATE TABLE ".$prefix."reservation
 	reservation_date DATETIME NOT NULL DEFAULT \"1000-10-10\",
 	reservation_comm VARCHAR(255) NOT NULL DEFAULT \"none\",
 	user_id INT NOT NULL,
+	reservation_blocked BOOLEAN NOT NULL DEFAULT FALSE,
 	PRIMARY KEY(reservation_id),
 	FOREIGN KEY (user_id) REFERENCES ".$prefix."user(user_id)
 ) ENGINE = innoDB;";
@@ -363,7 +365,8 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"table_editor_js\",3, \"../js/table_editor.js\",1),
 (\"room_editor_css\",4, \"../css/site_style/desktop_style/component_style/room_editor.css\",1),
 (\"room_editor\",2,\"site_struct/data_struct/components/additional_componets/php/room_editor.php\",1),
-(\"room_editor_js\",3, \"../js/room_editor.js\",1);";
+(\"room_editor_js\",3, \"../js/room_editor.js\",1),
+(\"reservation\",3, \"../js/reservation.js\",2);";
 mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES

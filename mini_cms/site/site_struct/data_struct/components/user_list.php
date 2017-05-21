@@ -100,15 +100,12 @@ foreach($user_rows as $user_row => $user_data)
 		if ($access_lv_data['accessLv_id'] == $user_data['accessLv_id'])
 			$usr_select->set_option_selected();
 
-		$usr_select->add_option($access_lv_data['accessLv_title'],$access_lv_data['accessLv_id'],"");
-		
-		$usr_select->option_clear_attr();
+		$usr_select->add_option($access_lv_data['accessLv_title'],$access_lv_data['accessLv_id']);
 	}
 	echo "<div><h3>access level: </h3>";
 	echo $usr_select->display();
 	echo "</div>";
 	
-	$usr_select->option_clear_data();
 	$usr_select->clear_data();
 	
 	$usr_button->set_type("submit");

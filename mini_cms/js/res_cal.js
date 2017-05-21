@@ -19,6 +19,8 @@ var months = ["January","February","Mars","April","May","June","Julie","August",
 var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,15,16,17,18,19,20,21,22,23];
 var minutes = [0,15,30,45];
 
+
+/*
 function resCall(){}
 function dateCheck(){}
 function createCallChilds(){}
@@ -27,6 +29,7 @@ function setHours(){}
 function setDays(){}
 function setBoxSelection(){}
 function updateForm(){}
+*/
 //-------------------------------------------------------------
 
 //set calander

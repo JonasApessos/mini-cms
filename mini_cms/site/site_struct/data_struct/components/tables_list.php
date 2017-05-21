@@ -43,15 +43,55 @@ foreach($pos_rows as $pos_row => $pos_data)
 		$table_input->set_value($table_data['Dtable_id']);
 		$table_input->set_name("table_id");
 		$table_input->set_readonly();
+		$table_input->set_required();
+	
+		echo "<div>";
+		echo "<h4>Table ID:</h4>";
+		echo $table_input->display();
+		echo "</div>";
 		
-		$table_button->set_id("bt_add");
+		$table_input->clear_data();
+		
+		$table_input->set_type("number");
+		$table_input->set_value($table_data['Dtable_capacity']);
+		$table_input->set_name("table_capacity");
+		$table_input->set_min_max(1,10);
+		//$table_input->set_readonly();
+		$table_input->set_required();
+		
+		echo "<div>";
+		echo "<h4>Table capacity:</h4>";
+		echo $table_input->display();
+		echo "</div>";
+		
+		$table_input->clear_data();
+		
+		$table_input->set_type("text");
+		$table_input->set_name("table_blocked");
+		$table_input->set_value($table_data['Dtable_blocked'] ? "Yes" : "No");
+		$table_input->set_readonly();
+		$table_input->set_required();
+		
+		echo "<div>";
+		echo "<h4>Table blocked:</h4>";
+		echo $table_input->display();
+		echo "</div>";
+		
+		$table_button->set_id("bt_lock");
 		$table_button->set_type("submit");
 		$table_button->set_formmethod("POST");
 		$table_button->set_formaction("site_struct/data_struct/components/additional_componets/php/".($table_data['Dtable_blocked'] ? "table_unlock" : "table_block").".php");
 		
-		echo "<h4>Table ID:</h4>";
-		echo $table_input->display();
 		echo $table_button->display("<div><img src=\"../images/".($table_data['Dtable_blocked'] ? "img_bt_unlock" : "img_bt_lock").".png\"><h4>".($table_data['Dtable_blocked'] ? "unlock table" : "lock table" )."</h4></div>");
+		
+		$table_button->clear_data();
+		
+		$table_button->set_id("bt_edit");
+		$table_button->set_type("submit");
+		$table_button->set_formmethod("POST");
+		$table_button->set_formaction("site_struct/data_struct/components/additional_componets/php/table_edit.php");
+		
+		echo $table_button->display("<div><img src=\"../images/img_bt_edit.png\"><h4>Edit table</h4></div>");
 		
 		$table_input->clear_data();
 		$table_button->clear_data();
