@@ -13,12 +13,11 @@ class select extends html_standard_attributes_proccess
 		echo "</select>";
 	}
 	
-	public function add_option($label,$value)
+	public function add_option($title,$value)
 	{
-		((!empty($value)) ?	$this->set_option_value($value) : "");
-		((!empty($label)) ?	$this->set_option_label($label) : "");
+		((!empty($value)) ? $this->set_option_value($value) : "");
 		
-		$this->options .= "<option ".$this->option_attr."></option>";
+		$this->options .= "<option ".$this->option_attr.">".$title."</option>";
 		
 		$this->option_attr = "";
 	}
@@ -26,11 +25,6 @@ class select extends html_standard_attributes_proccess
 	public function set_option_disabled()
 	{
 		$this->option_attr .= " disabled";
-	}
-	
-	private function set_option_label($at_input)
-	{
-		$this->option_attr .= " label=\"".$at_input."\"";
 	}
 	
 	public function set_option_selected()

@@ -1,11 +1,8 @@
 <?php
-include_once "site_struct/data_struct/components/lib/lib_class/button_class.php";
 
 echo "<div>";
 echo "<h2>Reserve Table</h2>";
 echo "</div>";
-
-$table_input = new input();
 
 $sql = "
 SELECT ".$prefix."resPos.resPos_id , ".$prefix."resPos.resPos_title
@@ -17,6 +14,7 @@ $res_pos_rows = mysqli_query($conn, $sql) or die("ERROR 12" . mysqli_error($conn
 
 	
 echo "<div>";
+
 foreach ($res_pos_rows as $res_pos_row => $res_pos_data)
 {
 	echo "<div>";
@@ -51,16 +49,17 @@ foreach ($res_pos_rows as $res_pos_row => $res_pos_data)
 	echo "</div>";	
 }
 
-$table_input->set_type("hidden");
-$table_input->set_id("table_list");
-//$table_input->set_value(" ");
-$table_input->set_name("res_table_list");
-$table_input->set_readonly();
-//$table_input->set_required();
+$input->set_type("hidden");
+$input->set_id("table_list");
+$input->set_value("");
+$input->set_name("res_table_list");
+$input->set_readonly();
+//$input->set_required();
 
-$table_input->display();
+$input->display();
+
+$input->clear_data();
 
 echo "</div>";
 
-unset($table_input);
 ?>

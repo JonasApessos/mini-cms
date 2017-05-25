@@ -7,6 +7,8 @@ session_start();
 include_once "lib/lib_class/select_class.php";
 include_once "lib/lib_class/textarea_class.php";
 include_once "lib/lib_class/input_class.php";
+include_once "../../document_data/db_conn.php";
+include_once "../../document_data/document_data.php";
 
 $editor_select = new select();
 $editor_textarea = new textarea();
@@ -62,6 +64,8 @@ if($_SESSION['access_level'] < 2)
 	echo "</div>";
 
 	fclose($test_read_file);
+	
+	echo "<iframe src=\"".$path."\" width=\"100%\" height=\"512px\"></iframe>";
 	}
 }
 else

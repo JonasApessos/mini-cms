@@ -9,11 +9,13 @@ include_once "../../../../document_data/db_conn.php";
 $email = $_POST['login_email'];
 $password = crypt($_POST['password_login'],"T51");
 
-$sql = "SELECT * 
+$sql = "
+SELECT ".$prefix."user.user_name , ".$prefix."user.user_email , ".$prefix."user.accessLv_id , ".$prefix."user.user_id
 FROM ".$prefix."user 
 WHERE ".$prefix."user.user_email = \"".$email."\" 
 AND ".$prefix."user.user_password = \"".$password."\"
-AND ".$prefix."user.user_blocked = FALSE LIMIT 1;";
+AND ".$prefix."user.user_blocked = FALSE 
+LIMIT 1;";
 
 $user_rows = mysqli_query($conn , $sql) or die("ERROR 07: ".mysqli_query($conn));
 

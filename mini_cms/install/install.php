@@ -297,7 +297,7 @@ $sql = "INSERT INTO ".$prefix."mStruct (mStruct_title ,accessLv_id) VALUES
 (\"menu0\",3),
 (\"Information\",3), 
 (\"Reservation\",3),
-(\"List's and editing\",1),
+(\"List's and editing\",2),
 (\"menu4\",2);";
 mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
@@ -311,7 +311,7 @@ $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv
 (\"Faculty\",2,3),
 (\"Users List\",4,1),
 (\"Tables List\",4,1),
-(\"Reservation list\",4,1),
+(\"Reservation list\",4,2),
 (\"Test4\",5,2),
 (\"Test5\",5,2);";
 mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
@@ -356,8 +356,8 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"users_list_css\",4, \"../css/site_style/desktop_style/component_style/users_list.css\",1),
 (\"tables_list\",2,\"site_struct/data_struct/components/tables_list.php\",1),
 (\"tables_list_css\",4, \"../css/site_style/desktop_style/component_style/tables_list.css\",1),
-(\"reservations\",2,\"site_struct/data_struct/components/reservations.php\",1),
-(\"reservations_css\",4, \"../css/site_style/desktop_style/component_style/reservations.css\",1),
+(\"reservations\",2,\"site_struct/data_struct/components/reservations.php\",2),
+(\"reservations_css\",4, \"../css/site_style/desktop_style/component_style/reservations.css\",2),
 (\"user_editor\",2,\"site_struct/data_struct/components/additional_componets/php/user_editor.php\",1),
 (\"user_editor_js\",3, \"../js/user_editor.js\",1),
 (\"table_editor_css\",4, \"../css/site_style/desktop_style/component_style/table_editor.css\",1),
@@ -366,7 +366,12 @@ $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_pat
 (\"room_editor_css\",4, \"../css/site_style/desktop_style/component_style/room_editor.css\",1),
 (\"room_editor\",2,\"site_struct/data_struct/components/additional_componets/php/room_editor.php\",1),
 (\"room_editor_js\",3, \"../js/room_editor.js\",1),
-(\"reservation\",3, \"../js/reservation.js\",2);";
+(\"reservation\",3, \"../js/reservation.js\",2),
+(\"reservation_editor_js\",3, \"../js/reservation_editor.js\",1),
+(\"reservation_editor\",2,\"site_struct/data_struct/components/additional_componets/php/reservation_editor.php\",1),
+(\"create_account_js\",3, \"../js/create_account.js\",3),
+(\"recovery_js\",3, \"../js/recovery.js\",3),
+(\"broadcaster_js\",3, \"../js/broadcaster.js\",3);";
 mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES
@@ -395,7 +400,7 @@ VALUES
 (\"Faculty\",24,3,7,NULL),
 (\"Users List\",36,1,8,NULL),
 (\"Tables List\",38,1,9,NULL),
-(\"Reservations\",40,1,10,NULL);";
+(\"Reservations\",40,2,10,NULL);";
 mysqli_query($conn , $sql) or die("ERROR 24" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."user(accessLv_id , user_name , user_email  , user_password , user_gender) VALUES

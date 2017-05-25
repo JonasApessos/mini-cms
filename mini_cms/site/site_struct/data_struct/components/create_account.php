@@ -1,81 +1,87 @@
 <?php
-//include_once "site_struct/data_struct/components/lib/lib_class/input_class.php";
-//include_once "site_struct/data_struct/components/lib/lib_class/select_class.php";
+$input->clear_data();
 
-include_once "lib/lib_class/input_class.php";
-include_once "lib/lib_class/select_class.php";
+$input->set_type("text");
+$input->set_name("user_name");
+$input->set_required();
 
-$cr_ac_input = new input();
-$cr_ac_select = new select();
 
-$cr_ac_input->set_type("text");
-$cr_ac_input->set_name("user_name");
-$cr_ac_input->set_required();
-
-echo "<form action = \"additional_componets/php/insert_data.php\" method = \"POST\">";
+echo "<div id=\"create_user\" style=\"display:none; position:fixed; z-index:2;\">";
 echo "<div>";
 echo "<div>";
-echo "<div>";
+echo "<form action = \"site_struct/data_struct/components/additional_componets/php/insert_data.php\" method = \"POST\">";
 
 echo "<div>";
 echo "<h4>Username</h4>";
-echo $cr_ac_input->display();
+echo $input->display();
 echo "</div>";
 
 
-$cr_ac_input->clear_data();
+$input->clear_data();
 
-$cr_ac_input->set_type("email");
-$cr_ac_input->set_name("user_email");
-$cr_ac_input->set_required();
+$input->set_type("email");
+$input->set_name("user_email");
+$input->set_required();
 
 echo "<div>";
 echo "<h4>Email</h4>";
-echo $cr_ac_input->display();
+echo $input->display();
 echo "</div>";
 
-$cr_ac_input->clear_data();
+$input->clear_data();
 
-$cr_ac_select->set_name("user_gender");
-$cr_ac_select->add_option("Male","M","");
-$cr_ac_select->option_clear_attr();
-$cr_ac_select->add_option("Female","F","");
-$cr_ac_select->option_clear_attr();
-$cr_ac_select->add_option("Other","O","");
-
+$select->set_name("user_gender");
+$select->add_option("Male","M","");
+$select->add_option("Female","F","");
+$select->add_option("Other","O","");
 
 echo "<div>";
 echo "<h4>Gender</h4>";
-echo $cr_ac_select->display();
+echo $select->display();
 echo "</div>";
 
-$cr_ac_select->option_clear_data();
-$cr_ac_select->clear_data();
+$select->clear_data();
 
-$cr_ac_input->set_type("password");
-$cr_ac_input->set_name("user_pass");
-$cr_ac_input->set_required();
+$input->set_type("text");
+$input->set_name("user_phonenumber");
+$input->set_required();
+$input->set_maxlength(16);
+
+echo "<div>";
+echo "<h4>Phone number</h4>";
+echo $input->display();
+echo "</div>";
+
+$input->clear_data();
+
+$input->set_type("password");
+$input->set_name("user_pass");
+$input->set_required();
 
 echo "<div>";
 echo "<h4>Password</h4>";
-echo $cr_ac_input->display();
+echo $input->display();
 echo "</div>";
 
-$cr_ac_input->clear_data();
+$input->clear_data();
 
-$cr_ac_input->set_type("submit");
+$input->set_type("submit");
+
+$button->clear_data();
+$button->set_type("button");
+$button->set_onclick("hide_creator()");
 
 echo "<div>";
-echo $cr_ac_input->display();
+echo $input->display();
+echo $button->display("Cancel");
 echo "</div>";
 
-$cr_ac_input->clear_data();
+$input->clear_data();
+$button->clear_data();
 
-echo "</div>";
-echo "</div>";
-echo "</div>";
 echo "</form>";
 
-unset($cr_ac_input);
-unset($cr_ac_select);
+echo "</div>";
+echo "</div>";
+echo "</div>";
 ?>

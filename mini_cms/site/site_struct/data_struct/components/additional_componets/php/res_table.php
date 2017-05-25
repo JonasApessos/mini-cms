@@ -31,14 +31,11 @@ if($_SESSION['access_level'] < 3)
 	$table_list = array();
 	$table_list_len = 0;
 	
-	echo $_POST['fin_res_name']."<br>";
+	/*echo $_POST['fin_res_name']."<br>";
 	echo $_POST['fin_res_smoking']."<br>";
 	echo $_POST['fin_res_people']."<br>";
-	echo $_POST['fin_res_comment']."<br>";
+	echo $_POST['fin_res_comment']."<br>";*/
 	$date_string = $_POST['fin_res_date'];
-	echo $_SESSION['user_id']."<br>";
-	echo $_SESSION['user_email']."<br>";
-	echo "table_list: " . $_POST['res_table_list'] . "<br>";
 	
 	$table_list = table_seperation($_POST['res_table_list']);
 	$table_list_len = count($table_list);
@@ -74,7 +71,7 @@ if($_SESSION['access_level'] < 3)
 	//echo $sql;
 	mysqli_query($conn,$sql)or die("ERROR 10".mysqli_error($conn));
 	
-	HEADER("Location:../../../../../?menu_id=6");
+	HEADER("Location:../../../../../");
 }
 else
 	HEADER("Location:../../../../../");

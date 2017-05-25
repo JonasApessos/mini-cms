@@ -14,88 +14,52 @@ class html_standard_attributes_proccess extends html_standard_attributes
 	//--------SET FORM ATTRIBUTES--------//
 	public function set_form($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " form=\"".$at_input."\"";
+		$this->chain_attributes .= " form=\"".$at_input."\"";
 	}
 	public function set_formaction($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " formaction=\"".$at_input."\"";
+		$this->chain_attributes .= " formaction=\"".$at_input."\"";
 	}
 	public function set_formenctype($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " formenctype=\"".$at_input."\"";
+		$this->chain_attributes .= " formenctype=\"".$at_input."\"";
 	}
 	public function set_formmethod($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " formmethod=\"".$at_input."\"";
+		$this->chain_attributes .= " formmethod=\"".$at_input."\"";
 	}
 	public function set_formnovalidate($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " formnovalidate=\"".$at_input."\"";
+		$this->chain_attributes .= " formnovalidate=\"".$at_input."\"";
 	}
 	public function set_formtarget($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " formtarget=\"".$at_input."\"";
+		$this->chain_attributes .= " formtarget=\"".$at_input."\"";
 	}
 	//--------SET STANDARD ATTRIBUTES--------//
 	public function set_type($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " type=\"".$at_input."\"";
+		$this->chain_attributes .= " type=\"".$at_input."\"";
 	}
 	public function set_name($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " name=\"".$at_input."\"";
+		$this->chain_attributes .= " name=\"".$at_input."\"";
 	}
 	public function set_id($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " id=\"".$at_input."\"";
+		$this->chain_attributes .= " id=\"".$at_input."\"";
 	}
 	public function set_class_id($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " class_id=\"".$at_input."\"";
+		$this->chain_attributes .= " class_id=\"".$at_input."\"";
 	}
 	public function set_autocomplete($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " autocomplete=\"".$at_input."\"";
+		$this->chain_attributes .= " autocomplete=\"".$at_input."\"";
 	}
 	public function set_autofocus($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " autofocus=\"".$at_input."\"";
+		$this->chain_attributes .= " autofocus=\"".$at_input."\"";
 	}
 	public function set_dimensions($at_input_x , $at_input_y)
 	{
@@ -111,10 +75,7 @@ class html_standard_attributes_proccess extends html_standard_attributes
 	}
 	public function set_list($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " list=\"".$at_input."\"";
+		$this->chain_attributes .= " list=\"".$at_input."\"";
 	}
 	public function set_min_max($at_input_min , $at_input_max)
 	{
@@ -130,77 +91,47 @@ class html_standard_attributes_proccess extends html_standard_attributes
 	}
 	public function set_multiple($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " multiple=\"".$at_input."\"";
+		$this->chain_attributes .= " multiple=\"".$at_input."\"";
 	}
 	public function set_pattern($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " pattern=\"".$at_input."\"";
+		$this->chain_attributes .= " pattern=\"".$at_input."\"";
 	}
 	public function set_placeholder($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " placeholder=\"".$at_input."\"";
+		$this->chain_attributes .= " placeholder=\"".$at_input."\"";
 	}
 	public function set_step($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " step=\"".$at_input."\"";
+		$this->chain_attributes .= " step=\"".$at_input."\"";
 	}
 	public function set_novalidate($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " novalidate=\"".$at_input."\"";
+		$this->chain_attributes .= " novalidate=\"".$at_input."\"";
 	}
 	public function set_maxlength($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " maxlength=\"".$at_input."\"";
+		$this->chain_attributes .= " maxlength=\"".$at_input."\"";
 	}
 	public function set_src($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " src=\"".$at_input."\"";
+		$this->chain_attributes .= " src=\"".$at_input."\"";
 	}
 	public function set_value($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " value=\"".$at_input."\"";
+		$this->chain_attributes .= " value=\"".$at_input."\"";
 	}
 	public function set_dirname($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " dirname=\"".$at_input."\"";
+		$this->chain_attributes .= " dirname=\"".$at_input."\"";
 	}
 	public function set_checked($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " checked=\"".$at_input."\"";
+		$this->chain_attributes .= " checked=\"".$at_input."\"";
 	}
 	public function set_spellcheck()
 	{
-			$this->chain_attributes .= " spellcheck=\"TRUE\"";
+		$this->chain_attributes .= " spellcheck=\"TRUE\"";
 	}
 	//--------SET SWITCH--------//
 	public function set_required()
@@ -218,24 +149,15 @@ class html_standard_attributes_proccess extends html_standard_attributes
 	//--------SET EVENTS--------//
 	public function set_onfocusout($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " onfocusout=\"".$at_input."\"";
+		$this->chain_attributes .= " onfocusout=\"".$at_input."\"";
 	}
 	public function set_onchange($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " onchange=\"".$at_input."\"";
+		$this->chain_attributes .= " onchange=\"".$at_input."\"";
 	}
 	public function set_onclick($at_input)
 	{
-		if(empty($at_input))
-			$this->chain_attributes .= "";
-		else
-			$this->chain_attributes .= " onclick=\"".$at_input."\"";
+		$this->chain_attributes .= " onclick=\"".$at_input."\"";
 	}
 	
 	public function clear_data()
