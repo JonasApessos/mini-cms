@@ -67,10 +67,6 @@ if(empty($_POST['res_date']) || empty($_POST['res_name']) || empty($_POST['res_p
 	echo "</div>";
 
 	$input->clear_data();
-	
-	echo "<div>";
-	echo "<h3 class = \"type_error\">type of error</h3>";
-	echo "</div>";
 
 	echo "</div>";
 	
@@ -151,7 +147,7 @@ else
 	
 	echo "<div>";
 	
-	include_once "site_struct/data_struct/components/table_place.php";
+	require_once "site_struct/data_struct/components/table_place.php";
 	
 	echo "</div>";
 	

@@ -92,9 +92,17 @@ echo $input->display();
 $input->clear_data();
 
 echo "</form>";
+echo "</div>";
+echo "</div>";
+echo "</div>";
 }
 else
 {
+	
+	echo "<div id=\"reservation_editor_2\">";
+	echo "<div>";
+	echo "<div>";
+	echo "<h1>Add new reservation</h1>";
 	echo "<form action=\"site_struct/data_struct/components/additional_componets/php/res_table_admin.php\" method=\"POST\">";
 	
 	$input->set_type("number");
@@ -177,7 +185,7 @@ else
 	
 	//$input->set_name("fin_user_id");
 	
-	include_once "site_struct/data_struct/components/table_place.php";
+	require_once "site_struct/data_struct/components/table_place.php";
 	
 	
 	$input->set_type("submit");
@@ -189,9 +197,8 @@ else
 	
 	
 	echo "</form>";
+	echo "</div>";
+	echo "</div>";
+	echo "</div>";
 }
-
-echo "</div>";
-echo "</div>";
-echo "</div>";
 ?>

@@ -1,6 +1,6 @@
 <?php
-include_once "../../../../document_data/db_conn.php";
-include_once "../../../../document_data/document_data.php";
+require_once "../../../../document_data/db_conn.php";
+require_once "../../../../document_data/document_data.php";
 
 $sql ="
 INSERT INTO ".$prefix."reservation(reservation_name,reservation_smoker,reservation_people,reservation_date,reservation_comm,user_id,reservation_blocked)

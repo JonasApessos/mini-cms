@@ -3,7 +3,7 @@ echo "<div id=\"recovery\" style=\"display:none; position:fixed; z-index:2;\">";
 echo "<div>";
 echo "<div>";
 echo "<h1>Change Password</h1>";
-echo "<form action=\"site_struct/data_struct/components/additional_componets/php/password_change.php\" method=\"POST\">";
+echo "<form action=\"site_struct/data_struct/components/additional_componets/php/send_mail.php\" method=\"POST\">";
 
 $input->clear_data();
 

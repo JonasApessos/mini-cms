@@ -1,6 +1,6 @@
 <?php
 $table_string = "";
-$start_index = empty($_POST['index']) ? 0 : $_POST['index'];
+$start_index = (empty($_POST['index']) || (!isset($_POST['index']))) ? 0 : $_POST['index'];
 
 if(!empty($_POST['next_list']))
 {
@@ -26,31 +26,78 @@ switch($_SESSION['access_level'])
 		$sql = "
 		SELECT ".$prefix."reservation.reservation_id , ".$prefix."reservation.reservation_name , ".$prefix."reservation.reservation_smoker , ".$prefix."reservation.reservation_people , ".$prefix."reservation.reservation_date , ".$prefix."reservation.reservation_comm , ".$prefix."reservation.user_id , ".$prefix."reservation.reservation_blocked
 		FROM ".$prefix."reservation
+		WHERE ".$prefix."reservation.".(empty($_POST['search_type']) ? "reservation_name" : $_POST['search_type'])." 
+		LIKE \"".(empty($_POST['search_query']) ? "" : $_POST['search_query'])."%\"
 		LIMIT ".($start_index * 25).",25;";
 		break;
 	case 2:
 		$sql = "
 		SELECT ".$prefix."reservation.reservation_id , ".$prefix."reservation.reservation_name , ".$prefix."reservation.reservation_smoker , ".$prefix."reservation.reservation_people , ".$prefix."reservation.reservation_date , ".$prefix."reservation.reservation_comm , ".$prefix."reservation.user_id , ".$prefix."reservation.reservation_blocked
 		FROM ".$prefix."reservation
-		WHERE ".$prefix."reservation.user_id = ".$_SESSION['user_id']."
+		WHERE ".$prefix."reservation.user_id > ".($_SESSION['user_id'] - 1)."
+		AND ".$prefix."reservation.".(empty($_POST['search_type']) ? "reservation_name" : $_POST['search_type'])." 
+		LIKE \"".(empty($_POST['search_query']) ? "" : $_POST['search_query'])."%\"
 		LIMIT ".($start_index * 25).",25;";
 		break;
 	default:
 		echo "an error accured";
+		break;
 }
 $res_rows = mysqli_query($conn,$sql) or die ("ERROR 14" . mysqli_error($conn));
 
-if(mysqli_num_rows($res_rows) == 0 && $_POST['next_list'] == "TRUE")
+$res_rows_count = mysqli_num_rows($res_rows);
+
+if(!(empty($_POST['next_list'])))
 {
-	//echo "test: " . $_POST['index'];
-	$start_index = empty($_POST['index']) ? 0 : $_POST['index'];
-	//echo "test: " . $_POST['index'];
+	if($res_rows_count < 1 && $_POST['next_list'] == "TRUE")
+	{
+		$start_index = empty($_POST['index']) ? 0 : $_POST['index'];
+
+		echo "<h1>No data...</h1>";
+	}
 }
 
 echo "<div class = \"reservations_list_style\">";
 echo "<div>";
 echo "<div>";
 
+echo "<form action=\"#\" method=\"POST\">";
+$input->clear_data();
+
+$input->set_type("text");
+$input->set_name("search_query");
+$input->set_value("");
+
+$select->clear_data();
+
+$select->set_name("search_type");
+$select->add_option("by reservation name","reservation_name");
+$select->add_option("by reservation email","reservation_people");
+$select->add_option("by reservation id","reservation_id");
+$select->add_option("by user id","user_id");
+
+echo "<div id=\"search_panel\">";
+echo "<h3>Search</h3>";
+echo $input->display();
+
+echo $select->display();
+
+$select->clear_data();
+
+$input->clear_data();
+
+$input->set_type("submit");
+
+echo $input->display();
+
+echo "</div>";
+
+$input->clear_data();
+
+echo "</form>";
+
+if($res_rows_count > 0)
+{
 foreach($res_rows as $res_row => $res_data)
 {
 	$sql = "
@@ -187,8 +234,7 @@ foreach($res_rows as $res_row => $res_data)
 	$button->set_formaction("site_struct/data_struct/components/additional_componets/php/edit_reservation.php");
 	
 	echo "<div>";
-	echo $button->display("<img src=\"../images/img_bt_edit.png\" alt=\"edit_reservation\"><div><h4>Edit reservation</h4></div>");
-	echo "</div>";
+	echo $button->display("<div><img src=\"../images/img_bt_edit.png\" alt=\"edit_reservation\"><h4>Edit reservation</h4></div>");
 	
 	$button->clear_data();
 	
@@ -196,8 +242,7 @@ foreach($res_rows as $res_row => $res_data)
 	$button->set_formmethod("POST");
 	$button->set_formaction("site_struct/data_struct/components/additional_componets/php/reservation_".($res_data['reservation_blocked'] ? "unlock" : "lock").".php");
 	
-	echo "<div>";
-	echo $button->display("<img src=\"../images/img_bt_".($res_data['reservation_blocked'] ? "unlock" : "lock").".png\" alt=\"lock_reservation\"><div><h4>".($res_data['reservation_blocked'] ? "Unlock" : "Lock")." reservation</h4></div>");
+	echo $button->display("<div><img src=\"../images/img_bt_".($res_data['reservation_blocked'] ? "unlock" : "lock").".png\" alt=\"lock_reservation\"><h4>".($res_data['reservation_blocked'] ? "Unlock" : "Lock")." reservation</h4></div>");
 	echo "</div>";
 	
 	echo "</div>";
@@ -206,6 +251,9 @@ foreach($res_rows as $res_row => $res_data)
 	
 	$table_string = "";
 }
+}
+else
+	echo "No data...";
 
 $input->set_type("hidden");
 $input->set_name("index");
@@ -216,7 +264,7 @@ $button->set_name("next_list");
 $button->set_value("FALSE");
 
 echo "<form action=\"#\" method=\"POST\">";
-echo "<div>";
+echo "<div id=\"page_index\">";
 
 echo $input->display();
 

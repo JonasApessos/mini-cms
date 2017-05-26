@@ -31,6 +31,8 @@ WARNING the structure follows monolithic structure , that means there will have 
 */
 
 //---------------------------------------------------------------------------------------------------------------
+ini_set('display_errors',1);
+
 $server_name = "localhost";//the servers name where the php will connect to execute the sql databases
 $server_user = "root";//username of the server administration
 $server_password = "";//password of the server administrator
@@ -265,8 +267,10 @@ CREATE TABLE ".$prefix."product
 	product_price FLOAT(5,2) NOT NULL DEFAULT 1.00,
 	product_desc VARCHAR(255),
 	category_id INT,
+	compDataImg_id INT,
 	PRIMARY KEY(product_id),
-	FOREIGN KEY (category_id) REFERENCES ".$prefix."category(category_id)
+	FOREIGN KEY (category_id) REFERENCES ".$prefix."category(category_id),
+	FOREIGN KEY (compDataImg_id) REFERENCES ".$prefix."compDataImg(compDataImg_id)
 ) ENGINE = innoDB;";
 
 mysqli_query($conn,$sql) or die ("ERROR 18" . mysqli_error($conn));
@@ -297,8 +301,7 @@ $sql = "INSERT INTO ".$prefix."mStruct (mStruct_title ,accessLv_id) VALUES
 (\"menu0\",3),
 (\"Information\",3), 
 (\"Reservation\",3),
-(\"List's and editing\",2),
-(\"menu4\",2);";
+(\"List's and editing\",2);";
 mysqli_query($conn, $sql) or die("ERROR 19" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv_id) VALUES
@@ -311,9 +314,7 @@ $sql = "INSERT INTO ".$prefix."subMStruct(subMStruct_title,mStruct_id , accessLv
 (\"Faculty\",2,3),
 (\"Users List\",4,1),
 (\"Tables List\",4,1),
-(\"Reservation list\",4,2),
-(\"Test4\",5,2),
-(\"Test5\",5,2);";
+(\"Reservation list\",4,2);";
 mysqli_query($conn, $sql) or die("ERROR 20" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."incFile (incFile_title, fileType_id , incFile_path,accessLV_id) VALUES 
@@ -377,7 +378,11 @@ mysqli_query($conn , $sql)or die("ERROR 21" . mysqli_error($conn));
 $sql = "INSERT INTO ".$prefix."compDataImg (compDataImg_title,compDataImg_path ,fileType_id) VALUES
 (\"add_btn\",\"../images/img_bt_add.png\",6),
 (\"del_btn\",\"../images/img_bt_lock.png\",6), 
-(\"edit_btn\",\"../images/img_bt_edit.png\",6);";
+(\"edit_btn\",\"../images/img_bt_edit.png\",6),
+(\"catalog_img_1\", \"../images/catalog_img_1.jpg\", 5),
+(\"catalog_img_2\", \"../images/catalog_img_2.jpg\", 5),
+(\"catalog_img_3\", \"../images/catalog_img_3.jpg\", 5),
+(\"catalog_img_4\", \"../images/catalog_img_4.jpg\", 5);";
 mysqli_query($conn, $sql) or die("ERROR 22" . mysqli_error($conn));
 
 $sql = "INSERT INTO ".$prefix."compData (compData_title ,compDataImg_id, accessLv_id) VALUES
@@ -432,14 +437,15 @@ $sql = "INSERT INTO ".$prefix."category (category_title) VALUES
 (\"Deserts\");";
 mysqli_query($conn , $sql) or die("ERROR 28". mysqli_error($conn));
 
-$sql = "INSERT INTO ".$prefix."product (product_title, product_desc, product_price, category_id) VALUES 
-(\"La mere rouge\", \"A delicacy brough from france with love\",14.99, 1),
-(\"Buffet Noire\", \"A buffet with a lot kinds of meat\", 24.99, 1),
-(\"Cream a Vannile\",\"Desert made by the chef himself with a lot of cream and fruit on top of it\" ,13.99, 2),
-(\"La Croix\",\"A dishe for the believers of god\" ,54.99, 2);";
- mysqli_query($conn , $sql) or die("ERROR 29". mysqli_error($conn));
+
+$sql = "INSERT INTO ".$prefix."product (product_title, product_desc, product_price, category_id , compDataImg_id) VALUES 
+(\"La mere rouge\", \"A delicacy brough from france with love\",14.99, 1 , 4),
+(\"Buffet Noire\", \"A buffet with a lot kinds of meat\", 24.99, 1 , 5),
+(\"Cream a Vannile\",\"Desert made by the chef himself with a lot of cream and fruit on top of it\" ,13.99, 2 , 6),
+(\"La Croix\",\"A dishe for the believers of god\" ,54.99, 2 , 7);";
+ mysqli_query($conn , $sql) or die("ERROR 30". mysqli_error($conn));
  
-mysqli_close($conn) or die("ERROR 30" . mysqli_error($conn));
+mysqli_close($conn) or die("ERROR 31" . mysqli_error($conn));
 
 $sql = NULL;//clear data sql for garbage collection purposes as well security reasons (for remote installation mostly)
 $conn = NULL;//same with the above

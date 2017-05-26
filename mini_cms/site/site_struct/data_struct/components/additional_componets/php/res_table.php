@@ -2,8 +2,8 @@
 session_start();
 ?>
 <?php
-include_once "../../../../document_data/db_conn.php";
-include_once "../../../../document_data/document_data.php";
+require_once "../../../../document_data/db_conn.php";
+require_once "../../../../document_data/document_data.php";
 ?>
 <?php
 function table_seperation($table_list)
@@ -31,10 +31,6 @@ if($_SESSION['access_level'] < 3)
 	$table_list = array();
 	$table_list_len = 0;
 	
-	/*echo $_POST['fin_res_name']."<br>";
-	echo $_POST['fin_res_smoking']."<br>";
-	echo $_POST['fin_res_people']."<br>";
-	echo $_POST['fin_res_comment']."<br>";*/
 	$date_string = $_POST['fin_res_date'];
 	
 	$table_list = table_seperation($_POST['res_table_list']);

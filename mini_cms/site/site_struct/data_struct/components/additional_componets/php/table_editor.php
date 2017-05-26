@@ -2,7 +2,7 @@
 $sql = "
 SELECT ".$prefix."resPos.resPos_id , ".$prefix."resPos.resPos_title
 FROM ".$prefix."resPos;";
-$pos_rows = mysqli_query($conn,$sql)or die("ERROR 28 " . mysqli_query($conn));
+$pos_rows = mysqli_query($conn,$sql)or die("ERROR 1");
 
 echo "<div id=\"table_editor\">";
 echo "<div>";

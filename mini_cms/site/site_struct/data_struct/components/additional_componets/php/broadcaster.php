@@ -2,7 +2,7 @@
 
 if(!empty($_GET['err_msg']) || isset($_GET['err_msg']))
 {	
-	echo "<div id=\"broadcaster\" style=\"display:display; position:fixed; z-index:2;\">";
+	echo "<div id=\"broadcaster\">";
 	echo "<div>";
 	echo "<div>";
 

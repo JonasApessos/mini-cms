@@ -1,5 +1,5 @@
 <?php
-include_once "site_struct/data_struct/components/additional_componets/php/room_editor.php";
+require_once "site_struct/data_struct/components/additional_componets/php/room_editor.php";
 
 $sql = "
 SELECT ".$prefix."resPos.resPos_id , ".$prefix."resPos.resPos_title , ".$prefix."resPos.resPos_desc
@@ -7,7 +7,7 @@ FROM ".$prefix."resPos;";
 
 $pos_rows = mysqli_query($conn,$sql) or die ("ERROR 13" . mysqli_error($conn));
 
-include_once "site_struct/data_struct/components/additional_componets/php/table_editor.php";
+require_once "site_struct/data_struct/components/additional_componets/php/table_editor.php";
 
 echo "<div class = \"table_list_style\">";
 echo "<div>";
@@ -33,6 +33,8 @@ foreach($pos_rows as $pos_row => $pos_data)
 	{
 		echo "<form>";
 		echo "<div>";
+		
+		$input->clear_data();
 		
 		$input->set_type("number");
 		$input->set_value($table_data['Dtable_id']);
@@ -72,6 +74,9 @@ foreach($pos_rows as $pos_row => $pos_data)
 		echo $input->display();
 		echo "</div>";
 		
+		$input->clear_data();
+		$button->clear_data();
+		
 		$button->set_id("bt_lock");
 		$button->set_type("submit");
 		$button->set_formmethod("POST");
@@ -102,7 +107,7 @@ foreach($pos_rows as $pos_row => $pos_data)
 
 $button->clear_data();
 
-$button->set_id("bt_add_table");
+$button->set_id("bt_add_room");
 $button->set_type("submit");
 $button->set_onclick("display_room_editor()");
 
@@ -110,7 +115,7 @@ echo $button->display("<div><img src=\"../images/img_bt_add.png\"><h4>Add room</
 
 $button->clear_data();
 
-$button->set_id("bt_add");
+$button->set_id("bt_add_table");
 $button->set_type("submit");
 $button->set_onclick("display_table_editor()");
 

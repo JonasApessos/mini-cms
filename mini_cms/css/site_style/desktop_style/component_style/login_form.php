@@ -173,12 +173,13 @@
 	
 	.loged_form_top div div:nth-child(1)
 	{
-		width:25%;
+		width:100%;
 		min-width:100px;
 		float:left;
-		clear:left;
+		clear:both;
 		margin:auto 5% 1% auto;
 		padding:0%;
+		text-align:center;
 		background-color:rgba(70,70,70,1.0);
 		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
 		transition:box-shadow 1s;
@@ -188,8 +189,8 @@
 	
 	.loged_form_top div div:nth-child(2)
 	{
-		width:68%;
-		min-width:0%;
+		width:98%;
+		min-width:auto;
 		float:left;
 		clear:right;
 		text-align:center;

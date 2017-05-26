@@ -6,9 +6,10 @@ $input->set_name("user_name");
 $input->set_required();
 
 
-echo "<div id=\"create_user\" style=\"display:none; position:fixed; z-index:2;\">";
+echo "<div id=\"create_user\">";
 echo "<div>";
 echo "<div>";
+echo "<h3>Create Account</h3>";
 echo "<form action = \"site_struct/data_struct/components/additional_componets/php/insert_data.php\" method = \"POST\">";
 
 echo "<div>";

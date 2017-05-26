@@ -47,6 +47,13 @@
 		clear:none;
 	}
 	
+	#room_editor div div div textarea
+	{
+		margin:1%;
+		float:right;
+		clear:none;
+	}
+	
 	#room_editor div div div input[type="submit"]
 	{
 		width:10%;

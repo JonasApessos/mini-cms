@@ -22,26 +22,66 @@ if($start_index < 0)
 
 if(!(empty($_POST['user_id'])) || !(empty($_POST['user_name'])))
 {
-include_once "site_struct/data_struct/components/additional_componets/php/reservation_editor.php";
+require_once "site_struct/data_struct/components/additional_componets/php/reservation_editor.php";
 }
 else
 {
+	
+	
 	$sql = "
 SELECT ".$prefix."user.user_id ,".$prefix."user.user_name , ".$prefix."user.user_email , ".$prefix."user.user_gender , ".$prefix."user.user_date_created, ".$prefix."user.user_blocked, ".$prefix."user.accessLv_id
 FROM ".$prefix."user
+WHERE ".$prefix."user.".(empty($_POST['search_type']) ? "user_name" : $_POST['search_type'])." 
+LIKE \"".(empty($_POST['search_query']) ? "" : $_POST['search_query'])."%\"
 LIMIT ".($start_index * 25).",25;";
 $user_rows = mysqli_query($conn,$sql) or die ("ERROR 13" . mysqli_error($conn));
-	
+
 	$sql = "
 SELECT ".$prefix."accessLv.accessLv_id, ".$prefix."accessLv.accessLv_title
 FROM ".$prefix."accessLv;";
 $access_lv_rows = mysqli_query($conn,$sql) or die ("ERROR 14" . mysqli_error($conn));
 	
-include_once "site_struct/data_struct/components/additional_componets/php/user_editor.php";
+require_once "site_struct/data_struct/components/additional_componets/php/user_editor.php";
+
+$input->clear_data();
+
+$input->set_type("text");
+$input->set_name("search_query");
+$input->set_value("");
+
+$select->clear_data();
+
+$select->set_name("search_type");
+$select->add_option("by user name","user_name");
+$select->add_option("by user email","user_email");
+$select->add_option("by user id","user_id");
+$select->add_option("by creation date","user_date_created");
 
 echo "<div class = \"user_list_style\">";
 echo "<div>";
 echo "<div>";
+echo "<form action=\"#\" method=\"POST\">";
+
+echo "<div id=\"search_panel\">";
+echo "<h3>Search</h3>";
+
+echo $select->display();
+
+echo $input->display();
+
+$select->clear_data();
+
+$input->clear_data();
+
+$input->set_type("submit");
+
+echo $input->display();
+
+echo "</div>";
+
+$input->clear_data();
+
+echo "</form>";
 
 foreach($user_rows as $user_row => $user_data)
 {
@@ -176,7 +216,7 @@ $button->set_name("next_list");
 $button->set_value("FALSE");
 
 echo "<form action=\"#\" method=\"POST\">";
-echo "<div>";
+echo "<div id=\"page_index\">";
 
 echo $input->display();
 

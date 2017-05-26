@@ -26,7 +26,7 @@ foreach($component_rows as $component_row => $component_data)
 		echo "<h1>".$page_title."</h1>";
 	}
 	
-	include_once $component_data['incFile_path'];
+	require_once $component_data['incFile_path'];
 }
 
 mysqli_free_result($component_rows);

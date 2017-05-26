@@ -2,8 +2,8 @@
 session_start();
 ?>
 <?php
-include "../../../../document_data/document_data.php"; 
-include_once "../../../../document_data/db_conn.php"; 
+require "../../../../document_data/document_data.php"; 
+require_once "../../../../document_data/db_conn.php"; 
 ?>
 <?php
 $email = $_POST['login_email'];
@@ -19,35 +19,31 @@ LIMIT 1;";
 
 $user_rows = mysqli_query($conn , $sql) or die("ERROR 07: ".mysqli_query($conn));
 
-foreach($user_rows as $user_row => $user_data)
+$user_row = mysqli_fetch_array($user_rows, MYSQLI_ASSOC);
+
+if(empty($user_row))
 {
-	if(empty($user_data['user_id']) || $user_data['user_blocked'])
-	{
-		Header("Location: ../../../../../index.php");
-	}
-	else
-	{
-		$_SESSION['user_name'] = $user_data['user_name'];
-		$_SESSION['user_email'] = $user_data['user_email'];
-		$_SESSION['access_level'] = $user_data['accessLv_id'];
-		$_SESSION['user_id'] = $user_data['user_id'];
-		$sql = "
-		INSERT INTO ".$prefix."userLogin(userLogin_state,userLogin_date,user_id)
-		VALUES (TRUE,NOW(),".$_SESSION['user_id'].");";
-		mysqli_query($conn , $sql) or die("ERROR 08: ".mysqli_error($conn));
-	}
+	mysqli_free_result($user_rows);
+	
+	mysqli_close($conn);
+	
+	Header("Location: ../../../../../index.php?err_msg=wrong email or password , please try again");
 }
-mysqli_free_result($user_rows);
-
-
-
-mysqli_close($conn);
-
-$sql = NULL;
-$conn = NULL;
-$email = NULL;
-$password = NULL;
-
-
-Header("Location: ../../../../../index.php");
+else
+{
+	$_SESSION['user_name'] = $user_row['user_name'];
+	$_SESSION['user_email'] = $user_row['user_email'];
+	$_SESSION['access_level'] = $user_row['accessLv_id'];
+	$_SESSION['user_id'] = $user_row['user_id'];
+	$sql = "
+	INSERT INTO ".$prefix."userLogin(userLogin_state,userLogin_date,user_id)
+	VALUES (TRUE,NOW(),".$_SESSION['user_id'].");";
+	mysqli_query($conn , $sql) or die("ERROR 08: ".mysqli_error($conn));
+	
+	mysqli_free_result($user_rows);
+	
+	mysqli_close($conn);
+	
+	Header("Location: ../../../../../index.php");
+}
 ?>

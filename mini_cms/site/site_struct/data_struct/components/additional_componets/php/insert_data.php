@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include_once "../../../../document_data/db_conn.php";
-include_once "../../../../document_data/document_data.php";
+require_once "../../../../document_data/db_conn.php";
+require_once "../../../../document_data/document_data.php";
 ?>
 
 <?php
@@ -73,4 +73,6 @@ include_once "../../../../document_data/document_data.php";
 		mysqli_close($conn);
 		Header("Location: ../../../../../?err_msg=email or password already exists, please try again");
 	}
+	
+	mysqli_free_result($rows);
 ?>

@@ -2,8 +2,8 @@
 session_start();
 ?>
 <?php
-include_once "../../../../document_data/db_conn.php";//connection to the database
-include_once "../../../../document_data/document_data.php";//data preserved for latter use
+require_once "../../../../document_data/db_conn.php";//connection to the database
+require_once "../../../../document_data/document_data.php";//data preserved for latter use
 ?>
 <?php
 function table_seperation($table_list)
@@ -30,11 +30,7 @@ if($_SESSION['access_level'] < 2)//if users access level is lower than 1 then he
 	$date_string = 0;
 	$table_list = array();
 	$table_list_len = 0;
-	
-	/*echo $_POST['fin_res_name']."<br>";
-	echo $_POST['fin_res_smoking']."<br>";
-	echo $_POST['fin_res_people']."<br>";
-	echo $_POST['fin_res_comment']."<br>";*/
+
 	$date_string = $_POST['fin_user_date'];//reservation date
 
 	$table_list = table_seperation($_POST['res_table_list']);
@@ -48,7 +44,7 @@ if($_SESSION['access_level'] < 2)//if users access level is lower than 1 then he
 	AND ".$prefix."reservation.reservation_name = \"".$_POST['fin_user_name']."\"
 	LIMIT 1;";//checking if users reservation at this date already exists
 	
-	$reservation_rows = mysqli_query($conn,$sql)or die("ERROR 0" . mysqli_error($conn));
+	$reservation_rows = mysqli_query($conn,$sql)or die("ERROR 0");
 	
 	$reservation_row = mysqli_fetch_array($reservation_rows,MYSQLI_ASSOC);
 	
@@ -58,7 +54,7 @@ if($_SESSION['access_level'] < 2)//if users access level is lower than 1 then he
 		$sql = "INSERT INTO ".$prefix."reservation(reservation_name,reservation_smoker,reservation_people,reservation_comm,reservation_date,user_id) VALUES
 		(\"".$_POST['fin_user_name']."\",".$_POST['fin_user_smoking'].",".$_POST['fin_user_people'].",\"".$_POST['fin_user_comm']."\",\"".$date_string."\",".$_POST['fin_user_id'].");";//insert reservation 
 	
-		mysqli_query($conn,$sql)or die("ERROR 1" . mysqli_error($conn));
+		mysqli_query($conn,$sql)or die("ERROR 1");
 	
 		$sql = "SELECT ".$prefix."reservation.reservation_id
 		FROM ".$prefix."reservation
@@ -68,7 +64,7 @@ if($_SESSION['access_level'] < 2)//if users access level is lower than 1 then he
 		AND ".$prefix."reservation.reservation_name = \"".$_POST['fin_user_name']."\"
 		LIMIT 1;";//find the newly inserted reservation
 	
-		$reservation_rows = mysqli_query($conn,$sql)or die("ERROR 2" . mysqli_error($conn));
+		$reservation_rows = mysqli_query($conn,$sql)or die("ERROR 1");
 	
 		$reservation_row = mysqli_fetch_array($reservation_rows,MYSQLI_ASSOC);
 	
@@ -84,13 +80,13 @@ if($_SESSION['access_level'] < 2)//if users access level is lower than 1 then he
 				$sql .= ',';
 		}//creating multiple insert data
 		//echo $sql;
-		mysqli_query($conn,$sql)or die("ERROR 10".mysqli_error($conn));
+		mysqli_query($conn,$sql)or die("ERROR 2");
 	
-		HEADER("Location:../../../../../?menu_id=8");//return to user list (if you are admin)
+		HEADER("Location:../../../../../?menu_id=8&err_msg=reservation complete");//return to user list (if you are admin)
 	}
 	else
-		HEADER("Location:../../../../../?menu_id=8");//return to user list (if you are admin)
+		HEADER("Location:../../../../../?menu_id=8&err_msg=missing data, please try again");//return to user list (if you are admin)
 }
 else
-	HEADER("Location:../../../../../");//return to home page , not admin
+	HEADER("Location:../../../../../?err_msg=Access Denied");//return to home page , not admin
 ?>

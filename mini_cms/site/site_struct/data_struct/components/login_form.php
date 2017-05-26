@@ -51,17 +51,7 @@ if($_SESSION["access_level"] > 2)
 	
 	echo "<div>";
 	echo $button->display("Create Account");
-	
-	$button->clear_data();
-	
-	$button->set_type("button");
-	$button->set_onclick("display_recovery()");
-	
-	echo $button->display("Forgot Password?");
-	echo "</div>";
-	
-	$button->clear_data();
-	
+		
 	echo "</div>";
 	
 	echo "</form>";
@@ -74,9 +64,9 @@ else
 	
 	echo "<div>";
 	
-	echo "<div>";
+	/*echo "<div>";
 	echo "<img src = \"\" alt = \"profil_image\" width = \"100px;\">";
-	echo "</div>";
+	echo "</div>";*/
 	
 	echo "<div>";
 	echo "<h4>Username: ".$_SESSION["user_name"]."</h4>";

@@ -14,7 +14,7 @@ echo "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12584.
 echo "</div>";
 
 echo "<div>";
-echo "<p>description</p>";
+echo "<p>For any reservation you can register and user our site to set a reservation or communicate with us directly , we would love to help you with any question or help you make your reservesion</p>";
 echo "</div>";
 
 echo "</div>";

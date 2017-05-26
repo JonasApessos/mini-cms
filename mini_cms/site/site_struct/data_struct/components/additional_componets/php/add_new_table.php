@@ -1,6 +1,6 @@
 <?php
-include_once "../../../../document_data/db_conn.php";
-include_once "../../../../document_data/document_data.php";
+require_once "../../../../document_data/db_conn.php";
+require_once "../../../../document_data/document_data.php";
 
 $sql ="
 INSERT INTO ".$prefix."Dtable(Dtable_capacity,resPos_id,Dtable_blocked)

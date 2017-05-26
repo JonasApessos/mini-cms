@@ -25,6 +25,16 @@ echo "</div>";
 
 $input->clear_data();
 
+$input->set_type("tel");
+$input->set_required();
+$input->set_name("user_phonenumber");
+
+echo "<div><h3>Phonenumber: </h3>";
+echo $input->display();
+echo "</div>";
+
+$input->clear_data();
+
 $select->set_name("user_gender");
 $select->add_option("Male","M");
 $select->add_option("Female","F");

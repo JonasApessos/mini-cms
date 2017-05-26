@@ -11,7 +11,7 @@ function selectTable(tableId)
 	if(parseInt(tableValue))
 	{
 		id.style.boxShadow = "0px 0px 10px 2px rgba(0,0,0,0.25)";
-		id.style.backgroundColor = "rgba(30,30,30,1.0)";
+		id.style.backgroundColor = "rgba(70,70,70,1.0)";
 		id.childNodes[0].value = 0;
 		
 		var newtext = (tableIdString.replace("table_","")) + ",";
@@ -24,7 +24,7 @@ function selectTable(tableId)
 	else
 	{
 		id.style.boxShadow = "0px 0px 10px 2px rgba(255,140,0,1.0)";
-		id.style.backgroundColor = "rgba(50,50,50,1.0)";
+		id.style.backgroundColor = "rgba(90,90,90,1.0)";
 		id.childNodes[0].value = 1;
 		tableListId.value += (tableIdString.replace("table_","")) + ",";
 	}

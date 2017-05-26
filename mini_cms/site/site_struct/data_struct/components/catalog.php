@@ -16,11 +16,22 @@ foreach($prod_cad_rows as $prod_cad_row => $prod_cad_data)
 	WHERE re2213_product.category_id = ".$prod_cad_data['category_id'].";";
 	$prod_rows = mysqli_query($conn,$sql) or die ("ERROR 22" . mysqli_error($conn));
 	
+	
 	foreach($prod_rows as $prod_row => $prod_data)
 	{
+		$sql = 
+		"SELECT re2213_compDataImg.compDataImg_path 
+		FROM re2213_product,re2213_compDataImg 
+		WHERE re2213_product.compDataImg_id = re2213_compdataimg.compDataImg_id 
+		AND re2213_product.product_id  = ".$prod_data['product_id']."";
+		
+		$prod_img_rows = mysqli_query($conn,$sql) or die ("ERROR 23" . mysqli_error($conn));
+		
+		$prod_img_row = mysqli_fetch_assoc($prod_img_rows);
+		
 		echo "<div>";
 
-		echo "<img src=\"\" alt = \"dishe_001\" >";
+		echo "<img src=\"".$prod_img_row['compDataImg_path']."\" width=\"100px\" alt = \"dishe_001\" >";
 
 		echo "<div>";
 		echo "<p>".$prod_data['product_desc']."</p>";

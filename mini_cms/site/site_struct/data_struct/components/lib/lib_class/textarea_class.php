@@ -5,12 +5,19 @@ class textarea extends html_standard_attributes_proccess
 {
 	public function display()
 	{
-		echo "<textarea ".$this->chain_attributes."></textarea>";
+		echo "<textarea ";
+		echo $this->chain_attributes;
+		echo ">";
+		echo "</textarea>";
 	}
 	
 	public function display_input($input)
 	{
-		echo "<textarea ".$this->chain_attributes.">".$input."</textarea>";
+		echo "<textarea ";
+		echo $this->chain_attributes;
+		echo ">";
+		echo $input;
+		echo "</textarea>";
 	}
 	
 	public function set_dimensions($at_input_x , $at_input_y)
