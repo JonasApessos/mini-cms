@@ -17,7 +17,7 @@ AND ".$prefix."user.user_password = \"".$password."\"
 AND ".$prefix."user.user_blocked = FALSE 
 LIMIT 1;";
 
-$user_rows = mysqli_query($conn , $sql) or die("ERROR 07: ".mysqli_query($conn));
+$user_rows = mysqli_query($conn , $sql) or die("ERROR 1");
 
 $user_row = mysqli_fetch_array($user_rows, MYSQLI_ASSOC);
 
@@ -38,7 +38,7 @@ else
 	$sql = "
 	INSERT INTO ".$prefix."userLogin(userLogin_state,userLogin_date,user_id)
 	VALUES (TRUE,NOW(),".$_SESSION['user_id'].");";
-	mysqli_query($conn , $sql) or die("ERROR 08: ".mysqli_error($conn));
+	mysqli_query($conn , $sql) or die("ERROR 2");
 	
 	mysqli_free_result($user_rows);
 	
