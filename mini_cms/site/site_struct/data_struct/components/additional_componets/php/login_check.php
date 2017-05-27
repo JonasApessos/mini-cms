@@ -2,58 +2,48 @@
 session_start();
 ?>
 <?php
-include "../../../../document_data/document_data.php"; 
-include_once "../../../../document_data/db_conn.php"; 
+require "../../../../document_data/document_data.php"; 
+require_once "../../../../document_data/db_conn.php"; 
 ?>
 <?php
-
 $email = $_POST['login_email'];
 $password = crypt($_POST['password_login'],"T51");
 
-$sql = "SELECT * 
+$sql = "
+SELECT ".$prefix."user.user_name , ".$prefix."user.user_email , ".$prefix."user.accessLv_id , ".$prefix."user.user_id
 FROM ".$prefix."user 
-WHERE user_email = \"".$email."\" 
-AND user_password = \"".$password."\" LIMIT 1;";
+WHERE ".$prefix."user.user_email = \"".$email."\" 
+AND ".$prefix."user.user_password = \"".$password."\"
+AND ".$prefix."user.user_blocked = FALSE 
+LIMIT 1;";
 
-$user_rows = mysqli_query($conn , $sql) or die("ERROR 07: ".mysqli_query($conn));
+$user_rows = mysqli_query($conn , $sql) or die("ERROR 1");
 
-foreach($user_rows as $user_row => $user_data)
+$user_row = mysqli_fetch_array($user_rows, MYSQLI_ASSOC);
+
+if(empty($user_row))
 {
-	if(!isset($user_data['user_id']))
-	{
-		Header("Location: ../../../../../index.php");
-	}
-	else
-	{
-		$_SESSION['user_name'] = $user_data['user_name'];
-		$_SESSION['user_email'] = $user_data['user_email'];
-		$_SESSION['access_level'] = $user_data['accessLv_id'];
-		$_SESSION['user_id'] = $user_data['user_id'];
-		$sql = "
-		INSERT INTO ".$prefix."userLogin(userLogin_state,userLogin_date,user_id)
-		VALUES (TRUE,NOW(),".$_SESSION['user_id'].");";
-		mysqli_query($conn , $sql) or die("ERROR 08: ".mysqli_error($conn));
-	}
+	mysqli_free_result($user_rows);
+	
+	mysqli_close($conn);
+	
+	Header("Location: ../../../../../index.php?err_msg=wrong email or password , please try again");
 }
-$user_data = NULL;
-$user_row = NULL;
-echo "user_id: ".$_SESSION['user_id'];
-//$sql = "
-//INSERT INTO ".$prefix."userLogin(userLogin_state,userLogin_date,user_id)
-//VALUES (TRUE,NOW(),".$_SESSION['user_id'].");";
-
-//mysqli_query($conn , $sql) or die("ERROR 08: ".mysqli_error($conn));
-
-
-
-mysqli_close($conn);
-
-$sql = NULL;
-$conn = NULL;
-$user_rows = NULL;
-$email = NULL;
-$password = NULL;
-
-
-Header("Location: ../../../../../index.php");
+else
+{
+	$_SESSION['user_name'] = $user_row['user_name'];
+	$_SESSION['user_email'] = $user_row['user_email'];
+	$_SESSION['access_level'] = $user_row['accessLv_id'];
+	$_SESSION['user_id'] = $user_row['user_id'];
+	$sql = "
+	INSERT INTO ".$prefix."userLogin(userLogin_state,userLogin_date,user_id)
+	VALUES (TRUE,NOW(),".$_SESSION['user_id'].");";
+	mysqli_query($conn , $sql) or die("ERROR 2");
+	
+	mysqli_free_result($user_rows);
+	
+	mysqli_close($conn);
+	
+	Header("Location: ../../../../../index.php");
+}
 ?>

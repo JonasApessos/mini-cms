@@ -19,6 +19,47 @@
 		float:none;
 	}
 	
+	.user_list_style div div button
+	{
+		width:10%;
+		min-width:auto;
+		margin:auto 1%;
+		padding:0%;
+		clear:none;
+		float:left;
+	}
+	
+	.user_list_style div div button div img
+	{
+		width:auto;
+		min-width:auto;
+		margin:auto;
+		padding:0%;
+		clear:none;
+		float:left;
+		border-right:1px solid rgba(255,140,0,1.0);
+	}
+	
+	.user_list_style div div button div
+	{
+		width:100%;
+		min-width:auto;
+		margin:auto;
+		padding:0%;
+		clear:none;
+		float:left;
+	}
+	
+	.user_list_style div div button div h4
+	{
+		width:auto;
+		min-width:auto;
+		margin:5% auto auto auto;
+		padding:0%;
+		clear:none;
+		text-align:center;
+	}
+	
 	.user_list_style div div
 	{
 		width:100%;
@@ -46,11 +87,326 @@
 		margin:1%;
 		padding:0%;
 		float:left;
+		clear:none;
+	}
+	
+	.user_list_style div div div input
+	{
+		width:30%;
+		margin:1%;
+		padding:0%;
+		float:right;
+		text-align:center;
+		clear:none;
+	}
+	
+	.user_list_style div div div select
+	{
+		width:30%;
+		margin:1%;
+		padding:0%;
+		float:right;
+		text-align:center;
+		clear:none;
+		background-color:rgba(50,50,50,1.0);
+	}
+
+	.user_list_style div div div button
+	{
+		width:31%;
+		min-width:100px;
+		margin:1%;
+		padding:0%;
+		float:left;
+		text-align:center;
+		clear:none;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	.user_list_style div div div button div
+	{
+		width:100%;
+		margin:auto;
+		padding:0%;
+		float:left;
 		clear:both;
+	}
+	
+	.user_list_style div div div button div img
+	{
+		width:auto;
+		margin:auto;
+		padding:0%;
+		float:left;
+		clear:left;
+	}
+	
+	.user_list_style div div div div
+	{
+		width:98%;
+		min-width:auto;
+		float:left;
+		clear:both;
+		background-color:rgba(90,90,90,1.0);
 	}
 	
 	.user_list_style div div:hover
 	{
 		box-shadow:0px 0px 10px 2px rgba(255,140,0,1.0);
+	}
+	
+	#reservation_editor
+	{
+		width:100%;
+		margin:auto;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(30,30,30,1.0);
+	}
+	
+	#reservation_editor div
+	{
+		width:50%;
+		margin:auto;
+		float:none;
+		clear:both;
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+	}
+	
+	#reservation_editor div div
+	{
+		width:100%;
+		margin:1%;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(50,50,50,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+	}
+	
+	#reservation_editor div div h1
+	{
+		width:100%;
+		margin:auto;
+		float:none;
+		text-align:center;
+		clear:both;
+	}
+	
+	#reservation_editor div div div
+	{
+		width:98%;
+		margin:1%;
+		float:left;
+		clear:both;
+		background-color:rgba(70,70,70,1.0);
+	}
+	
+	#reservation_editor div div div input
+	{
+		width:15%;
+		margin:1%;
+		float:right;
+		clear:right;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor div div div select
+	{
+		width:15%;
+		margin:1%;
+		float:right;
+		clear:right;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor div div div textarea
+	{
+		width:15%;
+		margin:1%;
+		float:right;
+		clear:right;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor div div div h4
+	{
+		width:auto;
+		margin:1%;
+		float:left;
+		clear:left;
+		background-color:rgba(70,70,70,1.0);
+	}
+	
+	#reservation_editor div div input[type="submit"]
+	{
+		width:15%;
+		margin:1%;
+		float:right;
+		clear:right;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor_2
+	{
+		width:100%;
+		margin:auto;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(30,30,30,1.0);
+	}
+	
+	#reservation_editor_2 div
+	{
+		width:50%;
+		margin:auto;
+		padding:0%;
+		float:none;
+		clear:both;
+		background-color:rgba(30,30,30,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
+	}
+	
+	#reservation_editor_2 div div
+	{
+		width:100%;
+		margin:auto;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor_2 div div h1
+	{
+		width:100%;
+		margin:auto;
+		padding:0%;
+		float:none;
+		text-align:center;
+		clear:both;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor_2 div div div
+	{
+		width:98%;
+		margin:1%;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(70,70,70,1.0);
+	}
+	
+	#reservation_editor_2 div div div h4
+	{
+		width:auto;
+		margin:1%;
+		padding:0%;
+		float:left;
+		clear:left;
+		background-color:rgba(70,70,70,0.0);
+	}
+	
+	#reservation_editor_2 div div div input
+	{
+		width:15%;
+		margin:1%;
+		padding:0%;
+		float:right;
+		text-align:center;
+		clear:right;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor_2 div div div textarea
+	{
+		width:15%;
+		margin:1%;
+		padding:0%;
+		float:right;
+		clear:right;
+		background-color:rgba(50,50,50,1.0);
+	}
+	
+	#reservation_editor_2 div div div h2
+	{
+		width:auto;
+		margin:1%;
+		padding:0%;
+		float:none;
+		text-align:center;
+		clear:both;
+		background-color:rgba(50,50,50,0.0);
+	}
+	
+	#reservation_editor_2 div div div:nth-child(8)
+	{
+		width:98%;
+		margin:1%;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(70,70,70,1.0);
+	}
+	
+	#reservation_editor_2 div div div:nth-child(8) div
+	{
+		width:31%;
+		margin:1%;
+		padding:0%;
+		float:left;
+		clear:none;
+		background-color:rgba(50,50,50,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
+	}
+	
+	#reservation_editor_2 div div div:nth-child(8) div div:nth-child(1)
+	{
+		width:100%;
+		margin:0%;
+		padding:0%;
+		float:left;
+		clear:both;
+		background-color:rgba(70,70,70,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
+	}
+	
+	#reservation_editor_2 div div div:nth-child(8) div div:nth-child(1) h4
+	{
+		width:100%;
+		margin:0%;
+		padding:0%;
+		float:none;
+		text-align:center;
+		clear:both;
+		background-color:rgba(70,70,70,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
+	}
+	
+	#reservation_editor_2 div div div:nth-child(8) div div:nth-child(2)
+	{
+		width:100%;
+		margin:0%;
+		padding:0%;
+		float:left;
+		text-align:center;
+		clear:both;
+		background-color:rgba(30,30,30,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.0);
+	}
+	
+	#reservation_editor_2 div div div:nth-child(8) div div:nth-child(2) div
+	{
+		width:29%;
+		margin:2%;
+		padding:0%;
+		float:left;
+		text-align:center;
+		clear:none;
+		background-color:rgba(70,70,70,1.0);
+		box-shadow:0px 0px 10px 2px rgba(0,0,0,0.25);
 	}
 }

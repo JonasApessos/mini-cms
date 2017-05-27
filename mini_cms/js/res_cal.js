@@ -16,9 +16,11 @@ var dateMonthAdded = 0;
 
 var months = ["January","February","Mars","April","May","June","Julie","August","September","October","November","December"];
 
-var hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,15,16,17,18,19,20,21,22,23];
-var minutes = [0,15,30,45];
+var hours = [9,10,11,12,13,14,15,15,16,17,18,19,20,21,22,23];
+var minutes = [0,30];
 
+
+/*
 function resCall(){}
 function dateCheck(){}
 function createCallChilds(){}
@@ -27,6 +29,7 @@ function setHours(){}
 function setDays(){}
 function setBoxSelection(){}
 function updateForm(){}
+*/
 //-------------------------------------------------------------
 
 //set calander
@@ -88,7 +91,7 @@ function createCallChilds(idDiv_01)
 	createI_01.setAttribute("type","text");
 	createI_01.setAttribute("name","res_date");
 
-	createI_01.setAttribute("value",date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1 + dateMonthAdded) + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
+	createI_01.setAttribute("value",date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1 + dateMonthAdded) + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0" + "0");
 	createI_01.readOnly = true;
 }
 
@@ -207,5 +210,5 @@ function dateCheck()
 function updateForm()//updates on form input changes
 {	
 	if(idDiv_03 != 0)
-		idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1 + dateMonthAdded) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0");
+		idInput_01.defaultValue = (date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1 + dateMonthAdded) + "-" + idDiv_03.getAttribute("value") + " " + hours[document.getElementById("hours_id").selectedIndex] + ":" + minutes[document.getElementById("minutes_id").selectedIndex] + ":" + "0"+"0");
 }

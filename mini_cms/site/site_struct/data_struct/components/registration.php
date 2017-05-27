@@ -1,6 +1,6 @@
 <?php
 
-echo "<form action = \"../data_parse/login_data_parse.php\" method=\"POST\">";
+echo "<form action = \"site_struct/data_struct/componets/php/insert_data.php\" method=\"POST\">";
 echo "<table class=\"".$table_form_class."\">";
 echo "<tbody>";
 echo "<tr>";

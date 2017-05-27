@@ -1,52 +1,60 @@
 <?php
 Header("Pragma: no-cache");//disable web automatic content cashing
-/*ini_set("session.use_cookies", 0);
-ini_set("session.use_only_cookies", 0);
-ini_set("session.use_trans_sid", 1);
-ini_set("session.cache_limiter", "");*/
+session_set_cookie_params(180,"/",true,false);
 session_start();//starting session
+ini_set('display_errors',1);
 ?>
 <?php
-include_once "site_struct/document_data/db_conn.php";//db connection
-include_once "site_struct/document_data/document_data.php";//header with global variables
+require_once "site_struct/document_data/db_conn.php";//db connection
+require_once "site_struct/document_data/document_data.php";//header with global variables
+require_once "site_struct/data_struct/components/lib/lib_class/input_class.php";//include class files
+require_once "site_struct/data_struct/components/lib/lib_class/button_class.php";
+require_once "site_struct/data_struct/components/lib/lib_class/select_class.php";
+require_once "site_struct/data_struct/components/lib/lib_class/textarea_class.php";
+
+$input = new input();//create new input object that all the page will use
+$button = new button();//create new button object that all the page will use
+$select = new select();//create new select object that all the page will use
+$textarea = new textarea();//create textarea input object that all the page will use
+
 ?>
 <?php
 echo "<!DOCTYPE html>";
 echo "<html>";
 echo "<head>";
+//echo "<p>step1: " . ((memory_get_usage()/1000)/1000) . "MB</p>";//see memory usage of php
+echo "<link rel=\"icon\" href=\"../images/test.png\" type=\"image/png\"/>";//favicon
+require_once "site_struct/document_data/init_sessions.php";//init session
 
-if(!isset($_SESSION['access_level']))
-{
-	$_SESSION['access_level'] = 3;//access level session determines the access level a user has the rite to access content of the website
-	$_SESSION['user_name'] = "none";
-	$_SESSION['user_email'] = "none";
-	$_SESSION['user_id'] = 0;
-}
-
-if(!isset($_GET["menu_id"]) || empty($_GET['menu_id']))
-	$_SESSION["menu_id"] = 2;//setting menu selection session id
-else
-	$_SESSION["menu_id"] = $_GET["menu_id"];
-
-include_once "site_struct/lib_incl.php";//include external library's (css,js)
+require_once "site_struct/lib_incl.php";//include external library's (css,js)
 
 echo "</head>";
 
 echo "<body onload = \"initFunc()\">";//init function loads all script needed , if 1 script fails all else fails , this is for good practice reason
-include_once "site_struct/mobile_screen/absolute_menu.php";//include absolute menu structure (phone menu)
+require_once "site_struct/mobile_screen/absolute_menu.php";//include absolute menu structure (phone menu)
+require_once "site_struct/data_struct/components/create_account.php";
+require_once "site_struct/data_struct/components/additional_componets/php/recovery.php";
+require_once "site_struct/data_struct/components/additional_componets/php/broadcaster.php";
 		
-echo "<div class = \"containment\">";
+echo "<div class = \"containment\">";//this is a container div where it will contain all the page structure
 		
-include_once "site_struct/data_struct.php";//include site data structure
+require_once "site_struct/data_struct.php";//include site data structure
 		
 echo "</div>";
 
-//include administrator button images
-include_once "site_struct/data_struct/components/admin_images.php";
+//require_once "site_struct/data_struct/components/admin_images.php";//include administrator button images
 
 echo "</body>";
 echo "</html>";
-mysqli_close($conn);//closing db connection for the entire page
-$conn = 0;
-$sql = 0;
+//echo "<p>step2: " . ((memory_get_usage()/1000)/1000) . "MB</p>";
+mysqli_close($conn);//closing db connection for the client
+
+unset($conn);//unset variables to free up unused memory
+unset($sql);
+unset($input);
+unset($button);
+unset($select);
+unset($textarea);
+
+//echo "<p>step3: " . ((memory_get_usage()/1000)/1000) . "MB</p>";
 ?>

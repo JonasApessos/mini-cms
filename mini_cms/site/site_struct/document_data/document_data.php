@@ -37,4 +37,7 @@ $header_login_script = "login_check.js";
 //prefix
 $prefix = "re2213";
 $prefix .= "_";
+
+//error message
+$err_msg = "";
 ?>
