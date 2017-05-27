@@ -12,22 +12,9 @@ if($_SESSION['access_level'] == 1)
 
 	foreach($img_rows as $img_row => $img_data)
 	{
-		switch($img_data['compDataImg_id'])
-		{
-			case 1:
-				echo "<img src = \"".$img_data['compDataImg_path']."\">";
-				break;
-			case 2:
-				echo "<img src = \"".$img_data['compDataImg_path']."\">";
-				break;
-			case 3:
-				echo "<img src = \"".$img_data['compDataImg_path']."\">";
-				break;
-			default:
-				echo "admin buttons not found\n";
-				break;
-		}
+		echo "<button type = \"button\"><img src = \"".$img_data['compDataImg_path']."\"></button>";
 	}
+	
 	mysqli_free_result($img_rows);
 }
 ?>

@@ -4,9 +4,10 @@
 	{
 		width:100%;
 		height:50px;
+		float:left;
+		overflow:visible;
 		background-color:rgba(30,30,30,1);
 		border:0px solid black;
-		float:left;
 		clear:both;
 	}
 }

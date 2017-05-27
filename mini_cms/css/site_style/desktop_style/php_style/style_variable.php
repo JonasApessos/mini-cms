@@ -12,6 +12,6 @@
 	$form_input_hover_background_color = "rgba(70,70,70,1)";
 	$animation_time_transition = "1,5";
 	$border_width = "1";
-	$menu_height =150;
+	$menu_height =200;
 	
 ?>
